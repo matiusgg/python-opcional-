@@ -19,7 +19,7 @@ print(grupo, '\n')
 # Imprmir elemntos seleccionados de una lista.
 # IMPORTANTE: Las posiciones de los elementos de una lista son igual que en una array, es decir, 0,1,2,3,4,5,etc.
 # TIP: Si solo queremos sacar una cierta los elementos desde una posicion a otra posicion de la lista
-# Usamos ":", EJM: 2:5. El elemento de la posicion 2 al 5
+# Usamos ":", EJM: 2:5. El elemento de la posicion 2 al 5. pero el 5 no te lo muestra solo el penultimo
 
 print(grupo[2:5])
 
@@ -99,11 +99,19 @@ grupofinal.clear()
 # Especificamos la posicion con [] y con "=" le damos el nuevo valor a ese elemento
 grupofinal[5] = 'Otra cosa'
 
+
+
+
+
 '''
 TUPLAS: Sirven concretamente para buscar, consuymen menos memoria de las listas
 Son mas rapidas, pero despue sde crearlas son inmodificables
 
 '''
+
+
+
+
 # Ya no empleamos [] sino ().
 tupla01 = ('Lunes', 'Martes', 'Miercoles')
 
@@ -136,3 +144,5 @@ nuevaLista = list(tupla01)
 # Si al contrario queremos copiar el cnotenido de una lista a una tupla, esto con TUPLE()
 
 nuevaTupla = tuple(grupofinal)
+
+

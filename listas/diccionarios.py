@@ -108,3 +108,13 @@ print(equipoNBA.items())
 # Borrar diccionario
 
 print(equipoNBA.clear())
+
+# unir Strings o valores de una coleeccion con el caracter que le indiquemos en '' y en (le indicamos la lista)
+
+print(' '.join(equipoNBA))
+
+# SPLIT(): Nos permite separa palabras de un STRING, en donde (ponemos el caracter que nos permititra sepaarar por cada palabra)
+
+print(equipoNBA.split('_'))
+
+

@@ -99,6 +99,56 @@ grupofinal.clear()
 # Especificamos la posicion con [] y con "=" le damos el nuevo valor a ese elemento
 grupofinal[5] = 'Otra cosa'
 
+# Poner la priumera letra en mayuscula
+
+grupofinal.capitalize()
+
+# poner todo en minusculas
+
+grupofinal.lower()
+
+# poner todo en Mayusculas
+
+grupofinal.upper()
+
+# lo que esta en mayuscula te lo pone en minuscula y lo que esta en minuscula te lo pone en mayusculas
+
+grupofinal.swapcase()
+
+# Poner la primera letra de cada palabra en mayuscula
+
+grupofinal.title()
+
+# Nos permite centrar los elementos y poner caracteres alrededor, donde (CEntrar los elementos, caracteres que queremos que este alrededor)
+
+grupofinal.center(50, '*')
+
+# Nos permtie poner los elemtnos al final de la sentencia y poner caracteres antes de estos. r->right
+
+grupofinal.rjust(50, '*')
+
+# Nos permtie poner los elemtnos al principio de la sentencia y poner caracteres despues de estos. l-left
+
+grupofinal.ljust(50, '*')
+
+# ZFILL: Si tenemos un numero, esto nos permite rellenar con ceros la cantidad que le pongamos a la izquierda.
+
+grupofinal.zfill(10)
+
+# FIND: NOs permite averiguar en que posicion esta un elemento, nos dira la posicion con numero, aunque seas un STRING y le pongamos "mañana por ejemplo"
+# Nos dira
+
+grupofinal.find('mañana')
+
+# unir Strings o valores de una coleeccion con el caracter que le indiquemos en '' y en (le indicamos la lista)
+
+print(' '.join(equipoNBA))
+
+# SPLIT(): Nos permite separa palabras de un STRING, en donde (ponemos el caracter que nos permititra sepaarar por cada palabra)
+
+print(equipoNBA.split('_'))
+
+
 
 
 
@@ -144,5 +194,24 @@ nuevaLista = list(tupla01)
 # Si al contrario queremos copiar el cnotenido de una lista a una tupla, esto con TUPLE()
 
 nuevaTupla = tuple(grupofinal)
+
+# SILCE: DREBANAAS/ Nos permite cortar o separar elementos. en donde en los [posicion en la cual queremos partir:(opcional)posicion hasta donde queremos partir]
+
+
+
+texto = 'Hola'
+
+texto[1:] # ola
+
+texto[1:3] # ola
+
+# Con lo mismo que en RANGE, el 3 digito nos permite definir cuantos saltos queremos hacer entre los elementos
+
+texto[1:4:2]
+
+# Para poner al revez un string
+texto[::-1]
+
+
 
 

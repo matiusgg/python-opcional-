@@ -3,9 +3,27 @@ BUCLES:
 El WHILE en python es mas generico que el FOR
 '''
 
+'''
+CONTINUE: Si tenemos un condicional y le ponemos un CONTINUE, si estya condicional se cumple el CONTINUE lo que hara, es pasar a la siguiente vuelta,
+mientras que si no se cumple la condicion hazme el codigo que tenga o los siguientes condicionales
+
+BREAK: Rompe un bucle y no sigue los siguientes condicionales como tampoco las siguientes vueltas
+'''
+
 # WHILE
 
 import math
+
+# EJEMPLO: 
+
+for i in range(20):
+    if i != 5:
+        continue
+    else:
+        print(i)
+
+        # Lo que nos hara es que si la condicion se cumple el CONTINUE no nos hara el print del ELSE y pasara a la siguiente vuelta,
+        # mientras que si es FALSe la condicions si nos hace el print del ELSE
 
 numero = int(input('Escribe un numero: '))
 
@@ -71,7 +89,7 @@ coleccion02 = {
 for i in coleccion02:
     print(f'{i} -> {coleccion02[i]}')
 
-
+    
 # Otra forma: usando la funcion items que agrupa tanto la llave como el valor, en donde
 # la variable llave agrupa las LLAVEs del diccionario mientras que el valor agrupa los VALORES del diccionario
 # como lo sabe?, las variables llave y valor serian los i del FOR, la cuestion es que ITEMS() los agrupa en ambos

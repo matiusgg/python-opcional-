@@ -56,6 +56,7 @@ print('Final')
 
 # for: Es el bucle que se utliza en las colecciones(tupla, filas, diccionario, conjunto) de datos. Nos mostrara con print los elementos de la coleccion
 # en IN en el FOR lo que hace es igual i con la coleccion uno por unbo, es decir, i = elemento-> imprime, i = elemento-> imprime, y asi sucesivamente
+# Donde la lista con IN, nos ira ontroduciendo un elemento po vuelta dentro de "i"
 for i in [1,2,3,4,5,6]:
     # imprmimos i para mostrar los elementos
     print(i) 

@@ -73,7 +73,7 @@ grupofinal.pop()
 print(grupofinal, '\h')
 
 
-# Eliminar un elemento de una lista
+# Eliminar un elemento de una lista mediante la posicion/index
 grupofinal.pop(5)
 print(grupofinal, '\h')
 
@@ -87,7 +87,7 @@ grupofinal.remove('Lunes')
 grupofinal.reverse()
 
 # Si queremos ordenar una lista
-# SORT: Solo nos permite ordenar una lista, no una concatenacion de listas
+# SORT: Solo nos permite ordenar una lista, no una concatenacion de listas. Nos beneficia si queremos ordenar enteros de menor a mayor o viceversa.
 grupofinal.sort() # descendente
 grupofinal.sort(reverse=True) # Ascendente: mayor a menor si son enteros
 
@@ -144,9 +144,13 @@ grupofinal.find('mañana')
 
 print(' '.join(equipoNBA))
 
-# SPLIT(): Nos permite separa palabras de un STRING, en donde (ponemos el caracter que nos permititra sepaarar por cada palabra)
+# SPLIT(): Nos permite separa palabras de una cadena de STRING, en donde (ponemos el caracter que nos permititra sepaarar por cada palabra)
 
 print(equipoNBA.split('_'))
+
+# REPLACE(): Nos permite reemplzar/sustituir un elemento por otro, nos ayuda si tenemos un STRING.
+
+equipoNBA.replace('h', 'hh')
 
 
 
@@ -169,6 +173,8 @@ print(tupla01, '\n')
 
 # Nos de la longitud de esta tuple
 # LEN: Nos permite sacar la longitud de una tupla o lista
+# si lo usamos en un bucle tenemos que indicar con -1 porque el LEN nos da la longitud incluyendo boviamente el valorc de la posicion 0.
+# 
 
 print(len(tupla01), '\n')
 

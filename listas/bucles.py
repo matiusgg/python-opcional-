@@ -118,4 +118,8 @@ for i in coleccion03:
 for i in coleccion03:
     print(f'{i}', end:'')
 
+    # FFORMA CORTA DE UN FOR, la "i" antes del for es para que funcione el SHOrT del FOR
+
+    variable = [i for i in lista]
+
 

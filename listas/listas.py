@@ -140,7 +140,7 @@ grupofinal.zfill(10)
 
 grupofinal.find('mañana')
 
-# unir Strings o valores de una coleeccion con el caracter que le indiquemos en '' y en (le indicamos la lista)
+# unir Strings o valores de una coleeccion con el caracter que le indiquemos en '' y en (le indicamos la lista).
 
 print(' '.join(equipoNBA))
 
@@ -151,6 +151,14 @@ print(equipoNBA.split('_'))
 # REPLACE(): Nos permite reemplzar/sustituir un elemento por otro, nos ayuda si tenemos un STRING.
 
 equipoNBA.replace('h', 'hh')
+
+#ENUMERATE: Nos permite recoger los datos o valores de la posicion que ocupa ese valor o dato
+
+enumerate(self.contactos)
+
+# DEL: BOrrar el valor de una lista
+
+del contactos[index]
 
 
 
@@ -213,7 +221,7 @@ texto[1:3] # ola
 
 # Con lo mismo que en RANGE, el 3 digito nos permite definir cuantos saltos queremos hacer entre los elementos
 
-texto[1:4:2]
+texto[1:4:]
 
 # Para poner al revez un string
 texto[::-1]

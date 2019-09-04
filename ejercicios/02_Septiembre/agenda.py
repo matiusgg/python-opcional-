@@ -8,7 +8,7 @@ nombre/ telefono / email
 
 '''
 
-class Ficha:
+class Ficha():
 
     def __init__(self, nombre, telefono, email):
 
@@ -16,11 +16,11 @@ class Ficha:
         self.telefono = telefono
         self.email = email
 
-class Agenda:
+class Agenda():
 
     # Constructor
 
-    def __init_(self):
+    def __init__(self):
 
         self._contactos = []
 
@@ -29,7 +29,7 @@ class Agenda:
 
     # Añadir contacto:
 
-    def anyadir(slef, nombre, telefono, email):
+    def anyadir(self, nombre, telefono, email):
 
         # Como lo hizo el profe con una lista no con diccionario como yo:
 
@@ -39,6 +39,8 @@ class Agenda:
         contacto = Ficha(nombre, telefono, email)
 
         self._contactos.append(contacto)
+
+        print('Se ha añadido el contacto')
 
     # Mostrar todos los contacto
 
@@ -55,13 +57,14 @@ class Agenda:
         print(f'Nombre: {contacto.nombre}')
         print(f'Telefono: {contacto.telefono}')
         print(f'Email: {contacto.email}')
+        print('---------*--------------*-------------*------------------------*')
 
 
-    def borrar(slef, nombre):
+    def borrar(self, nombre):
 
         #ENUMERATE: Nos permite recoger los datos o valores de la posicion que ocupa ese valor o dato
 
-        for index, contacto in enumerate(self.contactos):
+        for index, contacto in enumerate(self._contactos):
 
             if contacto.nombre.lower() == nombre.lower():
 
@@ -69,15 +72,19 @@ class Agenda:
 
                 del self._contactos[index]
 
+                print('Se ha borrado el contacto')
+
+                # ponemos el break para que pare el for inmediatamente
+
                 break
 
-    def buscar(self, name):
+    def buscar(self, nombre):
 
-        for contacto in self._contacto:
+        for contacto in self._contactos:
 
             if contacto.nombre.lower() == nombre.lower():
 
-                self._mostrae(contacto)
+                self._mostrar(contacto)
 
                 break
         
@@ -86,17 +93,20 @@ class Agenda:
          # porque hariamos esto, para que nos pare el bucle
 
         else:
-        self._no_encontrado()
+            self._no_encontrado()
 
 
     def actualizar(self, nombre, telefono, email):
 
         for contacto in self._contactos:
 
-            if contacto.nombre.lower == name.lower():
+            if contacto.nombre.lower() == nombre.lower():
 
+                contacto.nombre = nombre
                 contacto.telefono = telefono
                 contacto.email = email
+
+                print('Se ha actualizado correctamente')
 
                 break
             
@@ -108,6 +118,13 @@ class Agenda:
     def _no_encontrado(self):
 
         print('*******')
+        print('No encontrado')
+        print('*******')
+
+    
+    def salir(self):
+
+        print('Haz salido de la agenda de contactos')
 
 
     # def __init__(self, nombre, telefono, email):
@@ -127,7 +144,7 @@ def run():
 
     agenda_matius = Agenda()
 
-    contactos = {}
+    # contactos = {}
 
     while True:
 
@@ -153,9 +170,11 @@ def run():
 
             email = input(' Introduce el email: ')
 
-            contactos[nombre] = [telefono, email]
+            agenda_matius.anyadir(nombre, telefono, email)
 
-            print(contactos)
+            # contactos[nombre] = [telefono, email]
+
+            # print(contactos)
 
             
 
@@ -164,42 +183,64 @@ def run():
 
         elif menu == 'ac':
 
-            print(contactos)
-            actualizar = input('Escoge cual contacto quieres actualizar: ')
+            # print(contactos)
+            # actualizar = input('Escoge cual contacto quieres actualizar: ')
 
-            for llave, valor in contactos.items():
+            # for llave, valor in contactos.items():
 
-                if actualizar == llave:
+                # if actualizar == llave:
 
-                    telefono = int(input(' Introduce el telefono: '))
+            nombre = input(' Introduce nombre: ')
 
-                    email = input(' Introduce el email: ')
+            telefono = int(input(' Introduce el telefono: '))
 
-                    contactos[llave] = [telefono, email]
+            email = input(' Introduce el email: ')
 
-                    print(contactos)
+            agenda_matius.actualizar(nombre, telefono, email)
+
+
+
+            # contactos[llave] = [telefono, email]
+
+            # print(contactos)
 
 
 
         elif menu == 'b':
-                
+
+
+
+
             buscar = input('Busca el contacto: ')
 
-            for llave, valor in contactos.items():
 
-                if buscar == llave:
+            agenda_matius.buscar(buscar)
 
-                    print(contactos)
+    
+
+            # for llave, valor in contactos.items():
+
+            #     if buscar == llave:
+
+            #         print(contactos)
 
 
-            # elif menu == 'e':
-            #     pass
 
-            # elif menu == 'l':
-            #     pass
+
+        elif menu == 'e':
+
+            eliminar = input('Escribe el contacto, para eliminarlo: ')
+
+            agenda_matius.borrar(eliminar)      
+
+        elif menu == 'l':
+
+            agenda_matius.mostrar_todo()
+                
         
-            # elif menu == 's':
-            #     break
+        elif menu == 's':
+
+            agenda_matius.salir() 
         
         else:
 

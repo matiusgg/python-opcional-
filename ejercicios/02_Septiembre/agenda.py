@@ -8,6 +8,12 @@ nombre/ telefono / email
 
 '''
 
+# CSV: Son archivos planos en donde hay datos simples separados por ",". o en nuestros caso lo haremos de esta forma.
+# importamos la funcion de CSV
+# TODOS los sistemas de datos tiene archivos XML, CSV y TXT.
+
+import csv
+
 class Ficha():
 
     def __init__(self, nombre, telefono, email):
@@ -40,6 +46,13 @@ class Agenda():
 
         self._contactos.append(contacto)
 
+                # COLOCAMOS el metodo _guardar() porque lo que queremos como en anyadir(), es que cada vez que borramos el contacto, 
+        # que pise la informacion. ya que la funcion tiene "W" en el OPEN(), porque queremos que lo pise?. Porque nos beneficia,
+        # al momento de recopilar informacion para no aumentar la memoria, ya que si usamos "a", si ira guardando lo anterior y
+        # tendremos mas memoria. Ademas de que al momento de buscar no tengamos que ir uno por uno.
+
+        self._guardar()
+
         print('Se ha añadido el contacto')
 
     # Mostrar todos los contacto
@@ -64,6 +77,11 @@ class Agenda():
 
         #ENUMERATE: Nos permite recoger los datos o valores de la posicion que ocupa ese valor o dato
 
+        # COLOCAMOS el metodo _guardar() porque lo que queremos como en anyadir(), es que cada vez que borramos el contacto, 
+        # que pise la informacion. ya que la funcion tiene "W" en el OPEN(), porque queremos que lo pise?. Porque nos beneficia,
+        # al momento de recopilar informacion para no aumentar la memoria, ya que si usamos "a", si ira guardando lo anterior y
+        # tendremos mas memoria. Ademas de que al momento de buscar no tengamos que ir uno por uno.
+
         for index, contacto in enumerate(self._contactos):
 
             if contacto.nombre.lower() == nombre.lower():
@@ -71,6 +89,8 @@ class Agenda():
                 # DEL: BOrrar el valor de una lista
 
                 del self._contactos[index]
+
+                self._guardar()
 
                 print('Se ha borrado el contacto')
 
@@ -121,6 +141,23 @@ class Agenda():
         print('No encontrado')
         print('*******')
 
+    def _guardar(self):
+
+        with open('contactos.csv', 'w') as f:
+
+            # WRITE: es una funcion de CSV para escribir
+            escribir = csv.writer(f)
+
+            # WRITEROW: Comunmente el archivo CSV, tiene en la priemra linea deifnido cuales columnas tendran datos en ellos
+            # en este caso el WRITEROW permite que creeemos estas columnas ara despues con el for de la lista de contactos podamos 
+            # introducirlos dentro de las columnas mediante el WRITEROW
+
+            escribir.writerow( ('nombre', 'telefono', 'email'))
+
+            for contacto in self._contactos:
+
+                escribir.writerow( (contacto.nombre, contacto.telefono, contacto.email) )
+
     
     def salir(self):
 
@@ -137,12 +174,36 @@ class Agenda():
 
 
 # OBJETOS:
+# Nos interesa empezar con  con CSV
 
 def run():
 
         # Creamos un objeto para poder usarlo en el while y los condicionales
 
     agenda_matius = Agenda()
+
+    # Lectura del archivo donde se almacena
+
+    with open('contactos.csv', 'r') as f:
+
+        #READER: es una funcion del csv
+
+        leer = csv.reader(f)
+
+        # 
+
+        for index, row in enumerate(leer):
+
+            if index == 0:
+
+                continue
+
+            else:
+
+            # Lo que hacemos es añadir un nuevo contacto mediante el artchivo CSV, en donde row son los datos del contacto
+            # donde obviamente [0] es nombre, [1] es telefono y [2] es email, pero si fueran muchisimos, simplemente hariamos un for
+            # para que vaya anclando o anyadiendo en este caso cada vez que haga una vuelta en el bucle, pero ya seria otro caso.
+                agenda_matius.anyadir(row[0], row[1], row[2])
 
     # contactos = {}
 
@@ -240,7 +301,8 @@ def run():
         
         elif menu == 's':
 
-            agenda_matius.salir() 
+            f.close()
+            break
         
         else:
 

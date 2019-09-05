@@ -55,15 +55,33 @@ y coloca dev_appserver.py .
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template
+
+
+
 app = Flask(__name__)
 
-
 @app.route('/')
-def hola():
-    return render_template('index.html')
+def home():
+    # RETORNAMOs la FUncion RENDER donde escribimos el nombre de la carpeta.
+    return render_template('home.html')
+
+# Si queremos crear directorios/rutas dentro del servidor, le ponemos un nuevo nombre a @app.route('/nombreRuta)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 if __name__ == "__main__":
-    app.run()
+
+    app.run(debug=True)
+    
+    
+    
+16. Cuando ya tengas el main.py, sigue los pasos para crear el proyecto en python, los puedes ver en los apuntes, pero basicamente
+es meter main.py dentro de la carpeta LIB, que creamos dentro de la carpeta Servidor, y dentro de LIB creamos una carpeta llamada TEMPLATES(no poner en mayusculas),
+y dentro de esta vamos a colocar los archivos html que necesitemos, los nombres de los html's deben ser igual a como los colocamos en el archivo main.py
+dentro de render_template(''), ahora le damos RUN PYTHON en main.py para que nos ejecute el codigo y nos aparezca la URL.
 
 
 '''

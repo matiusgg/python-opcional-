@@ -41,7 +41,14 @@ handlers:
 requierements.txt, que eneste caso es el flask(si tienes otras librerias ponlas antes de hacer este paso),
 lo installe en la carpeta LIB que creamos en la carpeta servidor. en donde -t es para introducir la instalacion dentro de LIB
 
-13. dev_appserver.py . : Ponemos este comando para accder a google cloud. Tenemos que estar en python 2, por lo cual asegurate de cambiarlo
+13. dev_appserver.py . : Ponemos este comando para accder a google cloud. Tenemos que estar en python 2, por lo cual asegurate de cambiarlo.
+Para no tener problemas con los PYTHON'S. Cuando instales el python 2, en la ventana de instalacion donde aparece opciones de instalacion
+veras que tienes el path python 2, con una X. Si tienes python 3 antes de instalar python 2, este es el motivo por el que esa opcion te aparece con una X.
+ya que el PATH por predeterminado esta con python 3, no con python 2 obviamente. Por lo cual cambia la opcion de la X, por la de activar el PATH de python 2.
+Lo que hara basicamente es cambiar el PATH(ruta) del python 3 al python 2 cuando lo instales. Cuando ya tengas esto, Cambia el nombre del python 3,
+por ejejmplo "python3". Esto para que cuando estes en la terminal, y coloques python solamente, te abra el python 2.
+En cambio si poes python3 como lo nombraste anteriormente en tonces se abrira python 3 obviamente, Ahora vuelves a VSC o a la terminal donde estabas
+y coloca dev_appserver.py . 
 14. damos "y" para crear el servidor, y nos dara la direccion url
 15. creamos en la carpeta servidor, el archivo main.py y lo colocamos en ella laconexion entre nuestros archivos html con las rutas con el FLASK
 

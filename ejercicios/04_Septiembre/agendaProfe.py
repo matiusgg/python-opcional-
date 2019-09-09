@@ -65,6 +65,8 @@ def run():
 
     contact_book = ContactBook()
 
+    
+
     with open('contact.csv', 'r') as f:
         reader = csv.reader(f)
         for idx, row in enumerate(reader):

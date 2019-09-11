@@ -72,7 +72,7 @@ circulo = '''
 # print(circulo)
 
 
-opciones = {1:circulo, 2:circulo, 3:circulo, 4:circulo}
+opciones = {1:piedra, 2:circulo, 3:circulo, 4:circulo}
 
 # print(random.choice(opciones))
 

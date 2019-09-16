@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block section %}
+
+<div class="oferta1">
+
+    <div class="logo"> <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="logo1"> </div>
+
+        <div class='titulo'> <h1>  {{ columna1['titulo'] }} </h1> </div>
+        <div class='descripcio'> <h3> {{ columna1['descripcion'] }}</h3> </div>
+        <div class='precio'> <h1> {{ columna1['precio'] }}</h1> </div>
+        <div class='link'> <h3> {{ columna1['link'] }}</h3> </div>
+        <div class='boton'> <button type="submit">{{ columna1['boton'] }}</button> </div>
+    
+    </div>
+
+
+    <div class="oferta2">
+
+    <div class="logo"> <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="logo2"> </div>        
+
+            <div class='titulo'> <h1>{{ columna2['titulo'] }}</h1> </div>
+            <div class='descripcion'> <h3>{{ columna2['descripcion'] }}</h3> </div>
+            <div class='precio'> <h1>{{ columna2['precio'] }}</h1> </div>
+            <div class='link'> <h3>{{ columna2['link'] }}</h3> </div>
+            <div class='boton'> <button type="submit">{{ columna2['boton'] }}</button> </div>
+        
+        </div>
+
+
+<div class="oferta3">
+
+        <div class="logo"> <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="logo3"> </div>
+
+    <div class='titulo'> <h1>{{ columna3['titulo'] }} </h1> </div>
+    <div class='descripcion'> <h3>{{ columna3['descripcion'] }}</h3> </div>
+    <div class='precio'> <h1>{{ columna3['precio'] }} </h1> </div>
+    <div class='link'> <h3>{{ columna3['link'] }}</h3> </div>
+    <div class='boton'> <button type="submit">{{ columna3['boton'] }}</button> </div>
+            
+</div>
+
+{% endblock %}

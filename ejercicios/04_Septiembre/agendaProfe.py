@@ -66,7 +66,10 @@ def run():
     contact_book = ContactBook()
 
     
-
+    # Esto es para que cuando reiniciemos la consola, este pedazo de codigo con READER nos permita introducir lo
+    # que ya previamente habiamos guardado en el archivo .csv. Es decir los metodos ahora mismo algunos se recopilan en la lista
+    # por lo cual momento de reiniciar la consola, se eliminan. Lo que hacemos con esto añadir a la lista lo que ya habiamos
+    # introducido con anterioridad
     with open('contact.csv', 'r') as f:
         reader = csv.reader(f)
         for idx, row in enumerate(reader):

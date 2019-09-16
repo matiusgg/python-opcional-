@@ -200,7 +200,7 @@ def run():
 
             else:
 
-            # Lo que hacemos es añadir un nuevo contacto mediante el artchivo CSV, en donde row son los datos del contacto
+            # Lo que hacemosa es añadir un nuevo contacto mediante el artchivo CSV, en donde row son los datos del contacto
             # donde obviamente [0] es nombre, [1] es telefono y [2] es email, pero si fueran muchisimos, simplemente hariamos un for
             # para que vaya anclando o anyadiendo en este caso cada vez que haga una vuelta en el bucle, pero ya seria otro caso.
                 agenda_matius.anyadir(row[0], row[1], row[2])

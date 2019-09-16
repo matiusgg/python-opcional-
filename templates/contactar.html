@@ -1,0 +1,23 @@
+<!--BASE-->
+
+<!--***********************************-->
+
+<!--***********************************-->
+
+{% extends 'base.html' %}
+<!--EL super() nos permite recuperar el contenido previo del archivo del extends para poder unirlo con el nuevo contenido que agregamos-->
+<!--No Repetir el titulo original, es decir, reutilizando el block hecho en base.html para poner el nombr del archivos en el que estamos obviamente-->
+{% block title %}
+
+{{ super() }}
+
+
+
+
+En Flask Contactar
+
+{% endblock %}
+
+<!--***********************************-->
+
+<!--***********************************-->

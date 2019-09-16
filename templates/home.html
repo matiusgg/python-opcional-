@@ -1,0 +1,52 @@
+<!--BASE-->
+
+<!--***********************************-->
+
+{% extends 'base.html' %}
+<!--EL super() nos permite recuperar el contenido previo del archivo del extends para poder unirlo con el nuevo contenido que agregamos-->
+<!--No Repetir el titulo original, es decir, reutilizando el block hecho en base.html para poner el nombr del archivos en el que estamos obviamente-->
+{% block title %}
+
+{{ super() }}
+
+En Flask Home
+
+{% endblock %}
+
+<!--***********************************-->
+
+
+
+
+
+<!-- COMO COMUNICARSE CON LAS VARIBLES DE PYTHON-->
+<!-- LENGUAJE JINJA2: usamos {''% %''}, no usar ''. Los pongo porque no importa si es en comentario, los corchetes y los
+% {} son codigo JINJA por lo cual dara error si lo colocas en un comentario-->
+<!--Condicional: Si IP es verdad, dame el H!, sino dame el else. -->
+
+{% block main %}
+
+{% if ip %}
+<h1 style="color:blue">
+
+    YA ESTAS EN LA HOME, YA LA IP DE TU COOKIE ES: {{ ip }}
+
+</h1>
+{% else %}
+
+<!-- url_for: palabra reservadade JINJA2 para poder acceder a cualquier archivo de los TEMPLATES y STATIC, en este caso le decimos que en el ELSE, nos lleve con <a> a un archivo del template-->
+
+<a href="{{ url_for('contactar') }}">Ir a contactar</a>
+{% endif %}
+
+<!--Iterar html-->
+
+<ul>
+    {% for i in algunos %}
+
+    <li>{{ i }}</li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}

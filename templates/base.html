@@ -1,0 +1,41 @@
+<!--BASICAMENTE ESTO NOS SERVIRA DE BASE DE HTML PARA LOS OTROA ARCHIVOS HTML, MEDIANTE JINJA, HACEMOS HERENCIAS, EN DONDE
+ESTE ARCHIVO ES PADRE QUE HEREDA A SUS HIJOS LA BASE DEEL HTML, USAMOS EN LOS ARCHIVOS HIJOS EXTENDS PARA HEREDAR-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--oBVIAMENTE QUEREMOS QUE EL TITULO SALGA EL NOMBRE DEL ARCHIVO, USAMOS JINJA CON BLOCK -->
+    <title>
+        
+        {% block title %}
+            Flask
+        {% endblock %}
+    </title>
+    <!--Link ara relacionarlo con CSS, mediante JINJA-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+
+    <!--INCLUDe: Nos permite incluir otro archivo-->
+
+    <header>
+
+
+
+        {% include 'navbar.html' %}
+
+
+
+    </header>
+    <main>
+
+        {% block main %}
+
+        {% endblock %}
+
+    </main>
+</body>
+</html>

@@ -1,6 +1,13 @@
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
+
+# Setiembre 17: Crear otro template para cuando nos diga pagina no encontrada,
+# lo dijiramos ese archivo html en la carpeta template
 
 app = Flask(__name__)
+boostrap = Bootstrap(app)
+
+# Las variable sque vayamos a introducir en el servidor con las rutas, deben ser globales, no locales de las funciones
 
 ofertas = {
 

@@ -1,17 +1,3 @@
-
-# ofertas = {}
-
-
-# def ofertas():
-
-#     i = 0
-
-#     while i < 3:
-
-#     titulo = input('Introduce el titulo de la oferta')
-
-#     i += 1
-
 ofertas = {
 
     'columna1': {
@@ -44,7 +30,24 @@ ofertas = {
         'boton': 'Included',
     },
 
-
 }
 
-print(ofertas['columna1']['titulo'])
+i = 0
+
+for llave, valor in ofertas.items():
+
+    columna = '''<div class="''' + llave + '''">
+
+    <div class="logo"> <img src="{{ url_for('static', filename='img/''' + valor['img'] + ''') }}" alt="logo1"> </div>
+
+        <div class='titulo'> <h1>  {{ ''' + valor['titulo'] + ''' }} </h1> </div>
+        <div class='descripcion'> <h3> {{''' + valor['descripcion'] + ''' }}</h3> </div>
+        <div class='precio'> <h1> {{ c''' + valor['precio'] + ''' }} </h1> </div>
+        <div class='link'> <h3> {{ ''' + valor['link'] + ''' }} </h3> </div>
+        <div class='boton'> <button type="submit"> {{ ''' + valor['boton'] + ''' }} </button> </div>
+    
+    </div>'''
+
+    print(columna)
+
+   

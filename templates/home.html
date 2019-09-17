@@ -3,6 +3,7 @@
 <!--***********************************-->
 
 {% extends 'base.html' %}
+
 <!--EL super() nos permite recuperar el contenido previo del archivo del extends para poder unirlo con el nuevo contenido que agregamos-->
 <!--No Repetir el titulo original, es decir, reutilizando el block hecho en base.html para poner el nombr del archivos en el que estamos obviamente-->
 {% block title %}
@@ -48,5 +49,23 @@ En Flask Home
     {% endfor %}
 
 </ul>
+
+<!-- *Formulario de login-->
+
+<div class="container">
+
+    <!--Enviamos el FORM a este mismo archivo para comprobar de que si llega-->
+    <!-- <form action="{{ url_for('home') }}" method="POST">
+        Como tenemos ya el obejto de la clase login dentro con nuestro diccionario que lo enviamos con render_Templates-->
+        <!-- {   { login_form.username }   } -->
+
+        <!-- EL LABEL AQUI PODEMOS USARLO, ES DECIR COMO EN HTML PODEMOS ASIGNARLE EL LABEL A UN INPUT-->
+
+        <!-- {   { login_form.username.label }   } -->
+    <!-- </form> --> 
+
+    {{ wtf.quick_form(login_form) }}
+
+</div>
 
 {% endblock %}

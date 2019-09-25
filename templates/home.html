@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+            
+{{ super() }}
+
+HOME
+
+{% endblock %}
+
+<h1>TU HOROSCOPO CHINO</h1>
+
+{% block header %}
+
+<h1 class="titulo">不要告诉我你的生活 裂纹</h1>
+
+{% endblock %}
+
+{% block main %}
+
+<h1 class="logo">星座</h1>
+
+<h3 class="logo_subtitulo">Bienvenido a tu HOROSCOPO</h3>
+
+
+<div class="container">
+
+       <form action="{{ url_for('home') }}" method="POST">
+
+            {{ login_form.anyo.label }}
+
+            {{ login_form.anyo }}
+
+            {{ login_form.submit }}
+    ​
+        </form> 
+    <!-- ​
+        {  { wtf.quick_form(login_form) }  } -->
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+            {% endblock %}
+    ​
+    

@@ -1,0 +1,6 @@
+CUANDO HAGAS UN DIAGRAMA DE FLUJO ES IMPORTANTE TENER EN CUENTA:
+1. Describe el proceso que va ha hacer el codigo
+2. Introduce dentro de los recuadrso que tengas un pedazo de codigo que muestre la idea general
+de como se va hacer, obviamente algo como funcion, variable, bucle pero solo la primera sintaxis.
+3. en los condicionales, si hay un try, except, pues reemplazamos el sI o NO con tRY y except
+4. Haz el diagrama horizontalmente o verticalmente

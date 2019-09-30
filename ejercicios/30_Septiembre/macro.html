@@ -1,0 +1,66 @@
+'''
+MACROS EN PYTHON: En JINJa es otra manera de eheredar, es decir, con extends nos importaba todo,
+mientras que macro nos permite importar una macro especifica.
+Una macro nos permite crear una mini-plantilla espceficica en donde podemos crear contenido para despues importarlo
+en los archivos que queramos, a su vez, la diferencia con EXTENDS es que MACRO nos permite importar esa mini-plantilla
+especifica.
+Aqui lo que hacemos es crear una MACRO, en donde como vemos ponemos macro, y creamos una funcion
+en la cual podemos poner parametros, es decir, es como si crearamos una funcion con JINJA.
+JINJa lo convierte el html en html dinamico
+como vemos dentro de esta funcion de JINJA(macro) tenemos html donde introdujimos los parametros, y ya en el archivo
+en el cual queremos importar la funcion, ponemos:
+
+Ya en el archivo que queremos importar:
+
+**********************
+
+{% form 'macro.html' import funcion() %}
+
+ya cuando la usemos, ya ponemos los paramtros, no cuando hacemos el FORM
+
+{% funcion(colocamosElParametro1, colocamosElParametro2, etc.) %}
+
+***************************
+
+Como vemos en el ejemplo de abajo, hemos creado una funcion, y ya en el archivo principal podemos
+inportarlo con lo mencionado anteriormente.
+
+En un archivo, podemos crear mas de una MACROS(funciones de JINJA) para despues importarlas en otros archivos queremos
+queramos. Comunmente las usamos por el tema de poder emplear PARAMETROS.
+
+Etiqueta FIGCAPTION: Es una etiqueta de html que nos permite insertar PIE DE TEXTO,
+en la cual va dentro de la etiqueta FIGURE, aunque no es obligatorio obviamente.
+
+
+'''
+
+Creamos la macro
+******************************
+
+{% macro desplegableMovil(uno, dos, tres, cuatro) %}
+
+
+<ul>
+
+    <li>
+        {{ uno }}
+    </li>
+
+    <i>
+        {{ dos }}
+    </i>
+
+    <li>
+        {{ tres }}
+    </li>
+
+    <li>
+        {{ cuatro }}
+    </li>
+</ul>
+
+{% endmacro %}
+
+***********************
+
+

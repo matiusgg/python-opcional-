@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+            
+{{ super() }}
+
+HOME
+
+{% endblock %}
+
+
+{% block header %}
+
+
+
+
+{% endblock %}
+
+{% block main %}
+
+
+
+
+      {{ signo_usuario }}
+
+<figure class="bicho">
+
+    <!--   Creamos en una variable de JINJA la ruta paara despues ponerla en el SRC del IMG en FILENAME-->
+
+    {% set bicho_ruta = 'img/' + signo_usuario + '.svg' %}
+
+    <img src="{{ url_for('static', filename=bicho_ruta)}}" alt="">
+
+
+    <!-- FIGCAPTION: Nos permite enseñar el nombre de la imagen o autor que ha diseñado la imagen, debajo de la imagen o SVG-->
+
+    <figcaption>
+    
+    {{ signo_usuario }}
+    
+</figcaption>
+
+</figure>
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+            {% endblock %}

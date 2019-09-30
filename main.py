@@ -1,18 +1,10 @@
-from flask import Flask, request, make_response, redirect, render_template, session
-from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from flask import Flask, request, make_response, redirect, render_template, session, url_for
+from signo.signo import HoroscopoChino
+
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'SUPER SECRETO'
-
-
-class loginForm(FlaskForm):
-
-    anyo = StringField('Ingrese su anyo de nacimiento',
-                       validators=[DataRequired])
-    password = PasswordField('Password', validators=[DataRequired])
 
 
 @app.route('/')
@@ -21,20 +13,34 @@ def redireccionar():
     return redirect('/home')
 
 
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/home')
 def home():
 
-    login_form = loginForm()
+    return render_template('home.html')
 
-    if login_form.validate_on_submit():
-        anyo = login_form.anyo.data
-        session['anyo'] = anyo
 
-        return redirect(url_for('home'))
-    
-    anyoSession = session.get('anyo')
-        
-    return render_template('home.html', anyoSession=anyoSession)
+@app.route('/home', methods=['POST'])
+def llegada():
+
+    # REquest.FOrm: Alberga los datos del <FORM>
+    anyo = int(request.form['anyo'])
+
+    global signo_usuario
+    # Creando un objeto
+    persona = HoroscopoChino(anyo)
+
+    # Llamamos al metodo que tiene el objeto de la clase
+
+    signo_usuario = persona.signo()
+
+    return redirect(url_for('signo'))
+
+
+@app.route('/signo', methods=['GET'])
+def signo():
+
+    return render_template('signo.html', signo_usuario=signo_usuario)
+
 
 
 @app.errorhandler(404)

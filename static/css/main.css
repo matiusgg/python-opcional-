@@ -1,3 +1,45 @@
-*{
-    background-image: url(../img/image.png)
+body{
+    height: 100vh;
+    background: url("..\img\image.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-rows: 1fr 50% 1fr;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 1rem;
+    grid-template-areas: 
+    "header header header"
+    "main main main"
+    "footer footer footer"
+}
+header{
+    grid-area: header;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-areas: "titulo titulo titulo";
+    justify-items: center;
+    align-items: center;
+}
+.titulo{
+    grid-area: titulo;
+    font-size: 2rem;
+   /* grid-column: 2/3;
+    grid-row: 1/2;*/
+}
+main{
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-areas: "bicho logo compatibilidad";
+    justify-items: center;
+    align-items: center; 
+}
+.logo{
+    grid-area: logo;
+  /*  grid-column: 2/3;
+    grid-row: 2/3;
+    */
+}
+.logo_titulo{
+    font-size: 4rem;
 }

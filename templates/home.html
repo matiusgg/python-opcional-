@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+FORMULARIO
+
+{% endblock %}
+
+
+{% block main %}
+
+<section>
+
+
+
+        <form action="{{ url_for('home') }}" method="POST">
+
+
+                {{ contactar.nombre.label }}
+
+
+                {{ contactar.nombre }}
+
+                
+                {{ contactar.email.label }}
+
+
+                {{ contactar.email }}
+
+
+                {{ contactar.comentario.label }}
+
+
+                {{ contactar.comentario }}
+
+                <button type="submit">ENVIAR</button>
+                
+                </form>
+
+                {{ datoNombre }}
+
+{{ datoEmail }}
+
+{{ datoComentario }}
+
+
+</section>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

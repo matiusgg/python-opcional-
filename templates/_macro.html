@@ -1,0 +1,23 @@
+
+<!--MACRO PARA GENERAR FORMULARIO DE LOGIN-->
+
+{% macro formularioLogin(campo) %}
+
+    {{ campo.label }}
+
+    <!--Nos permite agrupar las variables que tengamos en la clase login para poder llamar a la variables que queramos-->
+
+    {{ campo(**kwargs) | safe }}
+
+    <br>
+
+    {% if campo.errors %}
+
+        {% for error in campo.errors %}
+
+        <h6>{{ error }}</h6>
+
+        {% endfor %}
+    {% endif %}
+
+{% endmacro %}

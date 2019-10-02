@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+LOGIN
+
+        {% endblock %}
+
+
+
+        {% block main %}
+
+            {% from '_macro.html' import formularioLogin %}
+
+            
+
+            <form action="/login" method="POST">
+
+                <!--CSRF Cada vez que hacemos una nueva peticion(cuando la persona se logea y manda la peticion con FORM) este input creara
+                un nuevo cifrado que nos dara seguridad
+            Donde ademas en name="" ponemos el nombre que nos creara la variable y la ponemos con jinja en value="" para que
+        JINJA lo recopile y pueda hacer el cifrado-->
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+                {{ formularioLogin(formulario.username) }}
+
+                {{ formularioLogin(formulario.password) }}
+
+                <button type="submit">login</button>
+            
+            </form>
+
+        {% endblock %}
+
+
+
+
+        {% block footer %}
+
+        {% endblock %}

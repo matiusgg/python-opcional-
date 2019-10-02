@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+REGISTRO
+
+        {% endblock %}
+
+
+
+        {% block main %}
+
+            {% from '_macro.html' import formularioRegistro %}
+
+            
+
+            <form action="{{ url_for('registro') }}" method="POST">
+
+                <!--CSRF Cada vez que hacemos una nueva peticion(cuando la persona se logea y manda la peticion con FORM) este input creara
+                un nuevo cifrado que nos dara seguridad
+            Donde ademas en name="" ponemos el nombre que nos creara la variable y la ponemos con jinja en value="" para que
+        JINJA lo recopile y pueda hacer el cifrado-->
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        
+
+                {{ formularioRegistro(formulario.nombre) }}
+
+        
+
+                {{ formularioRegistro(formulario.apellidos) }}
+
+                {{ formularioRegistro(formulario.password) }}
+
+                {{ formularioRegistro(formulario.direccion) }}
+
+                {{ formularioRegistro(formulario.localidad) }}
+
+                {{ formularioRegistro(formulario.nacionalidad) }}
+                
+                {{ formularioRegistro(formulario.dni) }}
+
+                {{ formularioRegistro(formulario.email) }}
+
+                <button type="submit">login</button>
+            
+            </form>
+
+
+
+        {% endblock %}
+
+
+
+
+        {% block footer %}
+
+        {% endblock %}

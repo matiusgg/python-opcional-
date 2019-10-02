@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+MENU
+
+        {% endblock %}
+
+
+
+        {% block main %}
+
+<h1>ESCOGE ENTRE LAS OPCIONES</h1>
+
+    <a href="{{ url_for('registro') }}">REGISTRO</a>
+
+    <a href="{{ url_for('login') }}">LOGIN</a>
+
+        {% endblock %}
+
+
+
+
+        {% block footer %}
+
+        {% endblock %}

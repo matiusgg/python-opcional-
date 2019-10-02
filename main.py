@@ -19,6 +19,7 @@ csrf = CSRFProtect(app)
 def index():
 
     return render_template('index.html')
+    
 
 
 @app.route('/registro', methods=['GET', 'POST'])

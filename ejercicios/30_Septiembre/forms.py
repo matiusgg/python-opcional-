@@ -6,6 +6,10 @@ from wtforms.fields.html5 import EmailField #autovalidacion de html5
 #generamos validadores, cosas propias dentro de formularios, mediante una  funcion
 #declarar nuevas funcionaes validadoras pro
 
+# HONEYPOT: Nos sirve para cuando nosotros tengamos inputs u otro contenido ocultos en donde el usuario
+# no lo podra ver, entonces no habria problema, pero si un robot/bot quiere entrar en la pagina, este detectara todos los inputs u
+# otro contenido que el usuario no veia, por lo cual el HONEYPOT sabra esto y bloqueara la entreda a la pagina al robot/bot.
+
 def honeypot_len(form, field):
     if len(field.data) > 0:
         raise validators.ValidationError('El campo debe de estar vacío')

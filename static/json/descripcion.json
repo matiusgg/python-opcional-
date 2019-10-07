@@ -1,0 +1,64 @@
+[
+
+    {
+        "animal": "mono",
+        "descripcion": "Las personas nacidas bajo el signo del mono son abiertas, comunicativas, sagaces, inteligentes, vanguardistas y hábiles... La amistad tiene un peso muy significativo en su vida. Pueden hacer mil tareas distintas y desempeñarlas todas bien. Confían en sus propias cualidades y habilidades y no se amedrentan ante los problemas. Los nacidos bajo este signo que muestren las características más negativas del mismo pueden ser personas muy presumidas, egocéntricas y pomposas.",
+        "compatibilidad": ["rata", "dragon"]
+    },
+    {
+        "animal": "gallo",
+        "descripcion": "Las personas nacidas bajo el signo del gallo son sencillas, imaginativas, perfeccionistas, emotivas, responsables, elocuentes...Cuidan los detalles hasta el extremo y se muestran ante los demás tal y como son, sin tapujos. Entre los nacidos bajo este signo que muestren sus características más negativas podemos encontrar personas testarudas y tercas, muy porfiadas.",
+        "compatibilidad": ["jabali", "serpiente"]
+    },
+    {
+        "animal": "perro",
+        "descripcion": "Los nativos de este signo son leales, honestos, fieles, éticos, sinceros, justos y observadores... Son intuitivos hasta para captar malas vibraciones o un peligro cercano a los suyos. Son amigables y sus amigos nunca se sentirán defraudados porque siempre están dispuestos a ayudar cuando se les necesita. Amantes de la familia, cuidan de sus retoños con mimo. Si evitan el pesimismo derivado de un realismo feroz, disfrutarán más de la vida.",
+        "compatibilidad": ["tigre", "caballo"]
+    },
+    {
+        "animal": "jabali",
+        "descripcion": "Las personas nacidas bajo el signo del jabali son atentas, consideradas, bondadosas, cordiales, hogareñas y muy sensuales, sin dejar de lado el orden moral establecido. Disfrutan de los placeres de la vida y son trabajadores responsables y con una tremenda capacidad para el espíritu en equipo. Entre quienes muestren las peores características del signo podemos encontrar personas algo fanáticas que no saber decir no por respuesta.",
+        "compatibilidad": ["conejo", "oveja"]
+    },
+    {
+        "animal": "rata",
+        "descripcion": "Las personas nacidas bajo el signo de la Rata son sociables, extrovertidas, inteligentes y con un gran sentido del humor. Les encanta estar rodeados de gente y ser parte importante de los grupos o asociaciones en los que se mueven. El lado menos positivo de la Rata refleja a personas dubitativas, inseguras, que no miden a la hora de gastar el dinero y les gusta vivir bien, pero a costa de otros…",
+        "compatibilidad": ["mono", "dragon"]
+    },
+    {
+        "animal": "buey",
+        "descripcion": "Las personas nacidas bajo el signo del Buey son muy equilibradas y prudentes. No hablan por no pecar y en una conversación suelen estar callados porque lo que más les gusta es observar, aunque cuando intervienen sus palabras son las más acertadas. Suelen ir a su propio ritmo y tienen un gran sentido de la realidad y una lógica casi aplastante. Entre los rasgos más negativos de este signo está en personas muy lentas e incluso inexpresivas.",
+        "compatibilidad": ["serpiente", "gallo"]
+    },
+    {
+        "animal": "tigre",
+        "descripcion": "Las personas nacidas bajo el signo del Tigre son trabajadores incansables, laboriosos pero también audaces. Uno de sus retos más importantes es no cometer demasiados errores como consecuencia de esa rapidez de actuación y su precipitación. En el terreno de los sentimientos, son tremendamente apasionados y tienen un corazón vehemente, siempre dispuesto a dar. Entre quienes muestren las peores características de este signo podemos encontrar personas rencorosas y algo vengativas.",
+        "compatibilidad": ["caballo", "perro"]
+    },
+    {
+        "animal": "conejo",
+        "descripcion": "Un punto de timidez y discreción caracteriza a quienes han nacido bajo el signo del Conejo. Cariñosos, afectuosos, expresivos, precavidos, prudentes y algo solidarios. Se sienten atraídos por la seguridad y la comodidad, aunque también por el disfrute de las cosas buenas de la vida. El lado malo del Conejo da personalidades superficiales, poca voluntad y dejadez",
+        "compatibilidad": ["cerdo", "oveja"]
+    },
+    {
+        "animal": "dragon",
+        "descripcion": "Es un signo que se caracteriza por la franqueza y la vitalidad. Directos, francos, protagonistas, originales, generosos, responsables... Los amigos son sagrados. Empáticos, saben reconocer las virtudes y los méritos de los demás, pero les gusta que alaben los suyos propios. En el amor, cuando se comprometen es para toda la vida. Entre las personas que muestran las peores características de este signo se encuentran aquellos que utilizan la violencia y son muy orgullosos.",
+        "compatibilidad": ["rata", "mono"]
+    },
+    {
+        "animal": "serpiente",
+        "descripcion": "Las personas nacidas bajo el signo de la serpiente son creativas, talentosas, selectivas, comprometidas y absolutamente encantadoras. Demuestran una gran lucidez en cada cosa que hacen saber escuchar es una de sus virtudes, al igual que la capacidad de organización. Fieles hasta las últimas consecuencias, no necesitan un contrato firmado para que cumpla lo que prometieron. Son eficientes y exigen eso mismo a los demás. Entre los que muestren las peores características del signo podemos encontrar personas muy suspicaces y resentidas.",
+        "compatibilidad": ["jabali", "gallo"]
+    },
+    {
+        "animal": "caballo",
+        "descripcion": "Las personas nacidas bajo el signo del caballo son elegantes, estilosas, alegres, espontáneas, graciosas, aventureras... Allí donde van se convierten en el centro de atención por su carácter abierto y espontáneo. Rechazan las exigencias injustificadas, los celos y las envidias. Tampoco soportan las hipocresías y las cosas ya establecidas. Entre los que muestren las peores características del signo podemos encontrar personas porfiadas, inseguras e inconstantes.",
+        "compatibilidad": ["tigre", "perro"]
+    },
+    {
+        "animal": "oveja",
+        "descripcion": "Las personas nacidas bajo el signo de la Oveja son tiernas, sensibles, sentimentales, con un exquisito gusto y una naturalidad innata para combinar los colores. No necesitan grandes cosas para vivir porque suelen tener una existencia llena de armonía y felicidad. Entre los que muestran peores características de este signo se encuentran las personas muy inseguras que dudan por todo y con tendencia al desánimo.",
+        "compatibilidad": ["conejo", "cerdo"]
+    }
+
+]

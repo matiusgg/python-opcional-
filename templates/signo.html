@@ -12,13 +12,21 @@ HOME
 {% block header %}
 
 
+{% set comp1 = 'img/' + compatibilidad1 + '.svg' %}
 
+    <img src="{{ url_for('static', filename=comp1)}}" alt="">
+
+    <br>
+
+    {% set comp2 = 'img/' + compatibilidad2 + '.svg' %}
+
+    <img src="{{ url_for('static', filename=comp2)}}" alt="">
 
 {% endblock %}
 
 {% block main %}
 
-
+        <a href="{{ url_for('home')}}">VOLVER</a>
 
 
       {{ signo_usuario }}
@@ -48,5 +56,7 @@ HOME
 
 
 {% block footer %}
+
+{{ descripcion }}
 
             {% endblock %}

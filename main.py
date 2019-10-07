@@ -26,6 +26,8 @@ def llegada():
     anyo = int(request.form['anyo'])
 
     global signo_usuario
+    global descripcion_signo
+    global compatibilidad
     # Creando un objeto
     persona = HoroscopoChino(anyo)
 
@@ -33,14 +35,17 @@ def llegada():
 
     signo_usuario = persona.signo()
 
+    descripcion_signo = persona.descripcion()
+
+    compatibilidad = persona.compatibilidad()
+
     return redirect(url_for('signo'))
 
 
 @app.route('/signo', methods=['GET'])
 def signo():
 
-    return render_template('signo.html', signo_usuario=signo_usuario)
-
+    return render_template('signo.html', signo_usuario=signo_usuario, descripcion=descripcion_signo, compatibilidad1=compatibilidad[0], compatibilidad2=compatibilidad[1])
 
 
 @app.errorhandler(404)

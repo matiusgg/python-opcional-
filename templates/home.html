@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+{{ super() }}
+    OFERTAS
+{% endblock %}
+
+{% block main %}
+
+<div class="contenedor">
+
+
+
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<form action="{{ url_for('home') }}" method="post">
+
+{% for i in range(10) %}
+    <select name="productos{{i}}" id="">Productos:
+        <option value="leche">leche</option>
+        <option value="galleta">galleta</option>
+        <option value="cacao">cacao</option>
+        <option value="naranja">naranja</option>
+        <option value="aguacate">aguacate</option>
+        <option value="limon">limon</option>
+        <option value="magdalena">magdalena</option>
+        <option value="cereal">cereal</option>
+        <option value="arroz">arroz</option>
+        <option value="cafe">cafe</option>
+        <option value="pimiento">pimiento</option>
+        <option value="sal">sal</option>
+        <option value="azucar">azucar</option>
+        <option value="whisky">whisky</option>
+        <option value="levadura">levadura</option>
+        <option value="harina">harina</option>
+        <option value="huevo">huevo</option>
+    </select>
+​
+    <label for="cantidad{{i}}">Cantidad:
+        <input type="number" name="cantidad{{i}}" id="">
+    </label>
+    <br>
+
+    {% endfor %}
+
+<button type="submit">ENVIAR</button>
+
+</form>
+    {% endblock %}

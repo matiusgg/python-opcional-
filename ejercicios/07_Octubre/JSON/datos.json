@@ -1,0 +1,15 @@
+{
+
+    "nombre": "toni",
+    "id": 343,
+    "profesor": true,
+    "cursos": {
+
+        "python": "python",
+        "javascript": "xcosas de JS"
+    },
+
+    "idCursos": [23,56,1020],
+    "vacaciones": null
+
+}

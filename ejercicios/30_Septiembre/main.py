@@ -7,7 +7,7 @@ def home():
 # *******************************************
 @app.route('/parametros')
 def param():
-   http://127.0.0.1:5000/parametros?par=23
+   # http://127.0.0.1:5000/parametros?par=23
    param = request.args.get('par', 'No tenemos parametros')
    Envia esta variable llamada parametro
    return (f'El parametro enviado es: {param}')

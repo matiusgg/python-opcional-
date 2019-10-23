@@ -101,7 +101,7 @@ def home():
 
 # Y ya cuando tengamos la macro, la importamos dentro del archivo hlhtml que queremos
 
-{% form 'macro.html' import formularioContacto() %}
+{% from 'macro.html' import formularioContacto() %}
 
 # ponemos la etiqueta FORM, para cuando la llamameos podamos enviar la informacion
 

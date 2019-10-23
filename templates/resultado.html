@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+LIBRERIA
+
+{% endblock %}
+
+<!--bloque header-->
+
+{% block header %}
+
+
+
+{% endblock %}
+
+
+<!--bloque main -->
+
+{% block main %}
+
+<!--Contenedor-->
+    <div class="contenedor">
+
+        <!--titulo-->
+
+            <div class="titulo">
+
+                    <h3 class="title is-5">RESULTADO LIBRO:</h3>
+                    
+                    <br>
+
+                    
+                    </div>
+
+                    <br>
+
+                    {% for i in lista %}
+
+            **************************************************
+
+            
+
+            <h5 class="subtitle is-6">Autor: {{ i[0] }}</h5>
+
+            <h5 class="subtitle is-6">Autor: {{ i[1] }}</h5>
+
+            <h5 class="subtitle is-6">Autor: {{ i[2] }}</h5>
+
+
+
+            ****************************************************
+
+            {% endfor %}
+
+
+    
+    </div>
+
+
+{% endblock %}

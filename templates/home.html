@@ -51,21 +51,24 @@ LIBRERIA
             
             </form>
 
+            <form action="{{ url_for('resultado') }}" method="post">
+
             {% for i in lista %}
 
             **************************************************
 
             
 
-            <h5 class="subtitle is-6">Autor: {{ i[0] }}</h5>
+            <h5 class="subtitle is-6">Autor: {{ i[0] }} <input type="checkbox" name="titulo"></h5>
 
-            <h5 class="subtitle is-6">Libro: {{ i[1] }}</h5>
 
-            <h5 class="subtitle is-6">Precio: {{ i[2] }}</h5>
+            <button type="submit">SEGUIR</button>
 
             ****************************************************
 
             {% endfor %}
+
+            </form>
 
 
     

@@ -33,6 +33,8 @@ def home():
 @app.route('/home', methods=['POST'])
 def llegadahome():
 
+    global lista
+
     libro = request.form['libro']
 
     libreriaObjt = Libreria(libro)
@@ -41,6 +43,17 @@ def llegadahome():
 
 
     return render_template('home.html', lista=lista)
+
+    # *****************************************
+
+# # *Ruta resultado
+@app.route('/resultado', methods=['POST'])
+def resultado():
+
+    libro = request.form['titulo']
+
+
+    return render_template('resultado.html', lista=lista, libro=titulo)
 
 # *****************************************
 

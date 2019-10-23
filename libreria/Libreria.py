@@ -81,6 +81,19 @@ class Libreria():
         #* 2. Cerrar la conexion
         self.conexion.close()
 
+    def mostrarLibro(self):
+
+        sql = f'''
+            SELECT a.name, b.title, b.price
+            FROM books as b
+            JOIN authors as a
+            ON a.author_id = b.author_id
+            WHERE b.title LIKE "{self.libro}%";
+        '''
+        self.cursor.execute(sql)
+
+        resultado = self.cursor.fetchall()
+
 # usuario = input('Introduzca libro: ')
 
 # obj = Libreria(usuario)

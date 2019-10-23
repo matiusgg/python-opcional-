@@ -28,30 +28,36 @@ class Libreria():
             FROM books as b
             JOIN authors as a
             ON a.author_id = b.author_id
-            WHERE b.title LIKE "{self.libro}";
+            WHERE b.title LIKE "{self.libro}%";
         '''
         self.cursor.execute(sql)
 
         resultado = self.cursor.fetchall()
+        
 
         for result in resultado:
+
+            print(result)
 
             autor = result[0]
             libroAutor = result[1]
             precio = result[2]
 
-            print(result, autor, libroAutor, precio)
+            print(autor, libroAutor, precio)
 
-            self.listaLibro.append(autor)
-            self.listaLibro.append(libroAutor)
-            self.listaLibro.append(precio)
+            self.listaLibro.extend([[autor, libroAutor, precio]])
 
-            #****************************************
+            print(self.listaLibro)
 
-            return self.listaLibro
+        return self.listaLibro
 
         # #* 4. Aceptar/Generar los QUERYS con:
         self.conexion.commit()
 
         #* 2. Cerrar la conexion
         self.conexion.close()
+
+# usuario = input('Introduzca libro: ')
+
+# obj = Libreria(usuario)
+# obj.Busqueda()

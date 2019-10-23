@@ -39,7 +39,8 @@ def llegadahome():
 
     lista = libreriaObjt.Busqueda()
 
-    return render_template('home.html', autor=lista[0], libro=lista[1], precio=lista[2])
+
+    return render_template('home.html', lista=lista)
 
 # *****************************************
 

@@ -51,11 +51,21 @@ LIBRERIA
             
             </form>
 
-            <h5 class="subtitle is-6">Autor: {{ autor }}</h5>
+            {% for i in lista %}
 
-            <h5 class="subtitle is-6">Libro: {{ libro }}</h5>
+            **************************************************
 
-            <h5 class="subtitle is-6">Precio: {{ precio }}</h5>
+            
+
+            <h5 class="subtitle is-6">Autor: {{ i[0] }}</h5>
+
+            <h5 class="subtitle is-6">Libro: {{ i[1] }}</h5>
+
+            <h5 class="subtitle is-6">Precio: {{ i[2] }}</h5>
+
+            ****************************************************
+
+            {% endfor %}
 
 
     

@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+LIBRERIA
+
+{% endblock %}
+
+<!--bloque header-->
+
+{% block header %}
+
+
+
+{% endblock %}
+
+
+<!--bloque main -->
+
+{% block main %}
+
+<!--Contenedor-->
+    <div class="contenedor">
+
+        <!--titulo-->
+
+            <div class="titulo">
+
+                    <h3 class="title is-5">BIENVENIDO A TU LIBRERIA</h3>
+                    
+                    <br>
+                    
+                    <h5 class="subtitle is-6">Ingresa el nombre del libro: </h5>
+                    
+                    </div>
+
+                    <br>
+
+                    <!--FORM -->
+
+            <form action="{{ url_for('home') }}" method="post">
+
+                <!--input libro-->
+
+
+                <input class="input is-primary" type="text" name="libro">
+
+                <button type="submit" class="button is-info is-focused"> BUSCAR </button>
+            
+            </form>
+
+            <h5 class="subtitle is-6">Autor: {{ autor }}</h5>
+
+            <h5 class="subtitle is-6">Libro: {{ libro }}</h5>
+
+            <h5 class="subtitle is-6">Precio: {{ precio }}</h5>
+
+
+    
+    </div>
+
+
+{% endblock %}

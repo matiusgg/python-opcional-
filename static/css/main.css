@@ -1,0 +1,32 @@
+main{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+
+/* HOME.HTML */
+
+.contenedor{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+/* Titulo */
+
+.titulo{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 30px;
+}

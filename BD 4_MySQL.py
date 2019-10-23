@@ -90,11 +90,8 @@ while True:
        nation = linea[2]
        # imprimir
        print(f'{nation} - {name}')
-
-
-
-
-# #* 4. Aceptar/Generar los QUERYS con:
+       
+#* 4. Aceptar/Generar los QUERYS con:
 conexion.commit()
 
 

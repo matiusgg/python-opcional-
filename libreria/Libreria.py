@@ -1,3 +1,4 @@
+  
 import pymysql
 
 class Libreria():
@@ -27,7 +28,7 @@ class Libreria():
             FROM books as b
             JOIN authors as a
             ON a.author_id = b.author_id
-            WHERE b.title = "{self.libro}";
+            WHERE b.title LIKE "{self.libro}";
         '''
         self.cursor.execute(sql)
 
@@ -50,12 +51,7 @@ class Libreria():
             return self.listaLibro
 
         # #* 4. Aceptar/Generar los QUERYS con:
-        conexion.commit()
+        self.conexion.commit()
 
         #* 2. Cerrar la conexion
-        conexion.close()
-
-
-
-
-        
+        self.conexion.close()

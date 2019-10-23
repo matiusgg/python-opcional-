@@ -1,0 +1,25 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": ".\\primeraBD",
+            "dialect": "SQLite",
+            "name": "primeraBD"
+        },
+        {
+            "askForPassword": true,
+            "database": ".\\segundaBD",
+            "dialect": "SQLite",
+            "name": "segundaBD"
+        },
+        {
+            "database": "libreriatoni",
+            "dialect": "MySQL",
+            "name": "libreria",
+            "password": "mysql",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}

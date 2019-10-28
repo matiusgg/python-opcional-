@@ -50,8 +50,6 @@ botonDos.config(width=6, height=3, bg='#56585E', fg='white', bd=1, relief='solid
 
 #*****************************
 
-
-
 #BOTON3
 botonTres = Button(miFrame, text='3', command=lambda:codigoBoton('3'))
 botonTres.grid(row=2, column=2)

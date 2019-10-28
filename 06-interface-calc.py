@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 raiz = Tk()
 
@@ -15,6 +16,13 @@ def codigoBoton(num):
 miFrame = Frame(raiz, width=100, height=500)
 
 miFrame.pack()
+
+#************
+#^ALERTA POPUP. Esto nos sirve para ahcer ventanas de error
+
+def popup():
+
+    msg = messagebox.showinfo('mensaje', 'nombre mensaje')
 
 #**********************
 

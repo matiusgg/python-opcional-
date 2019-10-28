@@ -46,14 +46,14 @@ def llegadahome():
 
     # *****************************************
 
-# # *Ruta resultado
-@app.route('/resultado', methods=['POST'])
-def resultado():
+# # # *Ruta resultado
+# @app.route('/resultado', methods=['POST'])
+# def resultado():
 
-    libro = request.form['titulo']
+#     libro = request.form['titulo']
 
 
-    return render_template('resultado.html', lista=lista, libro=titulo)
+#     return render_template('resultado.html', lista=lista, libro=titulo)
 
 # *****************************************
 

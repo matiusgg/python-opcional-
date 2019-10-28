@@ -88,7 +88,7 @@ class Libreria():
             FROM books as b
             JOIN authors as a
             ON a.author_id = b.author_id
-            WHERE b.title LIKE "{self.libro}%";
+            WHERE b.title LIKE "%{self.libro}%" ORDER BY RAND();
         '''
         self.cursor.execute(sql)
 
@@ -98,3 +98,29 @@ class Libreria():
 
 # obj = Libreria(usuario)
 # obj.Busqueda()
+
+'''
+CONEXION COMO LO HIZO EL PROFESOR
+'''
+
+# import pymysql
+
+# class Bd():
+
+#     def __init__(self, localhost, usuario, password, basedeDatos):
+
+#         self.conexion = pymsql.connect(localhost, user=usuario, password=password, db=basedeDatos)
+
+#     # Metodo de busqueda
+
+#     def query(self, sql):
+
+#         with self.conexion.cursor() as cursor:
+
+#             cursor.execute(sql)
+
+#             self.conexion.commit()
+
+#             self.conexion.close()
+
+#             return cursor.fetchall()

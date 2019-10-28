@@ -13,6 +13,7 @@ def codigoBoton(num):
     pulsarCero.set(pulsarCero.get() + num)
 
 #* FRAME, no le ponemos el tamaño porque nos molestara con los tamaños de los botones que le pongamos mas adelante
+#* Lo ponemos en el boton con COMMAND para llamarla
 miFrame = Frame(raiz, width=100, height=500)
 
 miFrame.pack()

@@ -1,0 +1,339 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 Julio 15/2019\par
+PYTHON:\par
+En consola\par
+PRINT: Permite imprimir codigo\par
+En python, las comillas dobles y simples no influyen al momento de imprimir algo, es decdir, podemos poner una cantidad de veces y no nos dara error como PHP.\par
+TYPE:Nos dice el tipo de dato\par
+print(type('Hola Mundo'))\par
+Para FALSe y TRUE con type: Hay que ponerle la primera letras en Mayuscula porque sino lo tomara como string\par
+print(type(True))\par
+LISTA con print:\par
+print(type([5,4,3,2,1][5,4,5,4,1])). No habria problema si no colocamos numeros porque al final es una lista.\par
+Los ARRAYs pueden ser diferentes a otros lenguajes.\par
+\par
+TRUPLA en PRINT:\par
+print(type((10, 20, 234, 32)))\par
+LLAVE-VALOR en PRINT:\par
+print(type(\{'nombre' : 'Pepe', 'apellido' : 'Fernandez\}))\par
+El type es opcional, nos sirve unicamente para saber si estamos haciendo las cosas bien con los typos adecuados.\par
+DICT: ES llave-valor. Sino que asi lo llaman en PYTHON\par
+NONTYPE: Si le a\'f1adimos NONE a cualquier tipo de condicion es totalmente lo contrario. Ejm: si 5 < 2, pues con NONE le estamos indicando es todo lo constrario.\par
+None(5 < 2)\par
+Hay dos amneras de tranbajar con PYTHON, con VSC(tambien tiene desventajas pero con pluggins se soluciona) o PyCharm CE( tiene unas desventajas, pero no necesitamos a\'f1adir pluggins)\par
+JETBRAINS.com\par
+En VSC: PLUGGINs: Python(Microsoft)\par
+TIP VSC: En extensiones, en el icono de "...", podemos ordenar las extensiones por @hashtags\par
+PLUGGINs para recordar que vismos desde el principio(NO son de Python): Bracket Pair Colorizer, Dracula Officer, GitLens(git super), live server(para que se nos actualice), Live Share( compartir con personas codigo), Markdown Preview Enhanced(si ahcemos un git, nos divid la pantalla en dos para visualizar Markdown), markdownlint, Prettier - Code formatter, Spanish Language Pack, Terminal(para tener el SUperlog, no lo sabemos), vscode-faker(para generar datos aleatorio), vscode-icons, \par
+SQL: MySQL Syntax, \par
+\par
+Para comentar en PYTHON usamos #.\par
+No se pone "; ni ."\par
+Para asignar una variable simplemente la nombramos le ponemos =\par
+EJM: nombre =  'Pedro'\par
+En VSC si nos aparece un warning vamos a aceptar e instalamos el pluggins de Lintel que nos pide, se nos abrira la consola\par
+Python distingue entre MAYUSCULAS Y MINUSCULAs, es decir, es sensible por lo cual, siempre poner todo en MINUSCULAS, es sensible al momento de llamrlas por este tema.\par
+TIP: Poner las variables en MINUSCULAS SIEMPRE, a enos que se de el caso de usarlas con MAYUSUCLAs.\par
+# Variabnles\par
+# ******************\par
+\par
+nombre = 'Pedro'\par
+\par
+print(nombre)\par
+\par
+# Calcular el area de un circulo\par
+\par
+pi = 4.1415\par
+radio = 3\par
+\par
+# Calculo. Para elevar a la potencia ponemos "**"\par
+\par
+area = pi * radio**2\par
+\par
+print(area)\par
+\par
+# Nombre y apellido\par
+\par
+nombre2 = 'Pedro'\par
+apellido = 'Fernandez'\par
+\par
+# Entrada de datos\par
+# raw_input: Nos permite poner un input en donde en la consola nos permtira colocar el dato. Funciona en la version 2, en la version 3 se llama "input"\par
+# "+" EN STRING: Sirve para concatenar cadeans de string\par
+# str(): Nos permite indicarle a una funcion o lo que tengamos que es tipo STRING\par
+# int(): Nos permite indicarle a una funcion o lo que tengamos que es tipo STRING\par
+# tipoDato(): Nos permite indicarle a una funcion o lo que tengamos segun el tipo de dato (string, float, int, etc.)\par
+# IMPORTANTE: NO habria problema si no pusieramos en input, str. ya que al tener ene l print "+" para concatenar, convierte automaticamente lo que pongamos\par
+# en el input en STRING, el problema viene si ponemos en vez de str() un int(). NOs daria error porque el input tipo INT() no soporta los "+" que pusimos para concatenar strings\par
+# ya que precisamente los usamos para concatenar STRINGS.\par
+\par
+# nombre3 = input('Cual es tu nombre?')\par
+\par
+# print('Hola ' + nombre + ' Un gusto en conocerte')\par
+\par
+# Prioridades de Operadores GENERICOs: Caracteres que tienen prioridad segun lo que la consola leera.\par
+# 1. ()\par
+# 2. **\par
+# 3. *, /, mod, not\par
+# 4. +, -, and\par
+# 5. >, <, ==, >=, <=, !=, or\par
+\par
+# OPERADORES DE ASIGNACION: sIRVEN PARA ASIGNAR UN VALOR\par
+# =\par
+# +=, -=, *=, /=, **=, %=\par
+\par
+# Concatenar con STRINg y variables\par
+\par
+# CONCATENADO GENERICO: "," lA COMA nos permite concatenar variables, string o enteros. Ademas la coma hace la misma funcion de espacio " ".\par
+\par
+nombre4 = 'Pedro'\par
+altura = 1.86\par
+\par
+# Primera Opcion\par
+\par
+print('Hola me llamo',nombre,'y mido',altura,'metros de estatura')\par
+# Segunda Opcion\par
+# En esta opcion solo necesitamos unpar de comillas\par
+# FORMAT(variable1, variable2): Nos permite\par
+\par
+# print('Hola me llamo \{\} y mido \{\} metros de estatura').format(nombre,altura)\par
+\par
+# Tercera Opcion\par
+# print(f 'string \{variable\}'): la F es formar pero en una forma mas rapida\par
+# IMPORTANTE: SI TENEMOS EL PRINT MUY LARGO, PYTHON nos dara error si damos intro, ya que es sencible.\par
+# parta solucionarlo cerramos y abrimos las comillas de string cada vez que damos intro.\par
+\par
+print(f'Hola me llamo \{nombre\} y mido \{altura\} metros de estatura')\par
+\par
+# Entrada de datos\par
+# Input te guarda datos tipo cadena\par
+\par
+nombre5 = input('tu nombre: ')\par
+\par
+#input guardar valoees numericos\par
+\par
+edad = int(input('Tu edad: '))\par
+\par
+altura = float(input('Tu altura: '))\par
+\par
+print(f'Hola tu \{nombre5\} y tu edad es \{edad\}, como tu altura \{altura\}')\par
+\par
+# Convertir un string en entero\par
+# Usamos las funciones de tipos de datos, tipoDAto(), ten en cuenta en que el string debe tener el tipo de dato para que la funcion lo aplique\par
+# es decir, no vas a poner un 'Hola' en un int, sabiendo que no va funcionar sino por ejemplo '10'\par
+\par
+n = int('10')\par
+print(n)\par
+# COnvertir un numero a binario\par
+\par
+n = bin(10)\par
+print(n)\par
+# Convertir un numero a hexadecimal\par
+\par
+n = hex(10)\par
+print(n)\par
+# Convertir un binario a un entero\par
+# el 2 nos permite indicartle que es binario\par
+\par
+n = int('0b1010', 2)\par
+print(n)\par
+# Convertir un hexadecimal a entero\par
+# el 16 nos permite indicartle que es hexagecimal\par
+\par
+n = int('0xa', 16)\par
+print(n)\par
+# Convertir un negativo en positivo\par
+\par
+n = abs(-12)\par
+print(n)\par
+# Convertir de numero decimal a entero\par
+\par
+n = round(4.8)\par
+print(n)\par
+# Cuenta Cantidad de Caracteres\par
+\par
+n = len('Toni')\par
+print(n)\par
+\par
+MULTILINE COMMENT: Nos permite comentar en varias lineas a difernecia de #\par
+ponemos '''.\par
+\par
+CONDICIONALES EN PYTHON\par
+IDENTACION: EN UN LINEA DONDE VAYAN LA CONDICION, EN ESTOS INFLUYE LA TABULACION, YA QUE NO HAY [] \{\}, POR LO CUAL PARA SABER SI EL CODIGO SIGUIENTE PERTENECE O NO A ESE CONDICIONAL, tenemos que poner todo el codigo en una 1 tabulacion, es decir,  si el codigo del condicional no esta en un espacio(que lo ponemos con tabulacion) despues del condicional, lo que pasa es que PYTHOn lo leera como que no pertenece al condicional, lo mismo para ELSe y ELSEIF\par
+\par
+EJM:\par
+if 10 >0:\par
+   \tab  print('esto es un if')\par
+   \tab  print('otra linea')\par
+print('ya no pertece al condicional, porque no esta en los mismo espacios que los anteriores)\par
+\par
+elif 10 == 0:\par
+    \tab print('Esto se parece a else if')\par
+else:\par
+   \tab  print('esto es un else')\par
+\par
+OTRO EJEMPLO:\par
+\par
+edad = int(input('Cual es tu edad: '))\par
+\par
+if edad >= 0:\par
+   \tab  print('La introducicon de datos es correcta')\par
+Como vemos si queremos poner un IF dentro de otro IF, como vemos hay que respetar la "JERARQUIA DE ESPACIO/TABULACION", en donde los sub-if's estan en la tabulacion del if Principal, y estos sub-ifs tiene su propia tabulacion con su propio codigo\par
+   \tab  if edad >= 18:\par
+       \tab\tab  print('Eres mayor de edad')\par
+   \tab  if edad < 18: \par
+       \tab\tab  print('Eres un menor de edad')\par
+Como vemos si el else esta aqui, es porque pertenece al IF PRINCIPAL\par
+else:\par
+    print('Te has equivocado con la introduccion de edad')\par
+\par
+El SWITCH en Python no existe, para solucionar esto es poner un solo condiciona todos los "casos" del switch, queda muy compacto pero es lo que hay. EJM:\par
+\par
+if caracter == 'a' or c == 'e' or c == 'i' or c == 'o' or c == 'u':\par
+\par
+Julio 17/2019\par
+LISTAS y TUPLAS EN PYTHON:\par
+\par
+'''\par
+LISTAS\par
+Parecidas a los arreglos(arryas)\par
+'''\par
+# Podemos poner booleanos, enteros, floats, incluso una lista dentro de una lista\par
+\par
+grupo = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 23, True]\par
+\par
+# si ponemos click derecho python interactive window para ver las variables y su contenido\par
+\par
+# Multiplica relemntos de una lista, es decir, el contenido de esa lista\par
+\par
+grupo = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 23, True]*4\par
+\par
+print(grupo, '\\n')\par
+\par
+# Imorimir elemntos de una lista\par
+\par
+# Imprmir elemntos seleccionados de una lista.\par
+# IMPORTANTE: Las posiciones de los elementos de una lista son igual que en una array, es decir, 0,1,2,3,4,5,etc.\par
+# TIP: Si solo queremos sacar una cierta los elementos desde una posicion a otra posicion de la lista\par
+# Usamos ":", EJM: 2:5. El elemento de la posicion 2 al 5\par
+\par
+print(grupo[2:5])\par
+\par
+# Agregar elementos al final de una lista\par
+# APPEND(): nos permite agregar un elemnto al final de una lista\par
+\par
+grupo.append('Final')\par
+print(grupo, '\\n')\par
+\par
+# Agregar elementos entre la lista\par
+# INSERT(): Nos permite insertar en cualquier parte de la lista un nuevo elemento\par
+# Especificamos la posicion la cual queremos que este est6e nuevo elemnto\par
+grupo.insert(2, 'centro')\par
+print(grupo, '\\n')\par
+\par
+# Varios elementos en una lista al final de esta\par
+# EXTEND(): Permite agregar varios elemtnos a una lista, en donde mediante [colocamos los nuevos emtodos que queremos introducir]\par
+\par
+grupo.extend(['Hola', 'patata', 20, 100])\par
+\par
+print(grupo, '\\n')\par
+\par
+# Podemos concatenar listas como en los arrays, es decir con "+"\par
+# ES\par
+\par
+otroGrupo = ['La tierra', 'La luna', 'Jupiter']\par
+\par
+grupofinal = grupo + otroGrupo\par
+\par
+print(grupofinal, '\\n')\par
+\par
+# Saber si un elemnto o valor esta dentor de una lista\par
+# in: Permite elaborar una condicion o pregunta en donde con este nos indica si ese valor o elemtno esta dentor de la lista en este caso\par
+\par
+\par
+print(30 in grupofinal)\par
+\par
+# SAber en que posicion de la lista se encuentra el elemento\par
+# INDEX(): nos permite saber la posicion de un elemnto de una lista\par
+\par
+print(grupofinal.index('centro'))\par
+\par
+# Contar cuantas veces se repite un elemento o valor en una lista\par
+# COUNT(): Nos permite contar cuantas veces re repite el mismo elemnto\par
+\par
+print(grupofinal.count('Lunes'))\par
+\par
+# Eliminar el ultimo elemnto de la lista\par
+# POP(): Nos permite eliminar elemntos de una lista, si no leintroducimos nada en (). Eliminara el ultimo\par
+grupofinal.pop()\par
+print(grupofinal, '\\h')\par
+\par
+\par
+# Eliminar un elemento de una lista\par
+grupofinal.pop(5)\par
+print(grupofinal, '\\h')\par
+\par
+# Eliminar el elemnto exacto de una lista\par
+# REMOVE(): Nos permite eleiminar elemtnos de una list,, es decir, da igual la posicion, tenemos que especificar el valor del elemento\par
+\par
+grupofinal.remove('Lunes')\par
+# Voltear una lista, es decir ponerla alreves\par
+# REVERSE(): Nos permite voltear o poner al revez una lista, por lo cual las posiciones se cambiar, el ultimo seria el primero y el primero el ultimo por ejemplo\par
+\par
+grupofinal.reverse()\par
+\par
+# Si queremos ordenar una lista\par
+# SORT: Solo nos permite ordenar una lista, no una concatenacion de listas\par
+grupofinal.sort() # descendente\par
+grupofinal.sort(reverse=True) # Ascendente\par
+\par
+# Borrar todo el contenido de la lista\par
+# CLEAR(): Nos permite borrar los elementops de una lista\par
+grupofinal.clear()\par
+\par
+# Si queremos cambiar un elemento de la lista.\par
+# Especificamos la posicion con [] y con "=" le damos el nuevo valor a ese elemento\par
+grupofinal[5] = 'Otra cosa'\par
+\par
+'''\par
+TUPLAS: Sirven concretamente para buscar, consuymen menos memoria de las listas\par
+Son mas rapidas, pero despue sde crearlas son inmodificables\par
+\par
+'''\par
+# Ya no empleamos [] sino ().\par
+tupla01 = ('Lunes', 'Martes', 'Miercoles')\par
+\par
+print(tupla01, '\\n')\par
+\par
+# Nos de la longitud de esta tuple\par
+# LEN: Nos permite sacar la longitud de una tupla o lista\par
+\par
+print(len(tupla01), '\\n')\par
+\par
+# Saber si un valor esta dentor de una tupla\par
+\par
+print('Martes' in tupla01)\par
+\par
+# Saber en que poscion esta un elemento de la tupla\par
+\par
+print(tupla01.index('Miercoles'))\par
+\par
+# Contar cuantas vece se repite un elemtno en una tupla\par
+\par
+print(tupla01.count('Miercoles'))\par
+\par
+# Copiar el contenido de una tupla a una lista\par
+# No lo estamos moviendo estamos copiando\par
+# Esto nos beneficia porque las tuplas son inalterables y al usar LIST(), esta tupla se vuelve lista automaticamente,\par
+# y asi p\'f2der modificarla con las opciones que tenemos con una lista\par
+\par
+nuevaLista = list(tupla01)\par
+\par
+# Si al contrario queremos copiar el cnotenido de una lista a una tupla, esto con TUPLE()\par
+\par
+nuevaTupla = tuple(grupofinal)\par
+\par
+\par
+}
+ 

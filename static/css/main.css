@@ -1,0 +1,27 @@
+body{
+
+    background-image: url('static/img/montaña1.jpg');
+        
+}
+.verde{
+        background-color:green;
+        background-image: url('static/img/montaña1.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+}
+
+.azul{
+    
+        background-image: url('static/img/montaña2.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: blue;
+}
+
+.morado{
+    
+        background-image: url('static/img/montaña3.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: purple;
+}

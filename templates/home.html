@@ -1,0 +1,143 @@
+{% extends 'layout.html' %}
+
+<!--******************************************-->
+
+{% block title %}
+            
+{{ super() }}
+
+HOME
+
+{% endblock %}
+
+<!--******************************************-->
+
+{% block header %}
+
+
+{% endblock %}
+
+<!--******************************************-->
+
+{% block main %}
+
+{% if cambio == 'primer' %}
+
+<div class="verde">
+
+    <form action="{{ url_for('home') }}" method="post">
+
+    <h1>BUEN DIA</h1>
+
+    <ul>
+
+    <li>hola1</li>
+    <li>hola2</li>
+    <li>hola3</li>
+
+
+    </ul>
+
+
+    <button type="submit"> CAMBIAR
+        <input type="hidden" name="inputCambiar" value="activar">
+    </button>
+
+</form>
+
+{% else %}
+
+
+<!--**************????????????????????-->
+
+{% if random == 'verde' %}
+
+<div class="verde">
+
+    <form action="{{ url_for('home') }}" method="post">
+
+    <h1>BUEN DIA</h1>
+
+    <ul>
+
+    <li>montañaVerde</li>
+    <li>montañaVerde</li>
+    <li>montañaVerde</li>
+
+
+    </ul>
+
+
+    <button type="submit"> CAMBIAR
+        <input type="hidden" name="inputCambiar" value="activar">
+    </button>
+
+</form>
+
+{% endif %}
+
+<!--**************????????????????????-->
+
+{% if random == 'azul' %}
+
+<div class="azul">
+
+    <form action="{{ url_for('home') }}" method="post">
+
+    <h1>BUEN DIA</h1>
+
+    <ul>
+
+    <li>montañaAzul</li>
+    <li>montañaAzul</li>
+    <li>montañaAzul</li>
+
+
+    </ul>
+
+
+    <button type="submit"> CAMBIAR
+        <input type="hidden" name="inputCambiar" value="activar">
+    </button>
+
+</form>
+
+{% endif %}
+
+<!--**************????????????????????-->
+
+{% if random == 'morado' %}
+
+<div class="morado">
+
+    <form action="{{ url_for('home') }}" method="post">
+
+    <h1>BUEN DIA</h1>
+
+    <ul>
+
+    <li>montañaMorado</li>
+    <li>montañaMorado</li>
+    <li>montañaMorado</li>
+
+
+    </ul>
+
+
+    <button type="submit"> CAMBIAR
+        <input type="hidden" name="inputCambiar" value="activar">
+    </button>
+
+</form>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+<!--******************************************-->

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+
+
+
+{% endblock %}
+
+{% block main %}
+
+<form action="{{ url_for('home') }}" method="post">
+
+    <br>
+
+    <label for="usuario">
+        USUARIO
+    </label>
+
+    <input type="email" name="email">
+
+    <br>
+
+    <label for="password">
+        PASSWORD
+    </label>
+
+    <input type="password" name="password">
+
+    <br>
+
+    <button type="submit">LOGEARSE</button>
+</form>
+
+{% endblock %}
+
+{% if no_usuario == True %}
+
+<h1>  NO HAY NINGUN USUARIO </h1>
+{% endif %}

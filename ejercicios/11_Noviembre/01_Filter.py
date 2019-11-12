@@ -6,6 +6,7 @@ Filtrar datos de Jugadores de Basket
 
 #* Hacer una clase para recoger los datos de jugadores(nombre, posicion, puntosXpartido)
 
+
 class Jugadores():
 
     def __init__(self, nombre, posicion, puntosXpartido):

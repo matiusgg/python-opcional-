@@ -1,3 +1,4 @@
+#* IMPORTANTE: cADA VEZ QUE HAGAS UNA QUERY HAY CREAR UN NUEVO OBJETO
 from flask import Flask, url_for, session, request, redirect, render_template
 from login.Conexion import Bd
 
@@ -18,16 +19,39 @@ app.config['SECRET_KEY'] = 'SUPER SECRETO'
 @app.route('/')
 def redireccionar():
 
-    return redirect(url_for('home'))
+    return redirect(url_for('homeSesion'))
 
 #******************************************
-@app.route('/home')
-def home():
-
-    return render_template('home.html')
 
 #******************************************
 @app.route('/home', methods=['GET', 'POST'])
+def homeSesion():
+
+    #* Simplemente con un FORM en dentro.html que dentro de este hay un boton para volver a home.html.
+    #* Podemos decirle que nos borre las sessiones que tengamos.
+    #* IMPORTANTE: Si estamos en navegador Privado/incognito no nos borrara la COOKIE.
+    if request.method == 'POST':
+
+        session.clear()
+    
+    #* Si no es mediante el boton VOLVER de dentro.html y la persona escribe en la URL /home. Este condicional
+    #* Lo que hara es volver a login si hay una session abierta. Esto para evitar que la persona este navegando
+    #* en la app mediante las URLS sin ninguna session o permiso.
+    if 'email' in session:
+
+        return redirect(url_for('login'))
+
+    
+    return render_template('home.html')
+
+#******************************************
+@app.route('/login')
+def login():
+
+    return render_template('login.html')
+
+#******************************************
+@app.route('/login', methods=['GET', 'POST'])
 def datos():
 
     # email = request.form['email']
@@ -41,7 +65,7 @@ def datos():
             email = request.form['email']
             password = request.form['password']
 
-            #* 1 Comprobar en mysql si existe ese email
+            #* IMPORTANTE: cADA VEZ QUE HAGAS UNA QUERY HAY CREAR UN NUEVO OBJETO
             bd = Bd('localhost', 'usuario', 'mysql', 'logear')
             #* #* Comprobar en mysql si existe el email
             leer_email = bd.query(
@@ -50,6 +74,7 @@ def datos():
 
             print(leer_email)
 
+            #* Si en la BD no esta vacio, entonces el email que se ingreso en el input existe en la BD
             if leer_email != ():
 
                 # * Segunda comprbacion si la primera esta bien
@@ -60,9 +85,11 @@ def datos():
                 )
 
                 print(leer_email_password)
-                
+
+
                 bd = Bd('localhost', 'usuario', 'mysql', 'logear')
                 #* Comprobar en mysql si existe la constraseña
+                #* No necesita estar en un codicional, ya el condicional te lo hace el WHERE
                 leer_password = bd.query(
                 f'SELECT contrasenya from usuarios WHERE contrasenya="{password}"')
 
@@ -80,16 +107,16 @@ def datos():
                     return redirect(url_for('dentro'))
 
                 else:
-                    return render_template('home.html', no_usuario=True)
+                    return render_template('login.html', no_usuario=True)
             else:
-                return render_template('home.html', no_usuario=True)
+                return render_template('login.html', no_usuario=True)
 
         #* IndexError nos permite manejar el error cuando el email no esta en la base de datos.
         except IndexError:
 
             return 'No existe el email en la base de datos'
 
-    return render_template('home.html')
+    return render_template('login.html')
 
 #******************************************
 @app.route('/dentro', methods=['GET'])
@@ -122,28 +149,36 @@ def datosRegistro():
 
     if request.method == 'POST':
 
-        try:
+        usuario = request.form['usuario']
+        email = request.form['email']
+        password = request.form['password']
 
-            usuario = request.form['usuario']
-            email = request.form['email']
-            password = request.form['password']
+        
+        bd = Bd('localhost', 'usuario', 'mysql', 'logear')
 
-            #* 1 Comprobar en mysql si existe ese email
-            bd = Bd('localhost', 'usuario', 'mysql', 'logear')
-            #* #* Comprobar en mysql si existe el email
-            insertarTupla = bd.query(
-                f'INSERT INTO usuarios (usuario, contrasenya, activo, email) VALUES("{usuario}", "{password}", 1, "{email}");'
-            )
+        leer_email = bd.query(
+                f'SELECT email from usuarios WHERE email="{email}"'
+        )
 
-            return redirect(url_for('home'))
 
-        except IndexError:
-            
-            return render_template('registro.html', no_registro=True)
+        print(leer_email)
 
+        #* Si leer_email tiene elementos significa que el input que se introdujo en registrar.html esta en la BD,
+        #* por lo tanto obviamente no puede registrarse con el mismo email, si pasa esto mandame email_existe.
+        if leer_email != ():
+
+            return render_template('registro.html', email_existe=True)
+
+        bd2 = Bd('localhost', 'usuario', 'mysql', 'logear')
+        #* Insertar tupla
+        insertarTupla = bd2.query(f'INSERT INTO usuarios (usuario, contrasenya, activo, email) VALUES("{usuario}", "{password}", 1, "{email}");')
+
+        print(insertarTupla)
+        return redirect(url_for('login'))
+
+        #*****************************************************************
 
     return render_template('registro.html')
-
 
 #******************************************
 @app.errorhandler(404)

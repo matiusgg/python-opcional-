@@ -10,7 +10,12 @@
 
 <h1>Datos {{ usuario }}, {{ email }} y {{ password }}</h1>
 
-<a href="{{ url_for('home') }}">VOLVER</a>
+<form action="{{ url_for('homeSesion') }}" method="post">
+
+    <button type="submit">VOLVER</button>
+
+</form>
+
 
 
 {% endblock %}

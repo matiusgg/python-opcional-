@@ -2,46 +2,19 @@
 
 {% block header %}
 
-
-
 {% endblock %}
 
 {% block main %}
 
-<form action="{{ url_for('home') }}" method="post">
+<h1>ESCOGA ENTRE LAS OPCIONES: </h1>
 
-    <br>
+<br>
 
-    <label for="email">
-        EMAIL
-    </label>
-
-    <input type="email" name="email">
-
-    <br>
-
-    <label for="password">
-        PASSWORD
-    </label>
-
-    <input type="password" name="password">
-
-    <br>
-
-    <button type="submit">LOGEARSE</button>
-</form>
-
-{% if no_usuario == True %}
-
-<h1>  NO HAY NINGUN EMAIL NI CONTRASEÑA, VUELVE A INTENTARLO, O REGISTRATE:</h1>
+<a href="{{ url_for('login') }}">LOGEARSE</a>
 
 <br>
 
 <a href="{{ url_for('registro') }}">REGISTRATE</a>
-
-
-
-{% endif %}
 
 {% endblock %}
 

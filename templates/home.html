@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+
+
+
+{% endblock %}
+
+{% block main %}
+
+{% for i in sprites %}
+
+<br>
+
+{{ i }}
+
+<br>
+
+{% endfor %}
+
+<form action="{{ url_for('home') }}" method="post">
+
+    <label for="usuario">
+        INTRODUZCA EL USUARIO
+    </label>
+
+    <input type="text" name="usuario" required>
+
+    <button type="submit">JUGAR</button>
+</form>
+
+
+{% endblock %}

@@ -56,7 +56,7 @@ def datos():
                 # *Comprobacion de email y password en la misma tupla.
                 bd_total = Bd('localhost', 'usuario', 'mysql', 'logear')
                 leer_email_password = bd_total.query(
-                f'SELECT email, contrasenya FROM usuarios WHERE email="{email}"'
+                f'SELECT email, contrasenya, usuario FROM usuarios WHERE email="{email}"'
                 )
 
                 print(leer_email_password)
@@ -73,6 +73,7 @@ def datos():
                     #* iniciar sesion 
                     #* Limpiamos la session cada vez que haga una nueva session.
                     session.clear()
+                    session['usuario'] = leer_email_password[0][2]
                     session['email'] = email
                     session['password'] = password
 
@@ -95,18 +96,55 @@ def datos():
 def dentro():
     if 'email' in session and 'password' in session:
 
+        usuario = session['usuario']
         email = session['email']
         password = session['password']
 
     else:
+        usuario = ''
         email = ''
         password = ''
 
     # return f'Datos: {email} y {password}'
 
 
-    return render_template('dentro.html', email=email, password=password)
+    return render_template('dentro.html', email=email, password=password, usuario=usuario)
     
+#******************************************
+@app.route('/registro')
+def registro():
+
+    return render_template('registro.html')
+
+#******************************************
+@app.route('/registro', methods=['GET', 'POST'])
+def datosRegistro():
+
+    if request.method == 'POST':
+
+        try:
+
+            usuario = request.form['usuario']
+            email = request.form['email']
+            password = request.form['password']
+
+            #* 1 Comprobar en mysql si existe ese email
+            bd = Bd('localhost', 'usuario', 'mysql', 'logear')
+            #* #* Comprobar en mysql si existe el email
+            insertarTupla = bd.query(
+                f'INSERT INTO usuarios (usuario, contrasenya, activo, email) VALUES("{usuario}", "{password}", 1, "{email}");'
+            )
+
+            return redirect(url_for('home'))
+
+        except IndexError:
+            
+            return render_template('registro.html', no_registro=True)
+
+
+    return render_template('registro.html')
+
+
 #******************************************
 @app.errorhandler(404)
 def page_no_found(error):

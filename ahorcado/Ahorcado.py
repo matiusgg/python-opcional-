@@ -139,6 +139,8 @@ class Ahorcado():
             if inputLetra == letra:
 
                 self.letrasCorrectas.append(inputLetra)
+        
+
 
 # objAhorcadito = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
 # print(objAhorcadito.palabraRandom())

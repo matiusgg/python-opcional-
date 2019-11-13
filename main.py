@@ -121,6 +121,19 @@ def homeUsuario():
 @app.route('/ahorcado')
 def ahorcado():
 
+
+    return render_template('ahorcado.html')
+
+#******************************************
+@app.route('/ahorcado', methods=['POST'])
+def ahorcadoDatos():
+
+    letraInput = request.form['letra']
+
+    objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+
+    playAhorcadito = objLetra.ahorcadito(letraInput)
+
     return render_template('ahorcado.html')
 
 #******************************************

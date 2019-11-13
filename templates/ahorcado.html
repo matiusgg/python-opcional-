@@ -8,6 +8,18 @@
 
 {% block main %}
 
-<h1>AHORCADO</h1>
+
+
+<form action="{{ url_for('home') }}" method="post">
+
+    <label for="usuario">
+        INTRODUZCA LA LETRA
+    </label>
+
+    <input type="text" name="letra" required>
+
+    <button type="submit">JUGAR</button>
+</form>
+
 
 {% endblock %}

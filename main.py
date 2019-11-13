@@ -30,6 +30,11 @@ def home():
 @app.route('/home', methods=['GET', 'POST'])
 def datos():
 
+    # email = request.form['email']
+    # password = request.form['password']
+
+    # print(email, password)
+
     if request.method == 'POST':
 
         try:
@@ -40,23 +45,30 @@ def datos():
             bd = Bd('localhost', 'usuario', 'mysql', 'logear')
             #* #* Comprobar en mysql si existe el email
             leer_email = bd.query(
-                f'SELECT email from logear WHERE email="{email}"'
+                f'SELECT email from usuarios WHERE email="{email}"'
             )
+
+            print(leer_email)
 
             if leer_email != ():
 
-                #* Segunda comprbacion si la primera esta bien
-                #*Comprobacion de email y password en la misma tupla.
+                # * Segunda comprbacion si la primera esta bien
+                # *Comprobacion de email y password en la misma tupla.
                 bd_total = Bd('localhost', 'usuario', 'mysql', 'logear')
                 leer_email_password = bd_total.query(
-                f'SELECT email, contrasenya FROM logear WHERE email="{email}"'
+                f'SELECT email, contrasenya FROM usuarios WHERE email="{email}"'
                 )
-                
-                # bd = Bd('localhost', 'usuario', 'mysql', 'logear')
-                # #* Comprobar en mysql si existe la constraseña
-                # leer_password = bd.query(
-                # f'SELECT contrasenya from logear WHERE contrasenya="{password}"')
 
+                print(leer_email_password)
+                
+                bd = Bd('localhost', 'usuario', 'mysql', 'logear')
+                #* Comprobar en mysql si existe la constraseña
+                leer_password = bd.query(
+                f'SELECT contrasenya from usuarios WHERE contrasenya="{password}"')
+
+                print(leer_password)
+
+                #* Si el email y la contraseña de la BD son igual al email y contraseña de los inputs. Redireccioname a dentro.html
                 if leer_email_password[0][0] == email and leer_email_password[0][1] == password:
                     #* iniciar sesion 
                     #* Limpiamos la session cada vez que haga una nueva session.
@@ -90,10 +102,10 @@ def dentro():
         email = ''
         password = ''
 
-    return f'Datos: {email} y {password}'
+    # return f'Datos: {email} y {password}'
 
 
-    # return render_template('dentro.html', email=email)
+    return render_template('dentro.html', email=email, password=password)
     
 #******************************************
 @app.errorhandler(404)

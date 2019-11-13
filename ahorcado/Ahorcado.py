@@ -74,6 +74,7 @@ class Ahorcado():
          '''
 ]
 
+
     def __init__(self, localhost, usuario, password, basedeDatos):
 
         self.conexion = pymysql.connect(localhost, user=usuario, password=password, db=basedeDatos)

@@ -2,7 +2,8 @@ CREATE DATABASE ahorcadito;
 
 CREATE TABLE palabras(
     id_palabra int(10) UNSIGNED primary key auto_increment,
-    palabra VARCHAR(100) NOT NULL
+    palabra VARCHAR(100) NOT NULL,
+    tema VARCHAR(50)
 )
 
 CREATE TABLE usuarios(

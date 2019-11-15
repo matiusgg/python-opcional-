@@ -1,5 +1,6 @@
 from flask import Flask, url_for, session, request, redirect, render_template
 from ahorcado.Ahorcado import Ahorcado
+import random
 
 #* Inicializar nuestra clase de conexion a la BD
 
@@ -24,96 +25,6 @@ def redireccionar():
 @app.route('/home')
 def home():
 
-    SPRITES = [
-'''
-     ---
-     |   |
-     0   |
-         |
-         |
-         |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /    |
-         |
-         |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /|   |
-         |
-         |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /|\  |
-         |
-         |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /|\  |
-     |   |
-         |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /|\  |
-     |   |
-    /    |
-         ---------
-         ''',
-'''
-     ---
-     |   |
-     0   |
-    /|\  |
-     |   |
-    / \  |
-         ---------
-         '''
-]
-
-    return render_template('home.html', sprites=SPRITES)
-
-
-#******************************************
-@app.route('/home', methods=['POST'])
-def homeUsuario():
-
-    usuarioInput = request.form['usuario']
-
-    #****************************************
-
-    objUsuario = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
-
-    insertarUsuario = objUsuario.query(f'INSERT INTO usuarios (usuario, contrasenya, activo) VALUES("{usuarioInput}", "123", 1);')
-
-    #****************************************
-
-    objUsu = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
-
-    comprobarUsuario = objUsu.query(f'SELECT usuario FROM usuarios WHERE usuario="{usuarioInput}";')
-
-    if comprobarUsuario != ():
-
-        return redirect(url_for('ahorcado'))
 
     return render_template('home.html')
 
@@ -125,16 +36,27 @@ def ahorcado():
     return render_template('ahorcado.html')
 
 #******************************************
+
+palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
+nuevoRandom = random.choice(palabras)
+
 @app.route('/ahorcado', methods=['POST'])
 def ahorcadoDatos():
 
+    # palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
+
+    # palabraRandom = random.choice(palabras)
+
     letraInput = request.form['letra']
+    
+    activar = request.form['activar']
 
-    objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+    # objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+    objLetra = Ahorcado()
 
-    playAhorcadito = objLetra.ahorcadito(letraInput)
+    playAhorcadito = objLetra.ahorcadito(letraInput, activar)
 
-    return render_template('ahorcado.html')
+    return render_template('ahorcado.html', tercer=nuevoRandom, play=playAhorcadito)
 
 #******************************************
 @app.errorhandler(404)

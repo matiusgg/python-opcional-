@@ -8,17 +8,31 @@
 
 {% block main %}
 
+{{ random }}
+
+{{ otraRandom }}
+
+{{ tercer }}
 
 
-<form action="{{ url_for('home') }}" method="post">
+{% for i in play %}
+
+{{ i }}
+
+{% endfor %}
+
+
+<form action="{{ url_for('ahorcado') }}" method="post">
 
     <label for="usuario">
         INTRODUZCA LA LETRA
     </label>
 
-    <input type="text" name="letra" required>
+    <input type="text" name="letra" id="" pattern="[A-Za-z]{1}" title="Sólo puede introducir una letra alfabética sea mayúscula o minúscula, cabrón hijo puta">
 
-    <button type="submit">JUGAR</button>
+    <button type="submit">JUGAR
+        <input type="hidden" name="activar" value="activar">
+    </button>
 </form>
 
 

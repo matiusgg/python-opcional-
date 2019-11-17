@@ -1,134 +1,136 @@
-# import random
-# import os
+import random
+import os
 
-# class Ahorcado():
+# listaPalabra = []
 
-#     SPRITES = [
-#         '''
-#      ---
-#      |   |
-#      0   |
-#          |
-#          |
-#          |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /    |
-#          |
-#          |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /|   |
-#          |
-#          |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /|\  |
-#          |
-#          |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /|\  |
-#      |   |
-#          |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /|\  |
-#      |   |
-#     /    |
-#          ---------
-#          ''',
-#         '''
-#      ---
-#      |   |
-#      0   |
-#     /|\  |
-#      |   |
-#     / \  |
-#          ---------
-#          '''
-#     ]
+# palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
 
-#     def __init__(self):
+# palabraRandom = random.choice(palabras)
 
-#         self.palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
+# letrasCorrectas = []
 
-#         # * Lista donde vamos a agregar las letras que acierte el usuario.
-#         self.letrasCorrectas = []
 
-#         #* lista donde se agregara la palabra
-#         self.listaPalabra = []
+# def ahorcadito(palabraRandom, inputLetra):
 
-#         #* Palabra Random
-#         self.palabraRandom = random.choice(self.palabras)
+#     print(palabraRandom)
 
-#     # *************************************************
+#     for i in palabraRandom:
 
-#     # Metodo de busqueda
+#         listaPalabra.append([i, ' | __ | '])
 
-#     # ************************************************************
 
-#     def ahorcadito(self):
+#         if len(inputLetra) > 1:
 
-#         intentos = 0
+#             print('Debe introducir 1 letra')
 
-#         print(self.palabraRandom)
+#         else:
 
-#         for i in self.palabraRandom:
 
-#             self.listaPalabra.append([i, ' | __ | '])
+#             for i in listaPalabra:
 
-#         while intentos < 10: 
+#                 if inputLetra == i[0]:
 
-#             inputLetra = input('Introduzca una letra: ')
+#                     i[1] = inputLetra
 
-#             if len(inputLetra) > 1:
+#                     letrasCorrectas.append([i[1]])
 
-#                 print('Debe introducir 1 letra')
+#                     print(i[1], end='')
+
+#                     # return letrasCorrectas
 
 #             else:
 
+#                 print(i[1], end='')
+
+#                 # return letrasCorrectas
+
+            
+# if __name__ == "__main__":
+    
+#     i = 0
+
+#     while i < 10:
+
+#         usuario = input('Introduzca la letra: ')
+
+#         ahorcadito(palabraRandom, usuario)
+
+#         i += 1
+
+class Ahorcado():
+
+
+
+    def __init__(self):
+
+        self.palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
+
+        # * Lista donde vamos a agregar las letras que acierte el usuario.
+        self.letrasCorrectas = []
+
+        #* lista donde se agregara la palabra
+        self.listaPalabra = []
+
+        #* Palabra Random
+        self.palabraRandom = random.choice(self.palabras)
+
+    # *************************************************
+
+    # Metodo de busqueda
+
+    # ************************************************************
+
+    def ahorcadito(self):
+
+        intentos = 0
+
+        print(self.palabraRandom)
+
+        for i in self.palabraRandom:
+
+            self.listaPalabra.append([i, ' | __ | '])
+
+        print(f'join: ')
+        joinnuevo = ''.join(self.listaPalabra[0])
+        print(joinnuevo)
+
+        while intentos < 10: 
+
+            inputLetra = input('Introduzca una letra: ')
+
+            if len(inputLetra) > 1:
+
+                print('Debe introducir 1 letra')
+
+            else:
+
                 
             
-#                 for i in self.listaPalabra:
+                for i in self.listaPalabra:
 
-#                     if inputLetra == i[0]:
+                    if inputLetra == i[0]:
 
-#                         i[1] = inputLetra
+                        i[1] = inputLetra
 
-#                         # self.letrasCorrectas.append([i[1]])
+                        self.letrasCorrectas.append(i[1])
 
-#                         print(i[1], end='')
+                        print(i[1], end='')
 
-#                     else:
+                    else:
 
-#                         print(i[1], end='')
+                        print(i[1], end='')
 
-                        
+                        self.letrasCorrectas.append(i[1])
 
-#             # for i in self.letrasCorrectas:
+            intentos += 1
 
-#             #     print(i, end='')
+        
+
+        print(f'letrasCorrectas: {self.letrasCorrectas}')
+
+            # for i in self.letrasCorrectas:
+
+            #     print(i, end='')
 
                 
 
@@ -140,5 +142,5 @@
     
 
 
-# objAhorcadito = Ahorcado()
-# print(objAhorcadito.ahorcadito())
+objAhorcadito = Ahorcado()
+print(objAhorcadito.ahorcadito())

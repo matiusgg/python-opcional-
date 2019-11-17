@@ -5,6 +5,7 @@ AHORCADITO
 import pymysql
 import random
 import os
+import csv
 
 
 class Ahorcado():
@@ -22,113 +23,84 @@ class Ahorcado():
         #* Palabra Random
         self.palabraRandom = random.choice(self.palabras)
 
-    def ahorcadito(self, inputLetra, activar):
+    def ahorcadito(self, inputLetra, activar, palabraRandom):
 
+        print(palabraRandom)
+
+        for i in palabraRandom:
+
+            self.listaPalabra.append([i, ' | __ | '])
+        
         if activar == 'activar':
 
-            print(self.palabraRandom)
-
-            for i in self.palabraRandom:
-
-                self.listaPalabra.append([i, ' | __ | '])
 
 
-            if len(inputLetra) > 1:
+            for i in self.listaPalabra:
 
-                print('Debe introducir 1 letra')
+                if inputLetra == i[0]:
 
-            else:
+                    i[1] = inputLetra
 
 
-                for i in self.listaPalabra:
+                    self.guardarLista(inputLetra)
 
-                    if inputLetra == i[0]:
-
-                        i[1] = inputLetra
-
-                        self.letrasCorrectas.append([i[1]])
-
-                        print(i[1], end='')
-
-                        return self.letrasCorrectas
+                    print(i[1], end='')
 
                 else:
 
                     print(i[1], end='')
 
-                    return self.letrasCorrectas
+                    
+
+            self.mostrarLista()
+
+            print(self.listaPalabra)
+
+            return self.listaPalabra
 
 
-    def random(self):
+    # def random(self):
 
-        return self.palabraRandom
+    #     return self.palabraRandom
+
+# * metodo guardarFrase()
+    def guardarLista(self, lista):
+
+        escribir = open('palabra.csv', 'a', newline='')
+
+        salida = csv.writer(escribir)
+
+        salida.writerow(['lista'])
+
+        salida.writerow([(lista)])
+
+        # del salida
+        escribir.close()
+
+    # * metodo mostrarFrase()
+    def mostrarLista(self):
+
+        with open('palabra.csv', 'r') as File:
+
+            reader = csv.reader(File)
+
+            for row in reader:
+
+                print('**************************')
+
+                print(row)
+
+                if row[0] != 'lista':
+
+                    for i in self.listaPalabra:
+
+                        if row[0] == i[0]:
+
+                            i[1] = row[0]
+
+                    
 
 
-#     def __init__(self, localhost, usuario, password, basedeDatos):
-
-#         self.conexion = pymysql.connect(
-#             localhost, user=usuario, password=password, db=basedeDatos)
-
-#         # * Lista donde vamos a agregar las letras que acierte el usuario.
-#         self.letrasCorrectas = []
-
-#     # *************************************************
-
-#     # Metodo de busqueda
-
-#     def query(self, sql):
-
-#         with self.conexion.cursor() as cursor:
-
-#             cursor.execute(sql)
-
-#             self.conexion.commit()
-
-#             self.conexion.close()
-
-#             return cursor.fetchall()
-
-#     # *****************************************************
-
-#     def palabraRandom(self):
-
-#         with self.conexion.cursor() as cursor:
-
-#             sqlPalabras = 'SELECT palabra FROM palabras'
-
-#             cursor.execute(sqlPalabras)
-
-#             self.conexion.commit()
-
-#             self.conexion.close()
-
-#             palabrasSQL = cursor.fetchall()
-
-#             # * Lista para guardar las palabras
-#             listaPalabras = []
-
-#             print(palabrasSQL)
-
-#             for i in palabrasSQL:
-
-#                 print(i[0])
-#                 listaPalabras.append(i[0])
-
-#             print(listaPalabras)
-
-#             palabraRandom = random.choice(listaPalabras)
-
-#             return palabraRandom
-
-#     # ************************************************************
-
-#     def ahorcadito(self, inputLetra):
-
-#         for letra in self.palabraRandom():
-
-#             if inputLetra == letra:
-
-#                 self.letrasCorrectas.append(inputLetra)
 
 
 # objAhorcadito = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')

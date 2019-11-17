@@ -50,13 +50,19 @@ def ahorcadoDatos():
     letraInput = request.form['letra']
     
     activar = request.form['activar']
+    
 
     # objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
     objLetra = Ahorcado()
 
-    playAhorcadito = objLetra.ahorcadito(letraInput, activar)
+    #*Palabras ocultas
+    ocultas = ''
 
-    return render_template('ahorcado.html', tercer=nuevoRandom, play=playAhorcadito)
+    playAhorcadito = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
+
+    print(f'Play Ahorcadito: {playAhorcadito}')
+
+    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito)
 
 #******************************************
 @app.errorhandler(404)

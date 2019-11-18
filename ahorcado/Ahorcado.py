@@ -26,6 +26,9 @@ class Ahorcado():
         #* iNTENTOS
         self.intentos = 0
 
+        #* lista con letras Adivinadas
+        self.listaAdivinado = []
+
     #********************************************************************
 
     def ahorcadito(self, inputLetra, activar, palabraRandom):
@@ -68,7 +71,17 @@ class Ahorcado():
 
             print(self.listaPalabra)
 
-            return self.listaPalabra
+            for i in self.listaPalabra:
+
+                self.listaAdivinado.append(i[1])
+
+            if ' | __ | ' not in self.listaAdivinado:
+
+                return ['Has ganado']
+
+            else:
+
+                return self.listaAdivinado
 
 
     # def random(self):

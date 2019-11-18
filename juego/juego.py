@@ -203,12 +203,13 @@ def run():
     for i in range(len(resultado)):
 
         if resultado[i] == caracter:
-
+            
             indexarLetra.append(i)
 
             print(indexarLetra)
     
         if len(indexarLetra) == 0:
+
             intentos += 1
 
             if intentos == 10:

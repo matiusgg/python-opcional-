@@ -1,6 +1,7 @@
 from flask import Flask, url_for, session, request, redirect, render_template
 from ahorcado.Ahorcado import Ahorcado
 import random
+import csv
 
 #* Inicializar nuestra clase de conexion a la BD
 
@@ -62,6 +63,8 @@ def ahorcadoDatos():
 
     print(f'Play Ahorcadito: {playAhorcadito}')
 
+    #***********************
+
     return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito)
 
 #******************************************
@@ -73,3 +76,4 @@ def page_no_found(error):
 if __name__ == "__main__":
 
     app.run('0.0.0.0', '5000', debug=True)
+

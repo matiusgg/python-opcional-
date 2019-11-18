@@ -23,6 +23,11 @@ class Ahorcado():
         #* Palabra Random
         self.palabraRandom = random.choice(self.palabras)
 
+        #* iNTENTOS
+        self.intentos = 0
+
+    #********************************************************************
+
     def ahorcadito(self, inputLetra, activar, palabraRandom):
 
         print(palabraRandom)
@@ -33,22 +38,29 @@ class Ahorcado():
         
         if activar == 'activar':
 
-
-
             for i in self.listaPalabra:
 
                 if inputLetra == i[0]:
 
                     i[1] = inputLetra
 
+                    self.letrasCorrectas.append(inputLetra)
 
                     self.guardarLista(inputLetra)
 
                     print(i[1], end='')
 
-                else:
+            print(f'Letras correctas: {self.letrasCorrectas}')
 
-                    print(i[1], end='')
+            if len(self.letrasCorrectas) == 0:
+
+                self.guardarLista(1)
+
+                self.mostrarLista()
+
+                if self.intentos == 5:
+
+                    return ['Has perdido, solo tenias 5 oportunidades']
 
                     
 
@@ -63,6 +75,8 @@ class Ahorcado():
 
     #     return self.palabraRandom
 
+    #**********************************************************
+
 # * metodo guardarFrase()
     def guardarLista(self, lista):
 
@@ -76,6 +90,11 @@ class Ahorcado():
 
         # del salida
         escribir.close()
+
+        #**********************************************************
+
+
+    #***************************************************************
 
     # * metodo mostrarFrase()
     def mostrarLista(self):
@@ -98,9 +117,12 @@ class Ahorcado():
 
                             i[1] = row[0]
 
-                    
+                    if row[0] == '1':
 
+                        self.intentos += int(row[0])
 
+                    print(f'Intentos Fallidos: {self.intentos}')
+        
 
 
 # objAhorcadito = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')

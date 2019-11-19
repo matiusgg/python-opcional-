@@ -70,6 +70,7 @@ def ahorcadoDatos():
     for img in listaImagenes:
 
         if playAhorcadito == img:
+            
 
             str(img)
         else:

@@ -3,20 +3,32 @@
 {% block header %}
 
 
+<br>
 
 {% endblock %}
 
 {% block main %}
 
+{% for nombreImg in nombreImagen %}
+
+{{ nombreImg }}
+
+
+{% endfor %}
+
+<br>
+
 {{ random }}
 
-
+<br>
 
 {% for i in play %}
 
 {{ i }}
 
 {% endfor %}
+
+<br>
 
 
 <form action="{{ url_for('ahorcado') }}" method="post">
@@ -31,6 +43,12 @@
         <input type="hidden" name="activar" value="activar">
     </button>
 </form>
+
+<br>
+
+<h1>Tienes 5 oportunidades</h1>
+
+
 
 
 {% endblock %}

@@ -29,6 +29,9 @@ class Ahorcado():
         #* lista con letras Adivinadas
         self.listaAdivinado = []
 
+        #* lista con los nombres de los archivos para imprimirlos en ahorcado.html cada vez que el usuario pierde
+        self.listaImagenes = ['inicio', 'cabeza', 'torso', 'brazoderecho', 'brazoizquierdo', 'piernaderecha', 'pierdes']
+
     #********************************************************************
 
     def ahorcadito(self, inputLetra, activar, palabraRandom):
@@ -61,9 +64,13 @@ class Ahorcado():
 
                 self.mostrarLista()
 
-                if self.intentos == 5:
+                if self.intentos == 7:
 
-                    return ['Has perdido, solo tenias 5 oportunidades']
+                    return ['Has perdido, solo tenias 7 oportunidades']
+                
+                else:
+
+                    return self.listaImagenes[self.intentos]
 
                     
 

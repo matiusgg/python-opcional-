@@ -27,6 +27,7 @@ def redireccionar():
 def home():
 
 
+
     return render_template('home.html')
 
 #******************************************
@@ -34,12 +35,15 @@ def home():
 def ahorcado():
 
 
+    
     return render_template('ahorcado.html')
 
 #******************************************
 
 palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
 nuevoRandom = random.choice(palabras)
+
+listaImagenes = ['inicio', 'cabeza', 'torso', 'brazoderecho', 'brazoizquierdo', 'piernaderecha', 'pierdes']
 
 @app.route('/ahorcado', methods=['POST'])
 def ahorcadoDatos():
@@ -65,7 +69,7 @@ def ahorcadoDatos():
 
     #***********************
 
-    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito)
+    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito, nombreImagen=listaImagenes)
 
 #******************************************
 @app.errorhandler(404)

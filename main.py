@@ -67,9 +67,17 @@ def ahorcadoDatos():
 
     print(f'Play Ahorcadito: {playAhorcadito}')
 
+    for img in listaImagenes:
+
+        if playAhorcadito == img:
+
+            str(img)
+        else:
+            print('play no es igual a la lista de imagenes')
+
     #***********************
 
-    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito, nombreImagen=listaImagenes)
+    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito, nombreImagen=img)
 
 #******************************************
 @app.errorhandler(404)

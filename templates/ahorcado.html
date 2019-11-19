@@ -2,31 +2,43 @@
 
 {% block header %}
 
+{{ play }}
+
+{% if nombreImagen == play %}
+
+{% set ahorcadoo = 'img/' +  play  + '.png' %}
+
+    <img src="{{ url_for('static', filename=ahorcadoo)}}" alt="">
+
+{% else %}
+
+{% for i in play %}
+
+<br>
+
+{{ i }}
+
+
+{% endfor%}
+{% endif %}
+
+
+
 
 <br>
 
 {% endblock %}
 
+<!-- ***************************************************-->
+
 {% block main %}
 
-{% for nombreImg in nombreImagen %}
-
-{{ nombreImg }}
-
-
-{% endfor %}
 
 <br>
 
 {{ random }}
 
-<br>
 
-{% for i in play %}
-
-{{ i }}
-
-{% endfor %}
 
 <br>
 

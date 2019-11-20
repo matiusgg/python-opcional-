@@ -10,7 +10,9 @@ import csv
 
 class Ahorcado():
 
-    def __init__(self):
+    def __init__(self, localhost, usuario, password, basedeDatos):
+
+        self.conexion = pymysql.connect(localhost, user=usuario, password=password, db=basedeDatos)
 
         self.palabras = ['miedo', 'oscuridad', 'alegria', 'feliz']
 
@@ -71,6 +73,8 @@ class Ahorcado():
 
                 self.guardarLista(1)
 
+                #* SELF.MOSTRARLISTA() tiene el # de intentos y aciertos, por lo cual podemos usarlo en los
+                #* condicionales sin que cambien.
                 self.mostrarLista()
 
                 if self.intentos == 7:
@@ -182,8 +186,19 @@ class Ahorcado():
 
                     print(f'Intentos Fallidos: {self.intentos}')
 
-    
-        
+        # Metodo de busqueda
+
+    def query(self, sql):
+
+        with self.conexion.cursor() as cursor:
+
+            cursor.execute(sql)
+
+            self.conexion.commit()
+
+            self.conexion.close()
+
+            return cursor.fetchall()
 
 
 # objAhorcadito = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')

@@ -45,6 +45,14 @@ nuevoRandom = random.choice(palabras)
 
 listaImagenes = ['inicio', 'cabeza', 'torso', 'brazoderecho', 'brazoizquierdo', 'piernaderecha', 'pierdes']
 
+#* Objeto para sacar la palabra de la BD aleatoriamente.
+objrandom = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+
+#*Palabras Random con SQL
+randomSQL = objrandom.query("""SELECT palabra FROM palabras ORDER BY RAND() LIMIT 1;""")
+
+print(f'RANDOM SQL: {randomSQL[0][0]}')
+
 @app.route('/ahorcado', methods=['POST'])
 def ahorcadoDatos():
 
@@ -58,12 +66,11 @@ def ahorcadoDatos():
     
 
     # objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
-    objLetra = Ahorcado()
+    # objLetra = Ahorcado()
+    objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
 
-    #*Palabras ocultas
-    ocultas = ''
 
-    (listaLetras, imagenAhorc, aciertos, fallos, record) = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
+    (listaLetras, imagenAhorc, aciertos, fallos, record) = objLetra.ahorcadito(letraInput, activar, randomSQL[0][0])
 
     print(f'ListaLetras: {listaLetras}')
 
@@ -80,7 +87,7 @@ def ahorcadoDatos():
 
     #***********************
 
-    return render_template('ahorcado.html', random=nuevoRandom, letras=listaLetras, imgAhorcado=imagenAhorc, aciertos=aciertos, fallos=fallos, record=record)
+    return render_template('ahorcado.html', random=randomSQL[0][0], letras=listaLetras, imgAhorcado=imagenAhorc, aciertos=aciertos, fallos=fallos, record=record)
 
 #******************************************
 @app.errorhandler(404)

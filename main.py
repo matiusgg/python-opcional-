@@ -23,20 +23,144 @@ def redireccionar():
     return redirect(url_for('home'))
 
 #******************************************
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
 
+    if request.method == 'POST':
 
+        session.clear()
+    
+
+    if 'usuario' in session:
+
+        return redirect(url_for('usuario'))
 
     return render_template('home.html')
 
 #******************************************
-@app.route('/ahorcado')
+@app.route('/usuario')
+def usuario():
+
+    return render_template('usuario.html')
+
+#******************************************
+@app.route('/usuario', methods=['GET', 'POST'])
+def usuariodatos():
+
+    if request.method == 'POST':
+
+        try:
+            usuario = request.form['usuario']
+            password = request.form['password']
+
+            #* IMPORTANTE: cADA VEZ QUE HAGAS UNA QUERY HAY CREAR UN NUEVO OBJETO
+            bd = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+            #* #* Comprobar en mysql si existe el email
+            leer_usuario = bd.query(
+                f'SELECT usuario from usuarios WHERE usuario="{usuario}"'
+            )
+
+            print(leer_usuario)
+
+            #* Si en la BD no esta vacio, entonces el email que se ingreso en el input existe en la BD
+            if leer_usuario != ():
+
+                # * Segunda comprbacion si la primera esta bien
+                # *Comprobacion de email y password en la misma tupla.
+                bd_total = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+                leer_usuario_password = bd_total.query(
+                f'SELECT usuario, contrasenya FROM usuarios WHERE usuario="{usuario}"'
+                )
+
+                print(leer_usuario_password)
+
+
+                bd = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+                #* Comprobar en mysql si existe la constraseña
+                #* No necesita estar en un codicional, ya el condicional te lo hace el WHERE
+                leer_password = bd.query(
+                f'SELECT contrasenya from usuarios WHERE contrasenya="{password}"')
+
+                print(leer_password)
+
+                #* Si el email y la contraseña de la BD son igual al email y contraseña de los inputs. Redireccioname a dentro.html
+                if leer_usuario_password[0][0] == usuario and leer_usuario_password[0][1] == password:
+                    #* iniciar sesion 
+                    #* Limpiamos la session cada vez que haga una nueva session.
+                    session.clear()
+                    session['usuario'] = leer_usuario_password[0][0]
+                    session['password'] = password
+
+                    return redirect(url_for('ahorcado'))
+
+                else:
+                    return render_template('usuario.html', no_usuario=True)
+            else:
+                return render_template('usuario.html', no_usuario=True)
+
+        #* IndexError nos permite manejar el error cuando el email no esta en la base de datos.
+        except IndexError:
+
+            return 'No existe el usuario en la base de datos'
+
+    return render_template('usuario.html')
+
+
+
+#******************************************
+@app.route('/registro')
+def registro():
+
+    return render_template('registro.html')
+
+
+#******************************************
+@app.route('/registro', methods=['GET', 'POST'])
+def registroDatos():
+
+    if request.method == 'POST':
+
+        usuario = request.form['usuario']
+        password = request.form['password']
+
+        bd = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+
+        leer_usuario = bd.query(
+                f'SELECT usuario from usuarios WHERE usuario="{usuario}"'
+        )
+
+
+        print(leer_usuario)
+
+        if leer_usuario != ():
+
+            return render_template('registro.html', usuario_existe=True)
+
+        bd2 = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
+        #* Insertar tupla
+        insertarTupla = bd2.query(f'INSERT INTO usuarios (usuario, contrasenya, activo) VALUES("{usuario}", "{password}", 1);')
+
+        return redirect(url_for('usuario'))
+
+        
+
+    return render_template('registro.html')
+
+#******************************************
+@app.route('/ahorcado', methods=['GET'])
 def ahorcado():
 
+    if 'usuario' in session and 'password' in session:
+
+        usuario = session['usuario']
+        password = session['password']
+
+    else:
+        usuario = ''
+        password = ''
 
     
-    return render_template('ahorcado.html', imgAhorcado='inicio')
+    return render_template('ahorcado.html', imgAhorcado='inicio', password=password, usuario=usuario)
 
 #******************************************
 

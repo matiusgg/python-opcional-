@@ -36,7 +36,7 @@ def ahorcado():
 
 
     
-    return render_template('ahorcado.html')
+    return render_template('ahorcado.html', imgAhorcado='inicio')
 
 #******************************************
 
@@ -63,22 +63,24 @@ def ahorcadoDatos():
     #*Palabras ocultas
     ocultas = ''
 
-    playAhorcadito = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
+    (listaLetras, imagenAhorc) = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
 
-    print(f'Play Ahorcadito: {playAhorcadito}')
+    print(f'ListaLetras: {listaLetras}')
 
-    for img in listaImagenes:
+    print(f'img Ahorcado: {imagenAhorc}')
 
-        if playAhorcadito == img:
+    # for img in listaImagenes:
+
+    #     if playAhorcadito == img:
             
 
-            str(img)
-        else:
-            print('play no es igual a la lista de imagenes')
+    #         str(img)
+    #     else:
+    #         print('play no es igual a la lista de imagenes')
 
     #***********************
 
-    return render_template('ahorcado.html', random=nuevoRandom, play=playAhorcadito, nombreImagen=img)
+    return render_template('ahorcado.html', random=nuevoRandom, letras=listaLetras, imgAhorcado=imagenAhorc)
 
 #******************************************
 @app.errorhandler(404)

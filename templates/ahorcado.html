@@ -2,30 +2,7 @@
 
 {% block header %}
 
-{{ play }}
 
-{% if nombreImagen == play %}
-
-{% set ahorcadoo = 'img/' +  play  + '.png' %}
-
-    <img src="{{ url_for('static', filename=ahorcadoo)}}" alt="">
-
-{% else %}
-
-{% for i in play %}
-
-<br>
-
-{{ i }}
-
-
-{% endfor%}
-{% endif %}
-
-
-
-
-<br>
 
 {% endblock %}
 
@@ -45,6 +22,10 @@
 
 <form action="{{ url_for('ahorcado') }}" method="post">
 
+        {% set ahorcadoo = 'img/' +  imgAhorcado  + '.png' %}
+
+        <img src="{{ url_for('static', filename=ahorcadoo)}}" alt="">
+
     <label for="usuario">
         INTRODUZCA LA LETRA
     </label>
@@ -60,6 +41,12 @@
 
 <h1>Tienes 5 oportunidades</h1>
 
+
+<h1>LETRAS: {{ letras }}   </h1>
+
+<h1>IMG ahorcado: {{ imgAhorcado }} </h1>
+
+<br>
 
 
 

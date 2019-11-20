@@ -38,3 +38,5 @@ class Calculos():
 help(Calculos)
 #* Si queremos ver un metodo especifico de esa clase.
 help(Calculos.calcularPeso)
+
+#* Para documentar tenemos que usar """.

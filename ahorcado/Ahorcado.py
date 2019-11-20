@@ -66,15 +66,12 @@ class Ahorcado():
 
                 if self.intentos == 7:
 
-                    return self.listaAdivinado, 'Has perdido, solo tenias 7 oportunidades'
+                    return self.listaPalabra, 'Has perdido, solo tenias 7 oportunidades'
                 
                 else:
 
-                    return self.listaAdivinado, self.listaImagenes[self.intentos]
+                    return self.listaPalabra, self.listaImagenes[self.intentos]
 
-                    
-
-            self.mostrarLista()
 
             print(self.listaPalabra)
 
@@ -84,11 +81,11 @@ class Ahorcado():
 
             if ' | __ | ' not in self.listaAdivinado:
 
-                return self.listaAdivinado, 'Has ganado'
+                return self.listaPalabra, 'Has ganado'
 
             else:
 
-                return self.listaAdivinado, ' '
+                return self.listaPalabra, ' '
 
 
     # def random(self):
@@ -142,6 +139,8 @@ class Ahorcado():
                         self.intentos += int(row[0])
 
                     print(f'Intentos Fallidos: {self.intentos}')
+
+    
         
 
 

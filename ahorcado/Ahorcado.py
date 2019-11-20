@@ -23,14 +23,20 @@ class Ahorcado():
         #* Palabra Random
         self.palabraRandom = random.choice(self.palabras)
 
-        #* iNTENTOS
+        #* iNTENTOS que tambien funciona como fallos
         self.intentos = 0
+
+        #* Aciertos
+        self.aciertos = 0
 
         #* lista con letras Adivinadas
         self.listaAdivinado = []
 
         #* lista con los nombres de los archivos para imprimirlos en ahorcado.html cada vez que el usuario pierde
         self.listaImagenes = ['inicio', 'cabeza', 'torso', 'brazoderecho', 'brazoizquierdo', 'piernaderecha', 'pierdes']
+
+        #* Aciertos lista
+        self.aciertosLista = []
 
     #********************************************************************
 
@@ -66,11 +72,11 @@ class Ahorcado():
 
                 if self.intentos == 7:
 
-                    return self.listaPalabra, 'Has perdido, solo tenias 7 oportunidades'
+                    return self.listaPalabra, 'Has perdido, solo tenias 7 oportunidades', self.aciertos, self.intentos
                 
                 else:
 
-                    return self.listaPalabra, self.listaImagenes[self.intentos]
+                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos
 
             else:
                 
@@ -84,11 +90,11 @@ class Ahorcado():
 
                 if ' | __ | ' not in self.listaAdivinado:
 
-                    return self.listaPalabra, 'Has ganado'
+                    return self.listaPalabra, 'Has ganado', self.aciertos, self.intentos
 
                 else:
 
-                    return self.listaPalabra, self.listaImagenes[self.intentos]
+                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos
 
 
     # def random(self):
@@ -140,6 +146,34 @@ class Ahorcado():
                     if row[0] == '1':
 
                         self.intentos += int(row[0])
+                    else:
+
+
+
+                        for i in self.listaPalabra:
+
+                            if row[0] == i[0]:
+
+                                self.aciertosLista.append(row[0])
+
+                                if self.aciertosLista.count(row[0]) > 1:
+
+                                    print('Hay letras repetidas')
+
+                                else:
+
+                                    self.aciertos += 1
+
+                                
+
+                        print('lista con las letras correctas del csv: ')
+                        print(self.aciertosLista)
+
+                        print('Aciertos: ' + str(self.aciertos))
+
+                        
+
+                                
 
                     print(f'Intentos Fallidos: {self.intentos}')
 

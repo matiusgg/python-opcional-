@@ -63,7 +63,7 @@ def ahorcadoDatos():
     #*Palabras ocultas
     ocultas = ''
 
-    (listaLetras, imagenAhorc) = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
+    (listaLetras, imagenAhorc, aciertos, fallos) = objLetra.ahorcadito(letraInput, activar, nuevoRandom)
 
     print(f'ListaLetras: {listaLetras}')
 
@@ -80,7 +80,7 @@ def ahorcadoDatos():
 
     #***********************
 
-    return render_template('ahorcado.html', random=nuevoRandom, letras=listaLetras, imgAhorcado=imagenAhorc)
+    return render_template('ahorcado.html', random=nuevoRandom, letras=listaLetras, imgAhorcado=imagenAhorc, aciertos=aciertos, fallos=fallos)
 
 #******************************************
 @app.errorhandler(404)

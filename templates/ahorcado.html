@@ -19,6 +19,8 @@
 
 <h1> Fallos: {{ fallos }} </h1>
 
+<h1> Record: {{ record }}</h1>
+
 
 
 {% for i in letras %}
@@ -34,6 +36,8 @@
     {% if imgAhorcado == 'Has ganado' or imgAhorcado == 'Has perdido, solo tenias 7 oportunidades' %}
 
     {{ imgAhorcado}}
+
+    <a href="{{ url_for('ahorcado') }}">VOLVER A JUGAR</a>
 
     <br>
 

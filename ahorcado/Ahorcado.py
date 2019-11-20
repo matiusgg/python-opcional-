@@ -38,6 +38,9 @@ class Ahorcado():
         #* Aciertos lista
         self.aciertosLista = []
 
+        #* RECORD
+        self.record = 0
+
     #********************************************************************
 
     def ahorcadito(self, inputLetra, activar, palabraRandom):
@@ -72,11 +75,11 @@ class Ahorcado():
 
                 if self.intentos == 7:
 
-                    return self.listaPalabra, 'Has perdido, solo tenias 7 oportunidades', self.aciertos, self.intentos
+                    return self.listaPalabra, 'Has perdido, solo tenias 7 oportunidades', self.aciertos, self.intentos, self.record
                 
                 else:
 
-                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos
+                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos, self.record
 
             else:
                 
@@ -90,11 +93,13 @@ class Ahorcado():
 
                 if ' | __ | ' not in self.listaAdivinado:
 
-                    return self.listaPalabra, 'Has ganado', self.aciertos, self.intentos
+                    self.record += 1
+
+                    return self.listaPalabra, 'Has ganado', self.aciertos, self.intentos, self.record
 
                 else:
 
-                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos
+                    return self.listaPalabra, self.listaImagenes[self.intentos], self.aciertos, self.intentos, self.record
 
 
     # def random(self):

@@ -72,20 +72,23 @@ class Ahorcado():
 
                     return self.listaPalabra, self.listaImagenes[self.intentos]
 
-
-            print(self.listaPalabra)
-
-            for i in self.listaPalabra:
-
-                self.listaAdivinado.append(i[1])
-
-            if ' | __ | ' not in self.listaAdivinado:
-
-                return self.listaPalabra, 'Has ganado'
-
             else:
+                
+                self.mostrarLista()
 
-                return self.listaPalabra, ' '
+                print(self.listaPalabra)
+
+                for i in self.listaPalabra:
+
+                    self.listaAdivinado.append(i[1])
+
+                if ' | __ | ' not in self.listaAdivinado:
+
+                    return self.listaPalabra, 'Has ganado'
+
+                else:
+
+                    return self.listaPalabra, self.listaImagenes[self.intentos]
 
 
     # def random(self):

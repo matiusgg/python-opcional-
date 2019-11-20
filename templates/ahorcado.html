@@ -26,9 +26,21 @@
 
 <form action="{{ url_for('ahorcado') }}" method="post">
 
+    {% if imgAhorcado == 'Has ganado' or imgAhorcado == 'Has perdido, solo tenias 7 oportunidades' %}
+
+    {{ imgAhorcado}}
+
+    <br>
+
+    {% else %}
+
         {% set ahorcadoo = 'img/' +  imgAhorcado  + '.png' %}
 
         <img src="{{ url_for('static', filename=ahorcadoo)}}" alt="">
+
+        <br>
+
+    {% endif %}
 
     <label for="usuario">
         INTRODUZCA LA LETRA

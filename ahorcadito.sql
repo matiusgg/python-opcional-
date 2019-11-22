@@ -15,7 +15,7 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE puntuacion(
-    id_puntuacion int(10) auto_increment,
+    id_puntuacion int(10),
     id_usuario int(10),
     record int(100),
     aciertos int(100),

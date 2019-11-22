@@ -69,7 +69,7 @@ def usuariodatos():
                 # *Comprobacion de email y password en la misma tupla.
                 bd_total = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
                 leer_usuario_password = bd_total.query(
-                f'SELECT usuario, contrasenya FROM usuarios WHERE usuario="{usuario}"'
+                f'SELECT usuario, contrasenya, id_usuario FROM usuarios WHERE usuario="{usuario}"'
                 )
 
                 print(leer_usuario_password)
@@ -90,6 +90,7 @@ def usuariodatos():
                     session.clear()
                     session['usuario'] = leer_usuario_password[0][0]
                     session['password'] = password
+                    session['id'] = leer_usuario_password[0][2]
 
                     return redirect(url_for('ahorcado'))
 
@@ -147,6 +148,8 @@ def registroDatos():
     return render_template('registro.html')
 
 #******************************************
+
+# lista con palabra randomSQL en oculto, esto para cuando pulsen y se active el POST, este se reemplazara por el randomSQL de la ruta
 @app.route('/ahorcado', methods=['GET'])
 def ahorcado():
 
@@ -160,7 +163,7 @@ def ahorcado():
         password = ''
 
     
-    return render_template('ahorcado.html', imgAhorcado='inicio', password=password, usuario=usuario)
+    return render_template('ahorcado.html', imgAhorcado='inicio', password=password, usuario=usuario, randomSQLOculto=randomSQLOculto)
 
 #******************************************
 
@@ -176,6 +179,9 @@ objrandom = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
 randomSQL = objrandom.query("""SELECT palabra FROM palabras ORDER BY RAND() LIMIT 1;""")
 
 print(f'RANDOM SQL: {randomSQL[0][0]}')
+
+randomSQLOculto = ' | __ | ' * len(randomSQL[0][0])
+
 
 @app.route('/ahorcado', methods=['POST'])
 def ahorcadoDatos():
@@ -193,26 +199,41 @@ def ahorcadoDatos():
     # objLetra = Ahorcado()
     objLetra = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
 
-
     (listaLetras, imagenAhorc, aciertos, fallos, record) = objLetra.ahorcadito(letraInput, activar, randomSQL[0][0])
 
     print(f'ListaLetras: {listaLetras}')
 
     print(f'img Ahorcado: {imagenAhorc}')
 
-    # for img in listaImagenes:
-
-    #     if playAhorcadito == img:
-            
-
-    #         str(img)
-    #     else:
-    #         print('play no es igual a la lista de imagenes')
 
     #***********************
 
-    return render_template('ahorcado.html', random=randomSQL[0][0], letras=listaLetras, imgAhorcado=imagenAhorc, aciertos=aciertos, fallos=fallos, record=record)
 
+    if 'usuario' in session and 'password' in session and 'id' in session:
+
+        usuario = session['usuario']
+        password = session['password']
+        id_usuario = session['id']
+
+    else:
+        usuario = ''
+        password = ''
+        id_usuario = ''
+        
+
+    #***********************
+#* registro Puntuacion. En el ID_PUNTUACION sera el mismo que el id_usuario para que no nos duplique
+# registroPuntuacion = objrandom.query(f'INSERT INTO puntuacion (id_puntuacion, id_usuario, record, aciertos, fallos) VALUES({id_usuario}, {id_usuario}, {record}, {aciertos}, {fallos});')
+
+
+#*****************************
+    # queryPuntuacion = objLetra.query(""" SELECT u.nombre,p.puntos_max FROM usuario AS u  INNER JOIN puntuacion AS p ON u.id_usuario = p.id_usuario;""")
+
+    #***********************
+
+    return render_template('ahorcado.html', random=randomSQL[0][0], letras=listaLetras, imgAhorcado=imagenAhorc, aciertos=aciertos, fallos=fallos, record=record, password=password, usuario=usuario)
+
+#******************************************
 #******************************************
 @app.errorhandler(404)
 def page_no_found(error):

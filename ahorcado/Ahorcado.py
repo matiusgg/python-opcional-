@@ -201,6 +201,7 @@ class Ahorcado():
             return cursor.fetchall()
 
 
+
 # objAhorcadito = Ahorcado('localhost', 'usuario', 'mysql', 'ahorcadito')
 # print(objAhorcadito.palabraRandom())
 

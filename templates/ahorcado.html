@@ -10,11 +10,19 @@
 
 {% block main %}
 
+
+<!--***************************************************-->
+
 <h1>USUARIO: {{ usuario }}</h1>
 
 <br>
 
 <h1>password: {{ password }}</h1>
+
+
+<!--****************************************************-->
+
+
 <br>
 
 
@@ -27,6 +35,15 @@
 <h1> Record: {{ record }}</h1>
 
 
+<!--*******************************************************-->
+<!--Palabra ocultas al inicio, es igual a la variable "letras" y cuando le den a POST sera reemplazado por "letras"-->
+
+{{ randomSQLOculto }}
+
+
+<!--**********************-->
+
+
 
 {% for i in letras %}
 
@@ -36,11 +53,14 @@
 <br>
 
 
+<!--*********************************************************-->
+
+
 <form action="{{ url_for('ahorcado') }}" method="post">
 
     {% if imgAhorcado == 'Has ganado' or imgAhorcado == 'Has perdido, solo tenias 7 oportunidades' %}
 
-    {{ imgAhorcado}}
+    {{ imgAhorcado }}
 
     <a href="{{ url_for('ahorcado') }}">VOLVER A JUGAR</a>
 
@@ -78,6 +98,12 @@
 
 <br>
 
+<br>
+
+
+
 
 
 {% endblock %}
+
+<!--****************************************************************************************************************-->

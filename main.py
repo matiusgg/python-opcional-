@@ -182,6 +182,10 @@ print(f'RANDOM SQL: {randomSQL[0][0]}')
 
 randomSQLOculto = ' | __ | ' * len(randomSQL[0][0])
 
+queryPuntuacion = objrandom.query(""" SELECT u.id_,p.puntos_max FROM usuario AS u  INNER JOIN puntuacion AS p ON u.id_usuario = p.id_usuario;""")
+
+print(f'queryVerificacion: {queryPuntuacion}')
+
 
 @app.route('/ahorcado', methods=['POST'])
 def ahorcadoDatos():
@@ -222,6 +226,10 @@ def ahorcadoDatos():
         
 
     #***********************
+
+    # queryPuntuacion = objLetra.query(""" SELECT u.nombre,p.puntos_max FROM usuario AS u  INNER JOIN puntuacion AS p ON u.id_usuario = p.id_usuario;""")
+
+
 #* registro Puntuacion. En el ID_PUNTUACION sera el mismo que el id_usuario para que no nos duplique
 # registroPuntuacion = objrandom.query(f'INSERT INTO puntuacion (id_puntuacion, id_usuario, record, aciertos, fallos) VALUES({id_usuario}, {id_usuario}, {record}, {aciertos}, {fallos});')
 

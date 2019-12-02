@@ -2,6 +2,9 @@ from flask import Flask, url_for, session, request, redirect, render_template
 from ahorcado.Ahorcado import Ahorcado
 import random
 import csv
+#*Importar MONGO DB
+from pymongo import MongoClient
+
 
 #* Inicializar nuestra clase de conexion a la BD
 
@@ -11,6 +14,87 @@ app = Flask(__name__)
 
 #* Crear un llave/clave secreta para SESSION
 app.config['SECRET_KEY'] = 'SUPER SECRETO'
+
+#**************************************
+#* ULR Conexion
+MONGO_URL_ATLAS = 'mongodb+srv://mongodb:mongodb@cluster0-yxtud.mongodb.net/test?retryWrites=true&w=majority'
+
+#* Establecer conexion
+client = MongoClient(MONGO_URL_ATLAS, ssl_cert_reqs=False)
+
+#* Creacion base de datos
+db = client['ahorcadito']
+
+#* Creacion coleccion
+collection = db['palabras']
+
+#* Crear varios documentos
+# lista_Documentos = [
+#     {
+#         "palabra": "lampara",
+#         "tipo": "objetos"
+#     },
+#     {
+#         "palabra": "cama",
+#         "tipo": "objetos"
+#     },
+#     {
+#         "palabra": "rio",
+#         "tipo": "naturaleza"
+#     }
+# ]
+
+# #*INSERTMANY: nos permite insertar varios documentos
+# collection.insert_many(lista_Documentos)
+
+#* Leer todos los documentos de la coleccion
+resultados = collection.find()
+#* Lo convertimos en una lista porque sino nos lo lanza como un objeto al ser un documento
+for i in resultados:
+    print('ñ'*50)
+    print(i['palabra'])
+
+
+#**************************************
+
+#******************************************
+@app.route('/palabras')
+def palabras():
+
+    return render_template('palabras.html')
+
+#******************************************
+
+#******************************************
+@app.route('/palabras', methods=['GET', 'POST'])
+def nuevaPalabra():
+
+    nuevaPalabra = request.form['nuevaPalabra']
+    tipo = request.form['tipo']
+
+    resultado_filtro = collection.find( {'palabra':f'{nuevaPalabra}'} )
+
+    print(list(resultado_filtro))
+
+    if list(resultado_filtro) == []:
+
+        print('Esta vacio')
+
+    else:
+
+
+        print('*' * 10)
+        for i in resultado_filtro:
+
+            print(i['palabra'])
+            
+        print('*' * 10)
+
+    # collection.insert_one( {'palabra':f'{nuevaPalabra}', 'tipo':f'{tipo}'} )
+
+    return render_template('palabras.html')
+
+#******************************************
 
 #* Crear rutas
 #* En donde verficaremos si en mysql existe ese usuario.
@@ -182,9 +266,9 @@ print(f'RANDOM SQL: {randomSQL[0][0]}')
 
 randomSQLOculto = ' | __ | ' * len(randomSQL[0][0])
 
-queryPuntuacion = objrandom.query(""" SELECT u.id_,p.puntos_max FROM usuario AS u  INNER JOIN puntuacion AS p ON u.id_usuario = p.id_usuario;""")
+# queryPuntuacion = objrandom.query(""" SELECT u.id_,p.puntos_max FROM usuario AS u  INNER JOIN puntuacion AS p ON u.id_usuario = p.id_usuario;""")
 
-print(f'queryVerificacion: {queryPuntuacion}')
+# print(f'queryVerificacion: {queryPuntuacion}')
 
 
 @app.route('/ahorcado', methods=['POST'])

@@ -44,6 +44,14 @@ ESTE USUARIO YA ESTA REGISTRADO
 
 {% endif %}
 
+<a href="{{ url_for('usuario') }}">LOG IN</a>
 
+<br>
+
+<form action="{{ url_for('home') }}" method="post">
+
+<button type="submit">VOLVER A HOME</button>
+        
+</form>
 
 {% endblock %}

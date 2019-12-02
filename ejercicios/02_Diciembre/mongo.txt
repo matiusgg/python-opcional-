@@ -1,0 +1,296 @@
+TIPOS DE DATOS DE MONGODB
+---------------------------------------
+Strnig, Boolean,
+ObjectID: No existe en un JSON, pero si en BSON
+Date: Tampoco existen en JSON, pero si en BSON
+Normalmente el driver cuando hacemos operaciones con mongo y algun lenguaje, el drriver se encarga de la operacion en memoria
+por lo cual int32 y int64 nos permite decidir cual usar, pero si son numeros muy grandes usamos DECIMALS
+Number: Double, Int32(un número mediano), Int64(un número medianamente grande), Decimals(números muy grandes)
+***************************************************
+
+DOCUMENTOS EMBEBIDOS
+---------------------------------------
+Es un tipo de relación, Tener documentos dentro de documentos
+
+Ejm en BSON(en mongo, no existe un tipo de archivo terminado en .bson):
+como vemos "contacto" y "usuario" tiene otro documento con otros atributos y datos.
+
+{
+    "_id": ObjectId"frtgghhghfgjhj45465",
+    "nombre": "Pepe Torres",
+    "contacto": {
+        "telefono": "971-234-456",
+        "email": "pepetorres@gmail.com"
+    },
+    "usuario": {
+        "user": "pepetorres",
+        "grupo": 2
+    }
+}
+
+DIFERENCIAS ENTRE DOCUMENTOS EMBEBIDOS Y ARRAYS:
+Cuando vamos a hacer un Array, estamos enlistando un grupo de datos, donde tendriamos una relacion de:
+Uno a muchos minetras que el documentos es uno a uno.
+Como vez, la principal diferencia es que array el indice son numeros mientras que losw documentos son como diccionarios.
+Pero la diferencia aqui es que los documentos solo contendran ensus atributos un valor, no otro array o documento.
+
+Un documento tiene un max deÇ: 16Mb. Lo cual es demasiado, ya que es en cada documento, no en cada coleccion.
+
+COMPOSICION DE MONGODB
+
+Los esquemas: No tienen un esquema predefinido, por lo cual los esquemas son la forma en que se organizan nuestros
+documentos en una colección.
+
+Esto no lo puede hacewr un slq, MONGODB en estado puro:
+Tenemos una coleccion con varios documentos:
+Ventaja 1: Tenemos varios documentos los cuales tienen sus propios atributos sin interferir en el otro. En cambio
+en SQL no se podría obviamente porque ya hay unos atributos predefinidos
+
+// MOGNO ESTADO PUTO
+Vendria a hacer la anarquia, es decir, los atributos de un adocumentos no tiene nada que ver con el otro documento
+
+{
+    "_id": ObjectId"drfgrt5465",
+    "usuario": "pepe",
+    "edad": 34
+    
+},
+{
+    "_id": ObjectId"545trgfthhyjy",
+    "localidad": "Mallorca",
+    "ciudad": "Alcudia"
+}
+
+// MONGO ESTADO MEDIO
+Donde vemos que un documentos tiene mas atributos que el otro, pero no afecta en nada
+y ademas siguen un orden, aunque un documento no tenga los atributos del otro.
+{
+    "_id": ObjectId"drfgrt5465",
+    "usuario": "pepe",
+    "edad": 34
+},
+{
+    "_id": ObjectId"545trgfthhyjy",
+    "usuario": "juan",
+    "edad": 45
+    "localidad": "Mallorca",
+    "ciudad": "Alcudia"
+}
+
+// MONGO EN FORMA SQL, NO SE DEBE HACER NUNCA EN MONGO
+Es meter en todos los documentos en los mismos atributos, lo cual es innecesario en MONGODB
+El NULL, no lo vemos necesario, Los documentos no son tablas.
+{
+    "_id": ObjectId"drfgrt5465",
+    "usuario": "pepe",
+    "edad": 34
+    "localidad": null,
+    "ciudad": null
+},
+{
+    "_id": ObjectId"545trgfthhyjy",
+    "usuario": "juan",
+    "edad": 45
+    "localidad": "Mallorca",
+    "ciudad": "Alcudia"
+}
+
+RELACIONES EN MONGODB
+----------------------------------------
+auqneu MONGODB vemos como si no necesitaramos hacer relaciones, al final si las hay.
+Se crean entre documentos, las relaciones en sql se dan en el caso de las tablas(si fuera en el MONGODB, fueran las colecciones),
+pero en MONGODB son entre los documentos.
+Los documentos EMBEBIDOS nos ayudan a guardar la información en un solo documento y nos ayuda ahorrar tiempo que tardamos
+en consultar en diferentes documentos
+Cuando tenemos una relacion uno a uno = documentos EMBEBIDOS
+Cuando tenemos relaciones uno a muchos = documentos EMBEBIDOS en un array(es decir, un array basicamente, al final tambien esta EMBEBIDOS en el documento)
+
+Como vemos En "informacion", tenemos los documentos EMBEBIDOS dentro de un array" [ ] ".
+Podemos a hacer una array de documentos como hemos hecho que es diferentes a hacerlo con algun tipo de dato.
+Ya que cuando lo creemos en Compass, en INSERT DOCUMENT u otro lugar para agregar, Para que el MONGODB nos reconozca que es
+un documento EMBEBIDOS ponemos en el tipo "Object".
+
+{
+    "_id": ObjectId"545trgfthhyjy",
+    "usuario": "juan",
+    "información": [
+
+        "contacto": {
+        "telefono": "971-234-456",
+        "email": "pepetorres@gmail.com"
+    },
+    "usuario": {
+        "user": "pepetorres",
+        "grupo": 2
+    }
+    ]
+    "edad": 45
+    "localidad": "Mallorca",
+    "ciudad": "Alcudia"
+}
+
+Otro ejemplo:
+
+-------------------------------------------
+"editorial" es un documento, por lo cual su tipo es OBJECT
+{
+    "titulo": "1984",
+    "autor": "George Oswell",
+    "publicacion": "12-12-2012"
+    "paginas": 120,
+    "editorial": {
+        "nombre": "cosa",
+        "localidad": "palma de mallorca",
+        "telefono": 64345355
+    }
+}
+
+el problema vendria en la ACTUALizaCION de esta informacion, imaginemos que la editorial cambia algun dato de los que pusimos(cambiaron calle, telefono, etc.)
+para ello:
+OPTIMIZAR CUANDO HAY CAMBIOS CONSTANTES EN LOS DOCUMENTOS EMBEBIDOS
+// Tendriamos que crear una coleccion "Libros", y una coleccion "editoriales", ya que si tenemos que poner muchas editoriales
+a los documentos, y si tenemos 10000 documentos con la información del libro y su documento EMBEBIDOS, el problema seria actualizarlo
+la estructura cambiaria para que tengamos el acceso mas facil a hacer cambios en la editoriales:
+
+Como vemos lai información en el libro tenemos solamente la ID de la editorial, 
+{
+    "_id": ObjectId"656576ytujtgyjyh",
+    "autor": "George Oswell",
+    "publicacion": "12-12-2012",
+    "paginas": 120,
+
+
+    "editorial_id": "cosa"
+}
+
+Y aparte tendriamos por separado un documento que tendria la informacion de la editorial, es decir, en vez de ir colocando la informacion
+de la editoral en cada documento de libro, lo que hacemos es simplemente colocar el Id de la editorial, y ya con el buscador Podemos
+buscarlo mas facilmente para que nos dirija al documento de la editorial
+
+EJEMPLO RELACION REAL CON: CLASES, CURSOS, MASTER
+// Coleccion Carreras
+Como vemos en "cursos" tenemos dos documentos(Object), 
+Ademas en los cursos solo hemos colocado el ID del curso y su nombre, no todas sus caracteristicas, ya que como en el casoanterior
+tendríamos nuestor propio documento con la informacion de los cursos, en vez de meter todo a saco en un solo docuemnto. Esto com se menciono
+antes nos ayuda en la busqueda y en las relaciones.
+{
+    "_id": ObjectId"mdfkndf44546",
+    "nombre": "Master de ...",
+    "description": "",
+    "cursos": [
+        {
+            "_id": ObjectId"fdgfgg43",
+            "nombre": "curso1"
+        },
+        {
+            "_id": ObjectId"ffdfgfg6666",
+            "nombre": "curso2"
+        }
+    ]
+}
+
+// Coleccion cursos
+{
+    "_id": ObjectId"mdfkgggggg",
+    "nombre": "Curso1",
+    "description": "",
+    "modulo": [
+        {
+            "_id": ObjectId"fdgsssss3",
+            "nombre": "modulo1",
+            "orden":1,
+            "video": ['url1', 'url2', 'url3']
+        },
+        {
+            "_id": ObjectId"fgfhghy666",
+            "nombre": "modulo2",
+            "orden":2,
+            "video": ['url1', 'url2', 'url3']
+        },
+        {
+            "_id": ObjectId"fgthjy57667",
+            "nombre": "modulo3",
+            "orden":2,
+            "video": ['url1', 'url2', 'url3']
+        }
+    ]
+}
+
+FILTER
+---------------------
+Nos permite filtrar la busqueda del documento, lo usamos con igual, es decir, traeme esto que es igual a esto. Ejm:
+{business_name:"Hello inc."}
+El problema viene cunado queremos buscar algo mas currado en vez que solo igual para ello, estan:
+
+OPERADORES
+---------------------------------------------------
+1.OPERADORES DE COMPARACIÓN:
+$eq / =
+$gt / >
+$gte / >=
+$lt / <
+$lte / <=
+$ne / !=
+$in / Valores dentro de un array
+$nin / Valores que no estan dentro de un array
+
+2. OPERADORES POR LOGICA
+$and / and todas las sentencia en el query con $and deben cumplirse
+$or / or une querys que pueden cumplirse una u otra.
+$not / query invertida, es decir lo contrario a lo que queremos que salga
+$nor / Une querys invertidas
+
+3. OPERADORES POR ELEMENTO
+$exist / Verifica si existe un campo especifico de un documento
+$type / Pregunta que tipo tiene un campo en el documento
+
+OPERADORES DE ARRAYS
+$all / Colocame todos los elementos del array
+$elemMatch / Si cumple la condicion en alguno de sus campos
+$size / Verificar que tamaño tiene ese Array
+
+Todos los operadores:
+http://docs.mongodb.com/manual/reference/operator
+
+
+FILTROS CON OPERADORES
+-------------------------------------------------
+Los operadores en las querys de busqueda.
+Nos permiten crear filtros avanzados
+
+en el terminal:
+ejm:
+donde iría el operador?
+Iría en el valor del atributo:
+Sin Operador de busqueda:
+db.inventario.find( {"nombre": "Pepe"} )
+Con operador de busqueda:
+db.inventario.find( {"nombre": {operador:"valor"} } )
+ejm:
+Aqui le decimos que si telefono es mayor o igual a 100
+db.inventario.find( {"telefono": {$gte:"100"} } )
+
+PROYECCIONES
+--------------------------------------------------
+Serían cuando tenemos documentos muy grandes, no es necesario traer toda la informacion de ese documento,
+sino una parte necesaría para nuestra busqueda.
+En la busqueda de COMPASS, debajo de FILTER, esta PROJECT, donde le decimos que nos interesa ver una parte
+como se lo indicamos? con 1:muestramelo, 0:no me lo muestres. Asi filtramos que en vez que venga todo el contenido
+venga lo que le hemos puesto en PROJECT. ejm:
+{certificate_number:1,_id:0}
+
+
+PRACTICA 
+-----------------------
+-----------------------
+sql: create table
+mongo: No creamos tablas por defecto, sino colecciones
+SQL: SELECT * FROM users
+mongo: db.users.find()
+
+SQL: SELECT * FROM users WHERE age=33
+mongo: db.users.find({"age":33})
+
+SQL: SELECT * FROM users WHERE age>20
+mongo: db.users.find( {"age": {$gt:20} } )
+

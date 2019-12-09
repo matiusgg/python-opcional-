@@ -8,6 +8,8 @@
 
 {% block main %}
 
+<div class="contenedor">
+
 <a href="{{ url_for('usuario') }}">JUGAR</a>
 
 <br>
@@ -44,8 +46,27 @@
 
 </form>
 
+<br>
+
+{% if palabra_existe == True %}
+
+<h1>ESTA PALABRA YA ESTA REGISTRADA</h1>
+
+{% endif %}
+
+<br>
 
 
+<br>
+
+<a href="{{ url_for('historialPalabra') }}">HISTORIAL</a>
+
+<br>
+
+<a href="{{ url_for('eliminarPalabra') }}">ELIMINAR</a>
+
+
+</div>
 
 
 {% endblock %}

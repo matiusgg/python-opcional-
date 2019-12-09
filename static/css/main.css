@@ -1,0 +1,39 @@
+
+body{
+    background-color: #E59B45;
+}
+main{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+
+/* HOME.HTML */
+
+.contenedor {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 360px;
+    height: 800px;
+    background-image: url('../img/imagenFondo.png');
+    background-size: cover;
+
+}
+
+
+.scrollcontenedor {
+
+    border-color: black;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 200px;
+    height: 200px;
+}

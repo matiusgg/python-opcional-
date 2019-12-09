@@ -26,7 +26,7 @@ client = MongoClient(MONGO_URL_ATLAS, ssl_cert_reqs=False)
 db = client['ahorcadito']
 
 #* Creacion coleccion
-collection = db['palabras']
+collectionPalabra = db['palabras']
 
 #* Crear varios documentos
 # lista_Documentos = [
@@ -48,11 +48,11 @@ collection = db['palabras']
 # collection.insert_many(lista_Documentos)
 
 #* Leer todos los documentos de la coleccion
-resultados = collection.find()
-#* Lo convertimos en una lista porque sino nos lo lanza como un objeto al ser un documento
-for i in resultados:
-    print('ñ'*50)
-    print(i['palabra'])
+# resultados = collection.find()
+# #* Lo convertimos en una lista porque sino nos lo lanza como un objeto al ser un documento
+# for i in resultados:
+#     print('ñ'*50)
+#     print(i['palabra'])
 
 
 #**************************************
@@ -72,27 +72,107 @@ def nuevaPalabra():
     nuevaPalabra = request.form['nuevaPalabra']
     tipo = request.form['tipo']
 
-    resultado_filtro = collection.find( {'palabra':f'{nuevaPalabra}'} )
+    # resultado_filtro = collectionPalabra.find( {'palabra':f'{nuevaPalabra}'} )
+
+    # print(list(resultado_filtro))
+
+    # if resultado_filtro != {}:
+
+    #     return render_template('palabras.html', palabra_existe=True)
+
+    # else:
+
+    validacion = collectionPalabra.find( {'palabra':f'{nuevaPalabra}'} ).count()
+
+    if validacion == 0:
+
+        
+
+        dic_tipos = {
+            'naturaleza':False,
+            'objetos':False,
+            'animales':False,
+            'romance':False,
+        }
+
+        dic_tipos[tipo] = True
+
+        collectionPalabra.insert_one( {'palabra':f'{nuevaPalabra}', 'tipo':dic_tipos} )
+    else:
+
+        return render_template('palabras.html', palabra_existe=True)
+
+    return render_template('palabras.html')
+
+#******************************************
+@app.route('/historialPalabra')
+def historialPalabra():
+
+    return render_template('historialPalabra.html')
+
+#******************************************
+@app.route('/historialPalabra', methods=['POST'])
+def historialPalabraDatos():
+
+    dic_tipos = {
+            'naturaleza':False,
+            'objetos':False,
+            'animales':False,
+            'romance':False,
+        }
+
+    listaPalabras = []
+
+    tipo = request.form['tipo']
+
+    # historial = collectionPalabra.find( {'tipo':f"{dic_tipos[tipo]}"}, {'palabra':1, '_id':0} )
+
+    historial = collectionPalabra.find( {'tipo':{'$eq':tipo}}, {'palabra':1, '_id':0} )
+
+    #* como lo hizo el profe 
+
+    # historial = collectionPalabra.find( {'tipo':{'$eq':tipo}}, {'palabra':1, '_id':0} )
+
+
+    # print(list(historial))
+
+    for i in historial:
+
+        for llave, valor in i.items():
+
+            print(llave, valor)
+            listaPalabras.append(valor)
+
+
+    return render_template('historialPalabra.html', listaPalabras=listaPalabras)
+
+#******************************************
+@app.route('/eliminarPalabra')
+def eliminarPalabra():
+
+    return render_template('eliminarPalabra.html')
+
+
+#******************************************
+@app.route('/eliminarPalabra', methods=['POST'])
+def eliminarPalabraDatos():
+
+    palabraEliminar = request.form['palabraEliminar']
+
+    resultado_filtro = collectionPalabra.find( {'palabra':f'{palabraEliminar}'} )
 
     print(list(resultado_filtro))
 
-    if list(resultado_filtro) == []:
+    if resultado_filtro != {}:
 
-        print('Esta vacio')
+        collectionPalabra.delete_one( {'palabra':f'{palabraEliminar}'} )
 
     else:
 
+        return render_template('eliminarPalabra.html', eliminado=False)
 
-        print('*' * 10)
-        for i in resultado_filtro:
 
-            print(i['palabra'])
-            
-        print('*' * 10)
-
-    # collection.insert_one( {'palabra':f'{nuevaPalabra}', 'tipo':f'{tipo}'} )
-
-    return render_template('palabras.html')
+    return render_template('eliminarPalabra.html')
 
 #******************************************
 
@@ -113,7 +193,6 @@ def home():
     if request.method == 'POST':
 
         session.clear()
-    
 
     if 'usuario' in session:
 

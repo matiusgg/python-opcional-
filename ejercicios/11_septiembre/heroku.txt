@@ -1,0 +1,35 @@
+HEROKU: Es una platafroma que almaacena servidores en la nube que soportas varios lenguajes de progrmacion, principalmente python.
+USUARIO: newpowerexperience2016@gmail.com
+CONTRASEÑA: powerandmovie2019@
+
+descargamos heroku, vamos a la consola y ponemos: heroku --version
+tenemos que estar logeados en la apgina de heroku para que funciona en la consola cuando pongamos: heroku login
+nos abrira en el navegador la pagina para logearnos,  nos logeamos.
+Ahora cuando creamos nuestro proyecto con entorno virtual y tengamos todo hecho, en la consola de VSC. creamos runtime.txt fuera del entorno virtual. 
+Dependiendo cual python tengamos, el heroku solo trabaja con unas cuantas, si no tienes
+algunas de ellas no te funcionara, pero si tienes una version superior a alguna de estas puedes colocar una version mas baja
+para que no haya problemas. En mi caso, es un python 3.7.4
+Por lo cual ponemos en runtime.txt: python-3.7.4
+Creamos tambien dentro de la carpeta el "Procfile" sin ningun tipo de .tipoArchivo .
+
+Ahora en requirements.txt , la libreria llamada ""gunicorn" que nos la brinda heroku, nos permite trabajar mendiante heroku y Flask,
+ponemos en la consola pip install -r requirements, para que se añada la libreria.
+tambien instalamos la libreria de "pylint"
+
+Ahora en el archivo PROCFILE, ponemos: web: gunicorn app:main
+
+Ahora creamos nuestro espacio de heroku en el proyecto, tenemos que estar dentro del proyecto en la consola,
+ ponemos en la consola: heroku create nombreEspacio, si al final no te funciona, es porque HEROKu esta dando problemas con el nombre
+ por lo cual, pon esta linea de codigo para que sea mas seguro: heroku create --buildpack https://github.com/heroku/heroku-buildpack-python.git
+ cuando lo creamos, verificamos en la apgina de heroku, si se creo, damos click en el espacio que creamos->setting->add buildpack-> agregamos python
+ -> guardamos.
+Heroku se conceta con git, por lo cual es importante tener GIT instalado.
+Por lo cual hacemos el .gitignore, ponemos env/, git init, despues git add . . Despues el git commit.
+Ponemos tambien para que se conecte: heroku git:remote nombreEspacio
+Nos vamos a la pagina de heroku->personal->veremos que nos creo el espacio, sino es porque no estaba disponible ese nombre que pusimos
+Cuando tengamos todo el git, ponemos en la consola: git push --set-upstream heroku master
+Nos mostrara un enlace que nos permitira abrir la aplicacion en heroku. Si aún no tenemos nada, nos dira que hay error en la app.
+Cada vez que hagamos un cambio importante le hacemos un commit y lo subimos con el push y abrimos la app
+En main.py quitariamos la '0.0.0.0' o lo que tengas, y solamente dejar 'debug':true, ya que no estariamos en local
+
+HEROKU trabaja con SQLite

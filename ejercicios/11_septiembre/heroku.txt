@@ -33,3 +33,4 @@ Cada vez que hagamos un cambio importante le hacemos un commit y lo subimos con 
 En main.py quitariamos la '0.0.0.0' o lo que tengas, y solamente dejar 'debug':true, ya que no estariamos en local
 
 HEROKU trabaja con SQLite
+

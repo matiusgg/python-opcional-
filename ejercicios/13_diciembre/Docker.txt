@@ -1,0 +1,85 @@
+DOCKER:
+Utiliza los contenedores como máquinas virtuales muy livianas y modulares, y flexibles que poder crearlos 
+Buscar: Que son las maquinas virtuales.
+implementarlos, copiarlos y pasarlos de un entorno a otro. Parte de su exito es debido a open source.
+Actualmente uno de los emcanismo comunes es desplegar software en forma de contenedores.
+Con docker los desarrolladores son capaces de crear codigo como en la forma de distribuirlo sencillamente.
+Solomon hykes, creador de Docker. Buscar que dijo sobre docker.
+Dockerfile: Sera el tipo de archivo que usaremos, con propios comandos
+a partir de este creamos un "Docker Image", si no tenemos el dockerfile no podemos crear un DockerFile.
+En docker, nos permite que al instalarle el prpio sistema operativo, ese contenedor ya tien todas apps necesarias para
+trabajar en cualquier sitio, en dockerfile, le decimos como debe funcionar. Esto nos beneficia para trabajar en diferentes
+ambientes ya sea mac's, windows, linux, etc. En un docker se genera tambien una capa de sistema operativo.
+El unico archivo que veremos presente: Imaginamos que hacemos un app con flask, donde haremos nuestro
+entorno virtual con sus librerias, cuando la aplicació ya funciona y con una versión estable, lo que haremos
+es un dockerfile para crear el dockerImage.
+
+Ahora cuando tengamos nuestro proyecto con una versión estandar, creamos junto al main.py
+un archivo llamado "Docker"
+
+
+# Paso a Paso, para que la aplicación funcione en cualquier sistema.
+#* Recordemos: paso1: hacemos el dockerfile, paso2: contruimos el docker imgane, paso 3: hacemos el docker container
+#* usaremos ALPINE   que es un mini sistema operativo, com la capa principal de docker
+#* ahora vamos a google, y ponemos dockerhub: hub.docker.com, que es una especie de github de docker
+#* buscamos en el buscadro de docker, "alpine", lo descargamos
+#* ahora en el archivo docker, lo importamos en la terminal con: docker pull alpine
+#* Que es el sistema operativo de linux.
+FROM alpine:3.11.2
+
+#* PASO 2: Instalamos python 3 dentor de docker, es decir, el mini sistema operativo que instalamos
+#* en docker, con la ultima versión de pip también
+#* --no-cache: Nos permite borrar el cache para que no halla problemas
+RUN apk add --no-cache python-dev && pip3 install --upgrade pip
+
+#* Ahora nos vaMOS A TERMINAL, lo que queremos ahora es convertir todo esto en una imagen de Docker con el siguiente comando:
+#* docker build -t nombreImgDocker .
+#* no ponemos mausculas en el docker build
+#* Cuando se instale, si nos aparece al final: succesfully built, y succesfully . Es que se ha hecho bine, esto tambien depende del internet
+#* Ahora para entrar en la img de docker que hemos creado ponemos: docker run -it nombreImgdocker /bin/sh
+#* o tambien: docker run -it nombreImgdocker 
+
+#* Ahora para ver nuestros contenedores(los cuales aún no tendríamos), docker containers ls
+#* Para salir: exit
+
+#* Las maquinas virtuales sona rchivos que contienen un Sistema operativo con sus cosa, mucho más reducido, que pesa menos
+
+#* Ahora al estar dentor del minilinux, podemos crear carpetas y estas cosas. Para saber si estamos en el docker, tenemos que ver en la consola
+#* estos simbolos "/ #" 
+
+#* Ahora crearemos una carpeta dentro del SO(sistema operativo9), para poder almacenar nuestra aplicación.
+#* Empleamos el WORKDIR: Nos creara un directorio que nos permitira poner la app
+WORKDIR /app
+
+#* Copiar todos los archivos del proyecto a la carpeta /app
+COPY . /app
+
+#* Vamos a intstalar dependencias del proyecto
+RUN pip3 --no-cache install -r requirements.txt
+
+#* Ahora generaremos una lista de ejecuciones, para los comandos
+# CMD ["python3", "main.py"]
+CMD ["python", "main.py"]
+
+#* Si queremos ver las imagenes de docker que tenemos ponemos: docker images
+
+#* ACLARACIÓN: El docker nos permite "transportar" un pryoecto entero a otros lugares, por lo cual necesitamos
+#* un canal externo y uno interno, el interno sería como el local, mientras que el canal externo les permitira a las otras personas,
+#* que les hallamos enviado nuestro proyecto, poder entrar y ver la aplicación.
+
+#* PUBLISH: Nos permite definir el canal externo y el interno: ejm: 7000:5000
+#* Ahora paRA ACTIVAR UN PROCESO: Un proceso, es una imagen de docker ejecutada sin necesidad de ejecutarla de nuevo más tarde.
+#* Ahora cuando ya lo tengamos, ponemos: docker run -it nombreImgdocker --publish 7000:5000 nombreImagenDocker
+#* Al ejecutar este comando, nos correrá la aplicación.
+#* Ahora para hacer un docker iteractivo, que nos permitirá ejecutar la app como un proceso, es decir, sin necesidad de tener un 
+#* entorno virtual pendiente, esto nos viene bien para tener diferente procesos abiertos. Lo que hará es darnos una id, con la cual
+#* El comando es el siguiente: docker run -it -p 7000:5000 -d nombreImgdocker
+#* donde "-p": Nos permite crear los canales, "-d": Nos pemrmite que nuestra app, se convierta en un ejecutable(se ejecuta automaticamente) sin necesaidad de ejecutarlo en la terminal abierta.
+
+#* Para ver todos los prcoesos abiertos, ponemos: docker container ls
+
+#* Si queremos cerrar algun proceso, ponemos: docker stop nombreImagenDocker
+
+#* Como vemos podemos tener varios procesos abiertos, e ir navegando por ellos, es como tener varias apps abiertas.
+
+#* En la extensión de VSC de DOCKER: podemos ver los container y las imagenes de Docker

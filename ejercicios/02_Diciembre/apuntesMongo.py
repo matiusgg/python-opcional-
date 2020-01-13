@@ -4,7 +4,7 @@ PYMONGO(DRIVER): Es una libreria que hace la conexion, querys por mi.
 NOS VAMOS A ATLAS DE MONGODB:
 Y en el menu de atlas->clusters, en los "..." ponemos Load Sample Dataset y generamos BD de ejemplos
 Despues nos vamos al Compass.exe
-Compass es un visro, 
+Compass es un visor, 
 contraseña de la organizacion PROYECTO 0: mongodb
 Ahora en Compass, concetamos la BD del atlaS Y tendriamos los _BD de ejemplo. Si nos vamos a SHECMA: veremos estadisticas de la BD.
 Si damos click en alguna de las estadisticas nos filtrara ese dato para que nos busque como si fuera un query,

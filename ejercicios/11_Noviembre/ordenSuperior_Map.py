@@ -24,6 +24,7 @@ class Jugadores():
         
 
 jugadorObjt = Jugadores('michael', 'pivote', 0)
+print(self.nombre)
 jugadorObjt2 = Jugadores('BoquitaGrandexD', 'delantero', 9)
 jugadorObjt3 = Jugadores('Jordan', 'defensa', 40)
 jugadorObjt4 = Jugadores('MessiChiquito', 'delantero', 50)

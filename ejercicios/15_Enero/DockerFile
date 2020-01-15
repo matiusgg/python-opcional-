@@ -1,0 +1,63 @@
+# 15/Enero
+
+#* En la extensión de docker de VSC, en el panel izquierdo REGISTRES, nos registramos en DOCKER HUB, en el icono de conector.
+#* en el panel CONTAINER: Tenemos los contenedores activos
+#* y en el panel IMAGES: Tenemos las Imagenes de DOCKER que hemos creado
+#* Este pluggin da problemas con windows donde no se entera de que estamos registrado, con problemas de conexión por lo cual
+#* usariamos una linea de codigo, quee es la suiguiente:
+#* En el panel DOCKER HUB, debemos configurar primero en la consola, para que nos acepte nuestro login de cuenta Docker, con el siguiente comando:
+#* docker login docker.io
+#* Para verificar si nos lo hizo, vemos si en el panel DOCKERHUB nos sale nuestra cuenta, para verificar damos click derecho-> "set as default"
+#* Si quieramos subir algo que hemos creado en DOCKER HUB como una imagen, los pasos sería:
+#* 1: En el panel de IMAGES, damos click derecho, tag(que sería como un commit) y nos mostrará el usuario
+#* con el que estamos trabajando, y el nombre de la iamgen, y damos despues un tag como el versionado. EJM:
+#* mgg/nombreImageDocker:versionTag , y despues click derecho, push
+
+#* Si queremos subir esta imagen a GitHub, damos dockerHUb -> nuestra cuenta->click derecho en la imagen, "Open in Browse"
+
+#* Hay 2 tipos de imagenes, 1. Los que tienen servidores trabajando por lo cual siempre estará ejecutandose mientras que otros no.
+#* Ahora para entrar en un dokcerImage que no esta activo, damos: docker run -it nombreImagenDocker /bin/sh
+#* Lo que nos hace el BIN/SH, e sque nos permite entrar a la imagen para poder viajar por los archivos de la imagen
+#* DOCKER RUN lo ejecuta y BIN/SH nos permite entrar a el
+#* s quieremos ver el contenido de un arhivo ponemos: cat main.py
+#* O también podemos usar: les main.py para archivos más grandes.
+#* ls -al / la -l / ls -lh  <-- Comandos de linux.
+#* Si queremos correr la imagen Docker en back del terminal y no desde la terminal, esto para que no tengamos que hacerlo manualmente siempre, ponemos:
+#* docker run -it -p 5500:5000 -d nombreImagenDocker // Esto lo convertira en un container que se estará ejecutando
+#* Ahora si queremos entrar a ese container ponemos:
+#* docker exec -it númeroID
+#* RECORDAR: Si queremos entrar a un container, usamos DOCKER EXEC, y si queremos ejecutar una imagen manualmente usar el comando de DOCKEr RUn
+#* docker pc: Nos permite ver todos los dockerContainer qu se estan ejecutando en ese momento
+
+#* IMPORTANTE: Si queremos que el containerDocker se mantenga encendido/ejecutandose, es importante que recordemos que necesitamos un servidor
+#* permita activar el proyecto, que en nuestro caso es el FLASK con el entorno virtual, si solo tenemos una funcion de sumar, solo se activará
+#* cuando usemos esa función, no hay un servidor que este detrás de esa función de suma.
+
+#* RECORDEMOS LOS USOS DE DOCKER:
+#* 1. Con docker nos permite que todos los desarrolladores les funcione o nos les funcione, no solo a unos cuantos.
+#* Si queremos trabajr con entornos con otro ordenador(y si no sabemos la configuración), pues usamos docker, que nos permite crear esa maquina virtual
+#* sin afectar los demás funcionamientos.
+#* Es la conexion de la raiz local de un directorio o archivo con la direccion de docker. Normalmente es ahcerlo con directorio con directorio docker
+
+#* Resumen  pasos con flask:
+
+"""
+guardamos lo que tengamos en la aplicación con git, creamos la imagenDOcker, damos en terminal:
+1. docker build -t parrafo .
+2. si damos docker imagen, para comprobar que se ha creado la imagen
+3. Ahora mismo tenemos en el docker una copia del proyecto con el servidor linux alpine
+4. Ahora, que hemos creado la imagen, tenemos que usar el docker para inicializar flask, para ello
+encendemos el proyecto de flask con: docker run -it -d -p 5800:5000 parrafo
+5. Ahora para ir al 'localhost' no usamos el '5000' sino el '5800' que es canal externo, ya que el '5000' es el local de toda la vida.
+6. Si hacemos un cambio en el proyecto, tendriamos que rehacer la imagen, por lo cual pausamos la imagen y recreamos la imagen
+docker build -t parrafos . // volvemos a poner el mismo nombre para que lo pise
+7. Lo que acabamos de hacer basicamente fue recrear la imagen porque hicimos una modificación, esto nos perjudica porque tendremos que hacer
+un build cada vez que haya un cambio.
+8. Para ello, hacemos un volumen, ya con la imagen creada, ponemos en consola: docker run -it -d -p 5800:5000 -v /User/mgg/proyecto/Flask/app/src parrafos
+Donde: -d: Nos ejecuta en el back de la terminal para no volverlo hacer manualmente, -p: para crear elc anal externo, -v: para crear el volumen
+Como vemos ponemos: -v URL de donde esta el proyecto, para despues poner seguidamente: /app/src
+Ahora los cambios que hagamos en local, docker lo actualizará automáticamente
+9. Ahora vamos al localhost con el canal externo: localhost:5800/
+
+10. Si queremos ver las imagenes(que como pusimos -d, se puso en un container), ponemos: docker ps
+"""

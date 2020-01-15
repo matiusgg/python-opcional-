@@ -1,21 +1,21 @@
-DOCKER:
-Utiliza los contenedores como máquinas virtuales muy livianas y modulares, y flexibles que poder crearlos 
-Buscar: Que son las maquinas virtuales.
-implementarlos, copiarlos y pasarlos de un entorno a otro. Parte de su exito es debido a open source.
-Actualmente uno de los emcanismo comunes es desplegar software en forma de contenedores.
-Con docker los desarrolladores son capaces de crear codigo como en la forma de distribuirlo sencillamente.
-Solomon hykes, creador de Docker. Buscar que dijo sobre docker.
-Dockerfile: Sera el tipo de archivo que usaremos, con propios comandos
-a partir de este creamos un "Docker Image", si no tenemos el dockerfile no podemos crear un DockerFile.
-En docker, nos permite que al instalarle el prpio sistema operativo, ese contenedor ya tien todas apps necesarias para
-trabajar en cualquier sitio, en dockerfile, le decimos como debe funcionar. Esto nos beneficia para trabajar en diferentes
-ambientes ya sea mac's, windows, linux, etc. En un docker se genera tambien una capa de sistema operativo.
-El unico archivo que veremos presente: Imaginamos que hacemos un app con flask, donde haremos nuestro
-entorno virtual con sus librerias, cuando la aplicació ya funciona y con una versión estable, lo que haremos
-es un dockerfile para crear el dockerImage.
+# DOCKER:
+# Utiliza los contenedores como máquinas virtuales muy livianas y modulares, y flexibles que poder crearlos 
+# Buscar: Que son las maquinas virtuales.
+# implementarlos, copiarlos y pasarlos de un entorno a otro. Parte de su exito es debido a open source.
+# Actualmente uno de los emcanismo comunes es desplegar software en forma de contenedores.
+# Con docker los desarrolladores son capaces de crear codigo como en la forma de distribuirlo sencillamente.
+# Solomon hykes, creador de Docker. Buscar que dijo sobre docker.
+# Dockerfile: Sera el tipo de archivo que usaremos, con propios comandos
+# a partir de este creamos un "Docker Image", si no tenemos el dockerfile no podemos crear un DockerFile.
+# En docker, nos permite que al instalarle el prpio sistema operativo, ese contenedor ya tien todas apps necesarias para
+# trabajar en cualquier sitio, en dockerfile, le decimos como debe funcionar. Esto nos beneficia para trabajar en diferentes
+# ambientes ya sea mac's, windows, linux, etc. En un docker se genera tambien una capa de sistema operativo.
+# El unico archivo que veremos presente: Imaginamos que hacemos un app con flask, donde haremos nuestro
+# entorno virtual con sus librerias, cuando la aplicació ya funciona y con una versión estable, lo que haremos
+# es un dockerfile para crear el dockerImage.
 
-Ahora cuando tengamos nuestro proyecto con una versión estandar, creamos junto al main.py
-un archivo llamado "Docker"
+# Ahora cuando tengamos nuestro proyecto con una versión estandar, creamos junto al main.py
+# un archivo llamado "Docker"
 
 
 # Paso a Paso, para que la aplicación funcione en cualquier sistema.
@@ -83,3 +83,4 @@ CMD ["python", "main.py"]
 #* Como vemos podemos tener varios procesos abiertos, e ir navegando por ellos, es como tener varias apps abiertas.
 
 #* En la extensión de VSC de DOCKER: podemos ver los container y las imagenes de Docker
+

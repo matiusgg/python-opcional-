@@ -1,0 +1,23 @@
+#*Quiero que la versión del compose, sea la 3
+version: "3"
+#* el compose no entiende los contenedores como tal, sino como "servicios"
+services:
+    #*carpeta donde esta la imagen
+    app:
+        #* Imagen del docker
+        image: flaskapp
+        #* Dependencia de: Si ponemos esto, estamos indicando que se inciará el contenedor solo si se inicia otro
+        depends_on: db
+        #* Puertos
+        ports:
+            - "7000:5000"
+
+    db:
+        image: mongo
+
+#* Ahora en terminal, si ponemos:
+#* docker-compose up -d // Nos iniciará el archivo del docker compose, pero si en vez de UP usamos DOWN. Nos bajará todo.
+#* docker-compose ps // Nos permite ver los procesos que tenemos
+#* dokcer-compose logs nombreCarpeta // Nos permite ver los procesos de esa carpeta, es decir, el servicio/contenedor especifíco. 
+
+#* Si vemos que nos da problemas DOCKEr, ponemos en el iconico en la barra de tareas, RESTART.

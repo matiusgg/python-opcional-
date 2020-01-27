@@ -1,0 +1,187 @@
+
+#*  docker logito en la abrra de tareas -> advanced -> Disk Image Size: podemos 
+#* configurar el tamaño usado de las imagenes de docker, usadas
+#* en el pc, 
+#* Estructura DOCKER: Cliente solicita l DAEMON(e quien organiza y estructura todo dokcer con los contenedores e imagenes) y este
+#* DaemON: ES UN SERVICIO DE SISITEMAS OPERATIVOS, es un daemon de docker. Se encarga de todas las funciones, de ejectuarlas, adminsitrarlas y
+#* mantenerlas
+
+#* Ahora en la terminal de DOCKER, recordemos:
+#* docker run: Podremos iniciar un imagen tanto en local como en dockerhub, es decir si no lo encuentra en local lo
+#* busca en dockerhub Ejm: docker run Hello_World
+
+#* CONTENEDORES: Es una agrupación de procesos, ejectuamos procesos de forma nativa,ya que dokcer esta fabricado en linux.
+#* y al hacer una simulación nos beneficia porque linux es nativo. Todos estos proceso se ejecutan en esta simulación de linux.
+#* no hay posibildad de que esta simulación demande más recuross ya que nosotros tenemos el control, por ende parece que será una
+#* maquina virtual pero no lo es, nos referimos a DOCKER como marca, no lo que hace.Cuando el contenedor se ejecuta, el daemon se encargará
+#* de todo. Cada conteneodr tiene una ID unica, siq ueremos cambiar la ID con la nuestra hay que tener cuidado obviamente porque
+#* puede que ya se halla hecho otra persona. entendamos que con una sola imagen podemos ejectuar varios contenedores.
+#* Recordemos: Que tenemos una simulacion de SO en la capa de docker cuando iniciamos.
+
+#* docker ps -a: Nos hac eun listado de todos los contenedores pero también los contenedores que se han estinguido.
+#* linux cuando tiene en la columna STATUs al ejecutar este comando, un (0), significa que hizo todos los procesos bien.
+#* docker inspect nombreImage: Nos msotrará un JSOn con la información de la IMG.
+
+#* Si queremos eliminar contenedores, usamos: docker rm nombreImagen
+#* si primero ponemos docker ps -a, veremos aquellos contenedores que estan cerrados o han tenido algún proceso ultimamente.
+#* para verficart si hay alguno más.
+#* Si queremos eliminar un contenedor que esta ejecutado, ponemos: docker rm -f nombreImagen
+#* docker ps -aq: Nos mostrara los ID's de nuestros contenedores.
+#* Si queremos quitar todos los contenedores, ponemos: docker rm -f $(docker ps -aq)
+#* docker run -it nombreImagen: Nos permite ejecutar la imagen
+
+#* CICLOS DE VIDA DE UN CONTENEDOR
+#* 
+#* docker run nombreImagen tail -f /dev/null: esto se hace cuando queremos mantener abierto un contenedor, ya que
+#* cuando entramos a un contenedor tendremos que ahcer constantemente run y exit. Por lo cual si ejecutamos esto, es porque
+#* necesitamos que un contenedor se mantenga ejecutandose, le estamos obligando a que no se cierre.
+#* docker exec -it ID_imagen bash: Esto es para entrar a un contenedor ya creado, si aplicamos esto al comando anterior.
+#* veremos que no nos srive de nada el dokcer exit, ya que se mantendrá ejecutandose.
+#* docker kill ID_imagen: Eliminar completamente, incluso con el TAIL.
+#* Par ahcer un servidor web en un contenedor:
+#* docker run -d --name nombreServidor tipoServidor. ejm: docker run -d --name servidorweb nginx
+#* Esto nos dejará en la terminal un puerto como todo servidor y si ponemos de nuevo el comando: docker ps
+#* veremos en la columna PORTS, el número de puertos.
+#* Para meternos en e l puerto, es decir, en el LOCALHOST, ponemos: docker run -d --name servidorweb -p 8080:80 nginx
+#* recordemos que: docker run -d: Es que ejecutame la imagen con el servidor.
+#* Descargar el contenedor de mongoDB: docker run  --name mongoDB mongo
+#* LOGS: Para ver lo que esta pasando en ese contenedor: docker run logs nombreImagen
+#* docker exec -it nombreImagen bash: Ahora podemos entrar a lo que tenga la imagen, por ejm el contenedor para entrar
+#* a la base de Datos de mongoDB. Por lo cual si ponemos después en la consola "mongo", accederiamos a la temrinal de mongo en el SO
+#* de linux. Con mongoDB en dokcer hayq un pequeño problema: RECORDEMOS: Cuando hacemos nuestras cosas en los contenedores
+#* y nos salimos, todos los datos recopilados en ese contenedor se eliminan, para ello hay que hacer un cambio, donde le decimos
+#* que con clone los datos de ese contenedor para que se queden persistentes. Y cuando volvamos a entrar a ese contenedor, ingrese los
+#* los datos de la copia. Ponemos el comando:
+#* hacemos un mkdir llamado "datosCOntenedor".
+#* pwd: para ver donde estamos y nos metemos en la carpeta.
+#* VOLUMEN: es una conexión parecida a los puertos, y le daremos la ruta de la carpeta donde irán los daots del contenedor.
+#*Para ello pònemos para enviarle los datos del contenedor a una carpeta: docker run --name nombreCopia -d -v URL ruta y ponemos al final
+#* de la ruta: :/data/db nombrePrograma
+#* VOLUMEN ESPejo: Cuando clonamos los datos del contenedor y si hacemos un cambio se verá tanto en el contenedor como en local.
+#* Ejm: docker run --name basedatos -d -v /user/pruebadatosClon:/data/db mongo
+
+
+#* IMAGENES EN DOKCER: Son plantillas de contenedores, a aprtir de imagenes gernamos los contenedores. Viene a hacer el archivo
+#* que creado a partir de dockerfile. No se pueden cambiar, es decir, no podemos editarlas
+#* docker pull nombreImagen: Nos permite descargar del dockerhub una imagen.
+#* Una imagen esta hecha por un conjunto de capas, siempre tiene que haber una capa base.
+#* docker image ls: Para ver las imagenes que tenemos, veremos que a las imagenes se mencionan a veces como REPOSITORIOS.
+#* Para descargar una versión específica de una imagen, ponemos: docker pull nombreImagen:versíón
+#* Para crear nuestra propia imagen: Creamos un archivo llamado "DockerFile" en nuestro proyecto.
+#* Despues en el archivo, instalamos el SO
+FROM ubuntu
+#* Cuando creemos la imagen(que ahora no tenemos), creamos un archivo dentro de UBUNTU, la cual es "prueba.txt"
+RUN touch /usr/src/prueba.txt
+
+#* Ahora en la terminal, creamos la imagen y ponemos esto:
+#* docker build -t nombreImagen:versión .
+#* usamos: docker image ls , para ver las imagenes que tenemos.
+#* Para subir una imagen al dockerhub. Ponemos primero:
+#* docker tag nombreImagen:versión usuarioDocker/nombreImagen:versiónDeNuevo // Lo que nos hará es crear una ruta
+#* para guardar la imagen con nuestro usuario de docker, lo que nos hará es usar la misma imagen, y la pondrá en dos rutas
+#* una normal y otra en una ruta con nuestro usuario.
+#* y ahora haremos el push, con la imagen que tiene la ruta con nuestro usuario: docker push usuarioDocker/nombreImagen:versión
+#* Si quisieramos descargar una imagen propia de dockerhub, pues usamos PULL:
+#* docker pull nombreUsuario/nombreImagen:versión.
+#* docker history nombreImagen:versión : Nos permite ver los "commits" de esa imagen
+#* Pero para ver mñas detalles ponemos: dive nombreImagen:versión
+#* Nos permite mirar los procesos hehcos de una imagen de docker
+#* Para descargarnos el dive, nos vamos: github.com/wagoodman/dive
+#* Instalamos un programa dependiendo de lo que necesitemos, si estamos trabajando con JS, y queremos usar NODE.js
+FROM node:8
+#* Para copiar todos los documentos del proyecto dentro de la carpeta SRC del SO simulado.
+COPY [".", "/usr/src/"]
+
+#* Dirijirme a esta carpeta, y cuando hagamos nuestras cosas siempre ira a esta carpeta
+WORKDIR /usr/src
+#* Instalar ya en la carpeta SRC, el NPM
+RUN npm install
+#* Le asignamos la ruta para donde tendremos el localhost
+EXPOSE 3000
+
+#* Para ejecutar los programas o archivos del proyecto
+CMD [ "node", "nombreArchivo" ]
+
+#* y hasta aquí tendríamos todos los archivos copiados en la imagen que tengamos.
+#* docker run --rm -p 3100:3000 nombreImagen // Nos permite ejecutar la imagen, pero cuando la dejemos usar, nos la cierre inmediatamente.
+#* Si usamos NODE en docker, nos da la ventaja de que guarda los cambios y nuevas cosas en cache, por lo cual
+#* si lo volvemos a hacer, lo hará rapido porque ya lo tiene en CACHE.
+
+#* Ahora recordemos que si hacemos un cambio en local, tendremos que volver a hacer la imagen, para evitar esto
+#* 
+#* EJM:
+#* Instalar el SO de linux
+FROM alpine:3.11.2
+#*Instalr python y pip
+RUN apk add --no-cache python3-dev && pip 3 install --upgrade pip
+#* Copiar en este caso, main.py a la carpeta APP
+COPY ["main.py", "/app/"]
+#* accedemos a la carpeta ADD
+WORKDIR /app
+#* EXPOSE
+EXPOSE 5000
+#* Copiamos todo el proyecto a la carpeta APP
+COPY [".", "/app"]
+#* Metemos las librerias de requirements.txt a pip
+RUN pip3 --no-cache install -r requirements.txt
+#* ejectuamos en la consola el main.py. Es decir, ejecutamos el proyecto.
+CMD [ "python3", "src/main.py" ]
+
+#?????????????????????????????????????????????????????????????
+
+#* Otra manera de evitar lo de las imagenes:
+# En consola creamos un volumen de espejo:
+# docker run --rm -p 3000:5000 -v /Users/matius/proyecto:/app nombreImagen
+#* En el contenedor, tendríamos entonces que los cambios tanto en local como en docker, mutuamente verán los cambios
+#* que se hagan uno del otro.
+#* Si queremos unir dos contenedores
+#* docker network ls // veremos con esto, las redes locales que tenemos
+#* Para crear una red nueva, colocamos:
+#* docker network create --attachable nombreRed
+#* Ahora para usar un contenedor con esta red, creamos una para verlo
+#* docker run -d --name nombreContenedor mongo
+#* Ahora hacemos una imagen con flask para el contenedor de Flask que crearemos y una imagen con mongoDb para el contenedor de mongo:
+#* docker build -t flaskapp
+#* creamos otro contenedor con flask:
+# docker run -d --name flask python
+#* Enganchamos la imagen con flask con el contenedor flask
+#* Ahora conectamos estos dos contenendores:
+#* Conectamos primero el contenedor de mongo:
+#* docker network connect nombreRedRecienCreada nombreContenedorMongo
+#* Ahora hacemos una inspección para ver si nos conecto este contenedor.
+#* docker network inspect nombreRed
+#* Hacemos lo mismo con el de flask
+
+#? DOCKER COMPOSE:
+#* Asume lineas de comando de docker, es deicr, ya las tiene integradas, y lo que hace es integrar estas lineas para mostrarlas
+#* de una forma simple.
+#* Creamos un archivo llamado "docker-compose.yml"
+#* Ahora creamos un archivo json para ahcer una prueba, ponemos datos en el json
+#* Ahora en el archivo de docker composer, ponemos de forma estructual lo que teniamos en json. EJM:
+#* En JSON:
+
+# {
+#     "Empleados": [
+            # "Empleado": {
+#         "nombre": "Pepe",
+#         "apellido": "Moroso"
+            # }
+#     ]
+# }
+
+#* Ahora en docker composer
+
+# - Empleados:
+#     - Empleado:
+#         nombre: Pepe
+#         apellido: Moroso
+
+#* Como vemos la estructura es similar al JSON
+
+#* para instalar docker compose: https://docs.docker.com/compose/install/#install-compose
+
+#* Para ver la ultima versión del docker compose
+#* https://docs.docker.com/compose/compose-file/compose-versioning/
+
+#* Hay que asegurarnos de tener todos los contenedores cerrados
+#* El DockerFile, nos ayudará a crear la imagen y contenedor y el docker composer, nos ayudará a iniciarlas.

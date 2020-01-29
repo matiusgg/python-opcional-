@@ -1,0 +1,103 @@
+# RECXORDEMOS QUE DOKCER COMPOSE: Nos permitia facilitar el tema de los comandos de Docker,
+# en una estructura más sencilla para facilitar el proceso de creación y ejecutación. Y en donde nos beneficia
+# ya que tanto en la creación de una imagen, puertos, network, etc. Podemos crearlo de una vez con DOCKER-COMPOSER
+# Tambien tendremos el ".dockerignore" que es como un .gitignore de docker, tendremos entonces junto a main.py
+# dockerFile, .dockerignore, docker-compose.yml
+
+#* docker es la expresión minima y más accesible de crear una amquina virtual a comparación de otras formas.
+
+# AHORA QUE USAMOS DOCKER, ya no necesitaremos hacer un entorno virtual, ya que el docker de por si al ser una simulación 
+# ya tendriamos un entorno virtual propio.
+
+# Instalamos python en docker del proyecto
+# SLIM-BUSTER: Significa que conseguira os mejors tags más optima de esa versión, lo que nos permite descargarnoss la adecuada
+#* ni muy menor ni muy mayor.
+#* FROM: Es la capa base del SO de la imgen, es indispensable para tener la imagen
+#* COMO VEMOS INSTALAMOS PYTHON NO LINUX, ESTO ES PORQUE YA EL DOKCER DE PYTHON SE ENCARGA DE LA BASE, YA QUE ESTE VIENE CON EL LINUX TAMBIÉN,
+#* POR LO CUAL NOS FACILITA EL TEMA DE INSTALAR PRIMERO EL LINUX ALPINE U OTRO LINUX.
+#* PODEMOS MONTAR PYTHON YA CON LA BASE DE ALPINE. PERO DE ESTA FORMA NO PASA NADA TAMPÒCO
+FROM python:3-slim-buster
+
+# Copiar el archivo del proyecto de requirements.txt con el nombr4e de las dependencias
+COPY requirements.txt /
+
+# Instalame lo de requirements.txt a python, es decir, las dependencia
+RUN pip install -r /requirements.txt
+
+# Ahora ya tendriamos instalado las librerias dentro del contenedor.
+# Ahora haremos una copia dentro del contenedor, a una ruta con una carpeta
+COPY src/ /app
+
+# Ahora estableremos una ruta de trabajo, apra que todo lo que hagamos vaya a esa ruta
+# en este caso, a la carpeta que recien copiamos en la linea anterior
+WORKDIR /app
+
+# define los puertos, es decir, un puerto preconfigurado para ese contenedor, que un futuro se pueda cambiar ya es otra cosa.
+EXPOSE 5000
+
+# Ahora como en la consola de CMD, daremos instrucciones que serían ejecutar, python3 y main.py
+CMD [ "python3", "main.py" ]
+
+#* Ahora que hemos creado la carpeta y el contenedor, las instrucciones que tengamos en DOCKER-COMPOSE
+#* nos permitirá crear la imagen, puertos, volumenes, nombre del contenedor, etc.
+
+#* Ahora cuando se halla creado todo, nos vamos a consola y creamos dentro de SRC, las carpetas de un proyecto
+#* de python: mkdir -p libreria static/css static/img templates
+#* dentro de libreria, creamos los archivos de un paquete de python,lo mismo con los archivos de tempaltes,
+#* y afuera de este como antes mencion
+
+#* .DOCKERIGNORE: Es lo mismo que .gitignore, ignora archivos o carpetas, pero en este caso para decirle que archivos o carpeta
+#* no se copiaran dentro del contenedor e imagen.
+
+#* RECORDEMOS: Ya no neceistamos hacer el pip instal y crear un Entorno Virtual, es decir, ENV. Ya que como acabamos de hacer, ya lo tenemos
+#* con DOCKER.Ahora para comprobar de uqe funcione, ejecutamos nuestro proyecto  y hay que asegurarnos de que main.py reconoce las librerias.
+#* Y AHORA EN EL IF MAIN: no sabremos en cuales puertos podremos trabajar, para ello, en IF MAIN, creamos una variable
+#* port = int(os.environ.get('PORT', 5000))
+#* Donde basicamente le decimos que si no encutra el puerto y tenemos una variable llama "PORT", asigname el puerto 5000
+#* y ponemos despues: app.run(host='127.0.0.1', port=port, debug=True)
+#* Ahora la cuestión es, cuando enviemos el proyecto con docker a alguien más, como le decimos en cuak puerto trabajar?, si el 5000
+#* es local?. Pues 
+
+#* AHORA VAMOS A EJECUTAR TODO, PARA VER SI HACE TODO LO DE DOCKER
+#* Empezamos poniendo:
+# docker-compose up // Si no estamos seguros, usamos este para ver si nos lo ejecuta y crea. Para ver si lo hace, nos tiene que aparecer
+# que esta tomando tambíen las instrucciones del DockerFile
+
+# Con docker no usaremos el entorno virtual de python, ya se encargaría de la virtualización.
+# Docker compose se encarga de arrancar el contenedor.
+# COMANDOS:
+# 	docker-compose up
+# 	docker-compose exec app /bin/sh --> luego: ls para ver archivos
+# -------------------------------------------------------------------------------
+#     Usaremos estas dos comandos más tiempo porque aunque nos haga los cambios, si se hace cambios en main.py
+#     tendrmeos que hacer el buid de nuevo(si no nos lo actualiza), por lo cual usaremos estos dos comandos:
+# 	docker-compose up -d (opción correcta)
+# 	docker-compose down (para cerrar el contenedor)
+
+# docker-compose logs nombreCarpeta // Nos permite ver los procesos que esta haciendo para inicar el servidor
+# docker-compose ps // nos permite ver más detalles sobre si hay algun contenedor iniciado.
+
+# AHORA VAMOS A UTILIZAR HEROKU
+#* nos metemos en la carpeta donde esta el proyecto, es decir, en SRC(si no la tienes, no pasa nada, pon el archivo que crearemos junto con main.py
+#* creamos un archivo llamado "runtime.txt" y ponemos:
+#* python-3.8.1
+#* cReamos otro arhcivo llamado "Procfile", colcas esto:
+#*web: gunicorn main:app
+#* Ahora verficamos en la consola si esta nuestro contenedor iniciado
+#* poenmos "docker-composer build", para volver a recrear la imagen y agregar lo de heroku
+#* Ponemos en la consola: heroku login 
+#* depsues de logearnos, hay que logearnos al servicio de container de heroku, hay que poner:
+#* heroku container:login
+#* Ahora en la zona de producción del heroku container, ponemos: heroku create -a nombreContenedorHeroku
+#* nos mostrará la URL de heroku donde estará nuestra aplcación
+#* Ahora para montar el contenedor de DOCKEr al container de heroku, ponemos:
+#* ponemos: heroku container:push web -a nombreContenedorHeroku
+#* Ahora para actualizar el container de heroku
+#* ponemos: heroku container:release web -a nombreContenedorHeroku
+
+#* GOOGLE CLOUD RUN: Es un producto similar a HEROKU pero de pago.
+
+#* YA EN LA APGINA DE HEROKU:
+# setting -> dominions, podemos aluilar un dominion
+
+

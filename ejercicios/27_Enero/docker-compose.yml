@@ -6,11 +6,22 @@ services:
     app:
         #* Imagen del docker
         image: flaskapp
+        #* nombre del contenedor
+        container_name: nombreContenedor
         #* Dependencia de: Si ponemos esto, estamos indicando que se inciará el contenedor solo si se inicia otro
+        #*^Es decir, hasta que el otro contenedor/servicio este funcionando no me inicies este contenedor/servicio.
+        #* En este caso con MONGO, nos srive para practicar, ya que tenemos atlas de mongo.
         depends_on: db
         #* Puertos
         ports:
             - "7000:5000"
+            #* toma toda la información de la carpeta donde esta la imagen, y enviala a esta carpeta
+            #* en este caso, la estamos volviendo a poner en la carpeta aPP, ya que como sabemos cuando nos
+            #* salimos, los datos que teniamos se eliminan, por eso en un VOLUMEN ESPEJO. Ademñas de que nos sincronice los cambios
+            #* que hagamos en local hacia la imagen.
+        volumes:
+            - ./src:/app
+
 
     db:
         image: mongo

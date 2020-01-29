@@ -1,0 +1,19 @@
+Numero de la version
+version: "3"
+
+Contenedores= Servicios
+services:
+    Carpeta donde esta la imagen
+    app:
+        build: .
+        image: nombreImagen
+        container_name: nombreContenedor
+        depends_on: 
+            - basededatos
+        ports: 
+            - "5500:5000"
+        volumes: 
+            - ./src:/app
+
+    basededatos:
+        image: mongo

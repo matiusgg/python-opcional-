@@ -1,0 +1,2 @@
+#* .DOCKERIGNORE: Es lo mismo que .gitignore, ignora archivos o carpetas, pero en este caso para decirle que archivos o carpeta
+#* no se copiaran dentro del contenedor e imagen.

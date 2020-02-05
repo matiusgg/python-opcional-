@@ -1,0 +1,59 @@
+#* DEPLOYES: Para enviar nuestra maquina virtual a un servidor, usamos los deploys.
+# En el archivo de Runtime.txt junto a Procfile, los ponemos dentro de la carpeta de proyceto(si es que la tienes)
+# llamada "src"
+# Colocamos la versión de python
+# python-3.8.1
+
+# Donde ponemos "main" es el nombre del proyecto con el que queremos acer el deploy
+# web: gunicorn main:app
+
+#* Como no vamos a usar volumenes, entonces aquí va la explicación:
+#* 1. Cuando ya tengamos todo el tema de archivos, comenzamos a poner codigo, ya cuando queremos hacer una prueba de si
+#* funciona en el navegador, nos vamos al archivo "docker-compose.yml" y damos abrimos terminal y ponemos: docker-compose up
+#* esto para que ejectue los comandos del docker compose y crear la imagen con el contenedor, nos debería aparecer la URL local
+#* donde tenemos la app en el navegador
+#* 2. Cuando ya hallamos revisado los cambios, y queremos seguir codeando, colocamos: docker-compose down // para desactivar
+#* la ejecución del contenedor, y seguimos codeando lo que necesitemos, ya que si lo dejamos en UP, no veremos los cambios y habrá problemas con el contenedor
+#* ahora si queremos volver a comprobar cosas, damos otra vez: docker-compose up
+# docker-compose up
+# docker-compose down
+
+#????????????????????????????????????????????????????????????????????????
+
+#* EN EL CASO EN EL QUE QUEREMOS USAR VOLUMENES:
+#* Nos vamos a "docker-compose.yml" y agregamos a la lista de comando:
+# volumes:
+#        - ./src:/app
+#* Nos vamos terminal, y ponemos: docker-compose up // si corre la app con el contenedor, seguimos
+#* Ahora para ver si esta bien el contenedor colocamos:
+# docker exec -it nombreImagen/ID_imagen bash
+#* Ahora activaremos el VOLUMEN ESPEJO con el siguiente comando:
+#* docker run -p puertoExterno:puertoInterno -v ruta del proyecto:\app nombreImagen
+#* EJM: docker run -p 8000:5000  -v C:\Users\Web\Desktop\pruebasPYTHON\dia43_29Enero_deployDocker\APLICACION_FACTURAS\src:\app facturaschungas
+
+#????????????????????????????????????????????????????????????????????????
+
+#? AHORA PARA DESCARGAR UNA IMAGEN EN DOCKERHUB
+#* para ello colocamos: docker run -p 7000:5000 nombrePropietarioContenedor/nombreImagen // ESto es basicamente descargar la aplicación
+#* y ejectuarla en el navegador
+#* pero si queremos ver el codigo que ha hecho, ponemos:
+# docker exec -it nombreImagen bash
+
+# Cuando ya estemos dentro de linux, y queremos ejecutar un archivo, primero descargamos el VIM
+# sudo apt-get install vim
+#* para subirlo a dockerhub.
+
+#* ahora para descargarnos la imagen de la persona colocamos
+#* docke run --rm -p 7000:5000 nombrePropietarioImagen/nombreImagen:latest
+#* el LATEST es para que nos descargue el ultimo tag
+
+#? AHORA PARA SUBIR LA IMAGEN A DOCKERHUB
+# primero tenemos que hac un tag que sería como un commit
+# docker tag nombreImagen:v1.0 nombrePropietarioImagen/nombreImagen:v1.0
+#* verificamos que el tag se halla hecho en la imagen con: docker images
+#* al momento de poner nombrePropietarioImagen/nombreImagen:v1.0  // cuando creemos un tag, nos sirve para darle
+#* una ruta que ira a dokcerhub
+#* Ahora hacemos el docker push para subirlo a dockerhub.
+# docker push <nombre usuario>/<nombre imagen>:<tag>
+# Comando para eliminar todas la imagesn(no recomendable)
+# docker system prune -a

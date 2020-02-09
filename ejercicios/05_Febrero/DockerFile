@@ -29,7 +29,11 @@
 # docker exec -it nombreImagen/ID_imagen bash
 #* Ahora activaremos el VOLUMEN ESPEJO con el siguiente comando:
 #* docker run -p puertoExterno:puertoInterno -v ruta del proyecto:\app nombreImagen
+#* EN EL CASO DE QUE USES LA TERMINAL CMD:
 #* EJM: docker run -p 8000:5000  -v C:\Users\Web\Desktop\pruebasPYTHON\dia43_29Enero_deployDocker\APLICACION_FACTURAS\src:\app facturaschungas
+#* EN EL CASO DE QUE USES LA TERMINAL BASH, CAMBIAS EN LA RUTA, EL SIMBOLO "\", POR EL SIMBOLO "/"
+#* COMO EN EL SIGUIENTE EJM:
+#* docker run -p 8000:5000  -v C:/Users/Web/Desktop/pruebasPYTHON/dia43_29Enero_deployDocker/APLICACION_FACTURAS/src:/app facturaschungas
 
 #????????????????????????????????????????????????????????????????????????
 
@@ -57,3 +61,71 @@
 # docker push <nombre usuario>/<nombre imagen>:<tag>
 # Comando para eliminar todas la imagesn(no recomendable)
 # docker system prune -a
+
+#* COMANDOS A TENER EN CUENTA:
+
+#? Manipular Imágenes.
+# Vamos a ver cuantas imágenes tenemos asi:
+#* docker images
+# Para descargar una imagen debemos hacer esto:
+#* docker pull hello-world
+# Para convertir una imagen en un contenedor hacemos esto:
+#* docker run -it hello-world
+# Ahora vamos a borrar una imagen asi:
+#* docker rmi images 3ee81f9b1670
+# Donde
+# 3ee81f9b1670 : Es el id de la imagen
+
+#*******************************************************************
+
+#? Manipular Documentos
+
+# Manipular Contenedores.
+# En caso de querer saber cuantos contenedores tenemos activos debemos ejecutar este comando:
+#* docker ps
+
+# En mi caso aun no tengo corriendo ningún contenedor por lo que se muestra esto:
+# Pero si lo que queremos es ver todos los contenedores activos e inactivos debemos ejecutar:
+#* docker ps -a
+# Donde
+# -a :es la bandera que le dice a docker que queremos ver todos los contenedores (Detenidos y corriendo).
+
+# Para detener un contenedor que aun este corriendo en docker debemos ejecutar este comando:
+#* docker stop 438a832dbc7b
+# Donde
+# 438a832dbc7b :es el id de nuestro contenedor.
+
+# De igual forma para arrancar un contenedor detenido debemos ejecutar:
+#* docker start 438a832dbc7b
+# Si ejecutamos
+#* docker ps 
+# Podremos ver nuestro contenedor corriendo:
+
+# Para eliminar un contenedor debemos ejecutar.
+#* docker rm 438a832dbc7b
+
+# Si queremos acceder a nuestro contenedor debemos ejecutar este comando:
+#* docker attach 438a832dbc7b
+
+# AHORA VAMOS A UTILIZAR HEROKU
+#* nos metemos en la carpeta donde esta el proyecto, es decir, en SRC(si no la tienes, no pasa nada, pon el archivo que crearemos junto con main.py
+#* creamos un archivo llamado "runtime.txt" y ponemos:
+#* python-3.8.1
+#* cReamos otro arhcivo llamado "Procfile", colcas esto:
+#*web: gunicorn main:app
+#* Ahora verficamos en la consola si esta nuestro contenedor iniciado
+#* poenmos "docker-composer build", para volver a recrear la imagen y agregar lo de heroku
+#* Ponemos en la consola: heroku login 
+#* depsues de logearnos, hay que logearnos al servicio de container de heroku, hay que poner:
+#* heroku container:login
+#* Ahora en la zona de producción del heroku container, ponemos: heroku create -a nombreContenedorHeroku
+#* nos mostrará la URL de heroku donde estará nuestra aplcación
+#* Ahora para montar el contenedor de DOCKEr al container de heroku, ponemos:
+#* ponemos: heroku container:push web -a nombreContenedorHeroku
+#* Ahora para actualizar el container de heroku
+#* ponemos: heroku container:release web -a nombreContenedorHeroku
+
+#* GOOGLE CLOUD RUN: Es un producto similar a HEROKU pero de pago.
+
+#* YA EN LA APGINA DE HEROKU:
+# setting -> dominions, podemos aluilar un dominion

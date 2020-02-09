@@ -129,6 +129,10 @@
 #* Cuando queramos abrir nuestra aplicación en el navegador, colocamos:
 #? heroku open -a nombreContenedorHeroku
 
+#? IMPORTANTISIMO: SI CAMBIAS TU CODIGO, PARA HACER PRUEBAS, DEBES VOLVER A HACER EL "heroku container:push web -a nombreContenedorHeroku",
+#? YA QUE TENEMOS QUE ENVIAR ESA NUEVA INFORMACIÓN AL SERVIDOR QUE TENEMOS EN HEROKU, CUANDO HALLAMOS HECHO EL HEROKU PUSH, AHORA HACEMOS EL RELEASE, ES DECIR, ESTE:
+#? heroku container:release web -a nombreContenedorHeroku // PARA VOLVERLO A ACTUALIZAR
+
 #* GOOGLE CLOUD RUN: Es un producto similar a HEROKU pero de pago.
 
 #* YA EN LA APGINA DE HEROKU:

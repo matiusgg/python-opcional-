@@ -1,0 +1,5 @@
+CONTAINER: Al final es una zona de trabajo, no es lo que se sube dockerHUB, lo que se sube es la imagen no el contenedor
+el volumen nos permite traspasar la información del proyecto de local, al contenedor, ya que como recordemos
+cuando hacemos dcker-compose down. Todo lo estaba en el cotenedor se borra, y por eso el volumen nos beneficia porque nos actualiza el CONTAINER
+Pero es importante saber que cuando terminamos nuestro proyecto, tenemos que ÇACTUALIZAR nuestra imagen, para ello recordemosque debemos hacer un docker-compose build.
+Para cuando se suba adockerhub, este actualizada.

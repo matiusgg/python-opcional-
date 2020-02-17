@@ -1,0 +1,119 @@
+DJANGO:
+1. Crear entorno virtual, entrar al entorno virtual
+2. pip install django -U // El -U es para que nos descargue el django más actualizado.
+3. django-admin startproject nombreProyecto .
+4 Ens etting está la configuracion de django, oara ahcer deploy hayq ue cambiar el dbug a TRUE. El manage.py no se toca pero siemprre se llama
+Ahora para inicart el servidor:
+5. python manage.py runserver
+Aumoticamente te crea una BD de SQLite, buena para el desarrolo pero no para producción, hay aplicaciones internar
+que no se puede correr porque es mucho contenido que nos ofrece django que no necesitaremos.
+
+Ahora nuestor priemr HOLA MUNDI:
+nos vamos al archivo urls.py
+Eliminamos la importación de la librería "admin"
+
+Ahora importamos la librería llamada: "from django.http import HttpResponse", la cual nos sirve
+para recibir una respuesta en http
+
+eliminamos una variable llamada "urlpatterns" de admin
+Creamos una variable llamada: "urlpatterns", la cual necesita la direcciónde url a donde ir y necesita
+una función que podremos en PATH
+
+urlpatterns = {
+	path{"hola/", hola_mundo},
+}
+
+Pero antes oviamente tenemos que creart la función "hola_mundo", donde tendremos
+el contenido que irá a la dirección que pusimos en el PATH
+
+def hola_mundo(request):
+	return HttpResponse('Hola Mundo')
+
+Tendremos quie crear unas vistas que nos ayudarán a tener mñas espacio de codigo, para ello nos vamos 
+a dentro del proyecto que nos creo django y creamos un archivo llamado "views.py", y ahora dentro de este archivo ponemos
+la función de hola_mundo y la librería HttpResponse
+
+from django.http import HttpResponse
+
+def hola_mundo(request):
+	return HttpResponse('Hola Mundo')
+
+y esto lo eliminamos de urls.py, solo dejamos la variable "urlpatterns" en urls.py
+
+Pero ahora para que urls.py tenga la función y la libreria HttpReponse, importamos el archivo views.py dentro de urls.py
+
+from nombreProyecto import views
+
+pero ahora en la variable "urlpatterns", colocamos en el PATH:
+views.hola_mundo
+Porque obviamente ya no esta en urls.py sino en views.py y lo estamos importando.
+
+Ahora para el tema de DEBUG, iriamos a views.py
+y dentro de una vista, importamos:
+import pdb; pdb.set_trace()
+
+Lo que queremos es que justo en esa linea haga un DEBUG, es decir, que parar´ra el proceso de carga de la página
+y en terminal nos sladrá el simbolo de (Pdb), y allí podremos hacer consultas, como por ejemplo:
+request, request.method, 
+
+NUNCA podemos hacer CTRL + C, porque se nos cargará el servidor, para ellos solo tendremos que poner C + intro
+y continuará como estaba antes.
+
+En Pdb podemos hacer pequeós comandos de código de python
+
+ç#* comprehensions de lista con números que recibimos con GET en la vista "siguiente"
+[int(i) for i in numeros.split(",")]
+
+Ver el contenido restante en los archivos mencionados
+
+
+
+
+**************************************************************************
+Sal del servidor
+
+Ahora creamos una base de aplicación funcional donde ya podremos usar POST y demás cosas más amplias.
+damos en consola:
+python manage.py startapp posts
+Al ahcer esto nos creará una carpeta llamada POSTS, donde tendremos una base de aplicación.
+Ahora le tenemos que decir a django cual es nuestra aplicación.
+Para ello nos vamos a la carpeta POSTS --> apps.py --> dentro de la clase PostsConfig --> variable
+verbose_name = 'Posts'
+
+class PostsConfig(AppConfig):
+    name = 'posts'
+    verbose_name = 'Posts'
+
+Ahora nos vamos a settings.py dentro de la carpeta de nuestro proyecto django y en la constante INSTALLED_APPS, colocamos 'posts', que es una local App
+
+INSTALLED_APPS = [
+
+#* app django
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+#* app local
+	'posts',
+]
+
+Ahora ponemos el comando para activar el servidor: 
+Ahora en urls.py
+
+importamos la carpeta de la app que recién hemos creado. la cuál también tiene su propia views.py
+
+from posts import views as post_views
+
+ahora en PATH, colocamos una nueva URL y función(que creamos en el views.py de la carpeta de la app)
+Ejm:
+path('posts/', post_views.nombreVistaApp)
+Ahora no vamos a views.py de la carpeta de la app
+
+importamos el HttpResponse, creamos la vista que pusimos en el Path
+
+
+
+
+

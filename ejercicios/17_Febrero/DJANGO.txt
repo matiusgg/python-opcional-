@@ -113,6 +113,13 @@ Ahora no vamos a views.py de la carpeta de la app
 
 importamos el HttpResponse, creamos la vista que pusimos en el Path
 
+DJANGO tiene los  TEMPLATES que es parecido a JINJA con html
+
+Llamado JINJA2, templates SYSTEM.
+Para ello en los archivos de vistas, ya no suaremos las librerias de httpResponse
+y usaremos las librería: 
+Ahora crearemos una carpeta TEMPLATES en la carpeta de la app, con un archivo html llamado "feed.html",
+junto a un "layout.html" donde haremos nuestra estructura como haciamos con flask.
 
 
 

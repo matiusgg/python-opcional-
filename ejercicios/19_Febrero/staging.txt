@@ -1,0 +1,16 @@
+STAGING:
+Puesta en escena
+
+- ALPHA: Todavía en desarrollo(no está completa), inestable, testeado solo en forma unitaria
+- BETA: Es la primera versión completa( Feature Complete ): Cierto grado de estabilidad, aunque hay posibles bugs
+proceso para recibir feedback de usuarios.
+- RC: RELEASE CANDIDATE: Es una beta con potencial de convertirse en la versión final, a menos de que aparezcan
+bugs, tienen bugs resueltos o baja probabilidad de tener bugs.
+- GOLD: Versión productiva final y estable (RELEASE), disponible para la distribución amplia. buscar RTM - GA - GOLD
+- VERSIÓN COMPLETA: Es casi imposible tener una versión termina, ya que si se quiere que es constante
+nunca dejará de tener nuevas versiones.
+
+backs: errores, bugs
+
+todos estos procesos y puesta en escena hay un tiempo limite establecido.
+

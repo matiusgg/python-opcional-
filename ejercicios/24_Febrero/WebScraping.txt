@@ -1,0 +1,67 @@
+PYTHON - WEB SCRAPING
+
+Problemas con las API's: no es relacionado a crearlas sino a usarlas
+En los casos de que las empresas no nos dan lo que queremos sobre las API's, donde tenemos que dar
+un monton de datos a esa empresa, donde una API es IMPORTANTE PARA ESA EMPRESA. Donde esta API requiere muchos datos
+que piden al suaurio y que no son necesarios a largo plazo.
+A diferencia del Web Scraping de Frontend, donde si publican alguna cosa y todo el mundo puede acceder a ese contenido.
+En cambio, en backend 
+
+donde empezariamos con conectar en la web y extraer el código de Frontend
+
+tenemos alguna slibrerias que recogen los datos como: request, urllib, httplib.
+
+el siguiente paso sería PARSEAR la web, es decir, pasar el código de Frontend
+Para ello tenemos la libreria scrapy, el problema es cuando la usamos para inicializar,
+por lo cual tenemos una libreria llamada "beatifulSoup (bs4)", otras como lxml o re.
+Las que usaremos serán bs4 y lxml.
+
+el siguiente paso sería tratar y guardar
+
+La idea sería scrapear una web cualquiera, para ello creamos un proyecto con entorno virtaul, algo simple.
+
+y en requirements.txt agregamos:
+
+
+
+# Scraping
+request
+bs4
+lxml
+pylint
+
+Ahora en vez de main.py Creamos main_scraping.py
+
+Dentro de el, conectaremos con la web de TripAdvisor por ejemplo, para extraer de esa página la parte de frontend.
+
+Para ello creamos una variable con la dirección del sitio de la pñagina que queremos
+
+url = ""
+
+Ahora haremos una petición con request.get de la url que nos hemos traído, se supone que ahora tendriamos el html y frontend de esa página en concreto.
+
+WEB_CRAWLING
+La diferencia con Web-Scraping, es que vendría hacer la navegación automatizada de un sofware a  travez de una red, es decir, 
+cuando hacemos web scraping estamos analizando la información de una página mientras que web crawling vamos a simular que estamos
+"navegando" por la web con la ventaja de que mientras navegamos y queremos extraer una información sin Problemas, o sin tener que hacer una nueva
+url como en web_scraping. Sino que con una sola url podemos navegar por esa web.
+
+Para ello usamos una librería llamada: selenium
+
+La importamos en requirements.txt
+
+
+#* aroa ver el archivo de main_crawling.py
+y si nos da error el codigo, y nos aparece que no esta el PATH de geckodriver
+Nos vamos a geckodriver en el buscador, y el primer enlace es un githhub de geckodriver
+Y bajamos y en Asssets, nos bajamos el paquete para windows
+si tenemos mac, ponemos geckodriver en el buscador y en una pagina homebrew formulae, lo buscamos y lo instalamos
+https://github.com/mozilla/geckodriver/releases
+Lo extraemos, y añadimos la ruta de donde lo extraimos en el PATH en las variables de entorno
+reiniciamos el ordenador y volvemos a probar el cído.
+
+cuando podamos ejecutar, se nos creará u archivo llamado geckodriver.logs
+
+Ver el código de los archivos de main_scraping.py y main_crawling.py
+
+Para ver los demás apuntes.

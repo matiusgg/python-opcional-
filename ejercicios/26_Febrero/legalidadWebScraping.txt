@@ -1,0 +1,54 @@
+LEGALIDAD DEL WEB SCRAPING
+Donde nos preguntamos, estamos violando alguna reglamentación local?.
+Estamos violando los "Terminos y Condiciones" que se ponen en una web.
+Estoy accediendo a lugares no autorizados?
+Mediante un plugging que nos permite saber  las paginas que no quieren mostrar algunas rutas porque son privadas,
+no quieren que lo indexen. Google es el que se encarga de indexar, pero las páginas le pueden decir a google que no se indexen.
+El archivo que recopila esto es robots.xml.
+crawl-Delay, es el tiempo que tiene que pasar entre una petición y otra, esto porque si no le ponemos un tiempo entre cada petición
+tendremos un colapso. Hay que tener cuidado con el CRAWL, ya que de pronto nos detectarán al ver ellos muchas peticiones sin cesar.
+Y si nos detectan puede haber problemas legales.
+mediante el pluggin nos mostrará el time que necesite entre cada petición, este tiempo lo colocamos en el crawling como vimos la clase pasada.
+Suele verse así:
+crawl-delay: 10
+El pluggin se llama robots.txt viewer.
+
+Es legal ese uso que le voy a dar a los datos?
+
+Ahora si vamos poco a poco haciendo web scraping como lo vimos la clase pasada.
+En la variable que contiene la url de la página con request, podemos llamar fucniones para saber el nombre de las etiquetas.
+Ejm:
+muevete.headers
+Y si queremos saber los detalles de la petición del scraping:
+nombrevariableScraping.request.etiqueta Ejm:
+muevete.request.headers
+
+En la variable del sOUP, podemos usar el método prettify()
+
+Encuentrame con find('nombre etiqueta') Ejm:
+soup.find('ul', attrs={'id':'main'})
+
+El ATTRS: Nos permite buscar si esa etiqueta tiene un Id = valor
+
+Otro ejemplo:
+
+soup.find('ul', attrs={'id': 'menu-main-menu'})
+
+menuWeb = soup.find('ul', attrs={'id': 'menu-main-menu'}).find_all('li')
+
+def Links(etiquetaGeneral, etiqueta, valorAtributo, etiquetaEspecifica):
+    
+    menuWeb = soup.find(etiquetaGeneral, attrs={etiqueta: valorAtributo}).find_all(etiquetaEspecifica)
+    
+    diccLinks = {link.get_text():link.get('href') for link in menuWeb}
+    
+    return diccNoticias
+
+noticiasLinks('div', 'id', 'main', 'a')
+
+DIVI wordpress <----- BUSCAR PLUGGING DE WORDPRESS
+
+
+muevete.request.method
+muevete.request.url
+

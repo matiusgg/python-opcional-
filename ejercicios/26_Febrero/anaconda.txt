@@ -1,0 +1,17 @@
+ANACONDA
+
+Instalar Anaconda
+
+https://www.anaconda.com/distribution/#download-section
+
+Cuando lo tengamos instalado, vamos a usar jupiter, la cual nos permite hacer el scraping mucho más facil.
+JUPITERT, es una suite para crear un entorno virtual, donde tenemos unas ids' que anaconda tiene. Además de tener control de unos entorno
+virtuales.
+
+cuando ya lo tengamos instalado, lo abrimos y hacemos launch de jupyter notebook, ya dentro ponemos new -> python 3 -> nos sale el entorno de jupyter.
+Ahora donde dice CODE, podemos escoger varios formatos para escribir dentro de python 3 en jupyter, cuando tengamos una primera linea
+podemos colocar SHIFT + INTRO para bajar y seguir escribiendo si quierendo con otra fuente. Y ahora con CODE, podemos escribir codigo python
+donde si importamos por ejemplo requests, y damos otra vez SHIFT + INTRO.
+Entonces nos ejecutará esa linea de código.
+Si hay algún error de sintaxis, nos lo dira.
+STATUS_CODE: Nos permite ver el estado del codigo, si nos sale 200, es que lo tenemos bien.

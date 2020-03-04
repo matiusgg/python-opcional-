@@ -42,7 +42,7 @@ def Links(etiquetaGeneral, etiqueta, valorAtributo, etiquetaEspecifica):
     
     diccLinks = {link.get_text():link.get('href') for link in menuWeb}
     
-    return diccNoticias
+    return diccLinks
 
 noticiasLinks('div', 'id', 'main', 'a')
 

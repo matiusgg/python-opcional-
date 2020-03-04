@@ -1,0 +1,181 @@
+EJERCICIO DE REPASO
+
+import requests
+url = "https://www.ultimahora.es/noticias/local.html"
+
+ultimahora = requests.get(url)
+
+
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(ultimahora.text, 'lxml')
+
+Función scraping
+
+def  enlaces(tag, atributo1, atributo2):
+    lista_enlaces = []
+    zona = soup.find(tag, attrs={atributo1:atributo2}).find_all('a')
+    for link in zona:
+        #* Agregar links a la lista de enlaces
+        #* link.get(): El get() nos permite sacar una parte del link para tener su contenido
+        #* Si no ponemos el dominio, en la lista no nos mostrará la URl/enlace, ya que solo nos mostrará lo que va despues
+        #* del dominio
+        lista_enlaces.append('https://www.ultimahora.es' + link.get('href'))
+        
+        return lista_enlaces
+
+enlaces('section', 'role', "main")
+
+# Ahora qu tenemos un elnace de un articulo, volvemos a hacer el parseo pero para ese articulo en concreto
+
+try:
+    #* Vamos a recoger el html del articulo
+    html = requests.get(articulo)
+    #* Si el code que nos reporta esta acción es 200, entramos con BeautifulSoup
+    if html.status_code == 200:
+        noticia = BeautifulSoup(articuloRequest.text, 'lxml')
+        #*Extraer titulo de la noticia
+        #* Buscamos en la página la etiqueta, para saber cual tipo es, así también con el resto de lo que queramos buscar
+        titulo = noticia.find('h1', attrs={'itemprop': 'headline'})
+        print(titulo.text)
+        #* Extraer fecha de la noticia
+        #IMPORTANTE: No es aconsejable imprimir con .text cosas como fechas, ya que la página lo tendrá de una manera
+        #* y como vamos a usar este dato, lo ideal es que lo convirtamos en forma anglosajona estandar, usando get('datetime')
+        fecha = noticia.find('time', attrs={'itemprop':'datePublished'}).get('datetime')
+        print(fecha)
+    
+#* Cuando encuentres una excepción, independientemente del tipo de excepción, recogela.
+except Exception as error:
+    print('ERROR')
+    prnt(error)
+    print('\n')
+
+#* Para extraer el <img> de una imagen, en este caso buscando con el inspector de elementos, el tipo de etiqueta, y sus atributos.
+media = noticia.find('figure', attrs={'id': 'fotografia_wrapper'}).find_all('img')
+media
+
+
+if len(media) == 0:
+    print('No hay imagenes')
+    
+else:
+    #* Coger el ultimo elemento, para ello usamos [-1], porque la última?, porque comúnmente la última es la más importante de las demás.
+    imagen = media[-1]
+    #* de la imagen, sacamos el SRC, donde se extrae la imagen.
+    img_src = imagen.get('src')
+    print(img_src)
+
+Parseo de la imagen
+img_correcto = requests.get(img_src)
+img_correcto
+
+#* Esta libreria nos permite procesar el código SRC en la imagen en pixeles.
+from IPython.display import Image
+
+#* Ver el contenido de la imagen en forma de código.
+#* Pero como está en Image(), nos permite procesar esa información de la imagen.
+Image(img_correcto.content)
+
+**************************************************************************************
+
+# EJERCICIO
+Crear una función donde nos scrapee una nota cada vez que la llamamos a la función. Scrapee a ultima hora,
+que nos sacará todas las partes interesante de la noticia. Donde la función solo con un párametro que debemos poner la URL
+nos saque toda la información, incluso la imagen.
+
+**************************************************************************************
+
+def albergaNoticia(url):
+    noticias_dicc = {}
+    try:
+        #* Vamos a recoger el html del articulo
+        html = requests.get(url)
+        #* Si el code que nos reporta esta acción es 200, entramos con BeautifulSoup
+        if html.status_code == 200:
+            noticia = BeautifulSoup(html.text, 'lxml')
+            #*Extraer titulo de la noticia
+            #* Buscamos en la página la etiqueta, para saber cual tipo es, así también con el resto de lo que queramos buscar
+            titulo = noticia.find('h1', attrs={'itemprop': 'headline'})
+            print(titulo.text)
+            if titulo:
+                noticias_dicc['titulo'] = titulo.text
+                
+            else:
+                
+                noticias_dicc['titulo'] = None
+                
+            #* Extraer fecha de la noticia
+            #IMPORTANTE: No es aconsejable imprimir con .text cosas como fechas, ya que la página lo tendrá de una manera
+            #* y como vamos a usar este dato, lo ideal es que lo convirtamos en forma anglosajona estandar, usando get('datetime/tipoEtiqueta')
+            fecha = noticia.find('time', attrs={'itemprop':'datePublished'}).get('datetime')
+            print(fecha)
+            
+            if fecha:
+                noticias_dicc['fecha'] = fecha
+                
+            else:
+                
+                noticias_dicc['fecha'] = None
+                
+            #* Para extraer el <img> de una imagen, en este caso buscando con el inspector de elementos, el tipo de etiqueta, y sus atributos.
+            media = noticia.find('figure', attrs={'id': 'fotografia_wrapper'}).find_all('img')
+            
+            if len(media) == 0:
+                print('No hay imagenes')
+    
+            else:
+                #* Coger el ultimo elemento, para ello usamos [-1], porque la última?, porque comúnmente la última es la más importante de las demás.
+                imagen = media[-1]
+                #* de la imagen, sacamos el SRC, donde se extrae la imagen.
+                img_src = imagen.get('src')
+                print(img_src)
+                
+                img_correcto = requests.get(img_src)
+                
+                noticias_dicc['imagen'] = img_correcto.content
+                
+            #* Lista con el contenido de la noticia
+            lista_contenido_noticia = []
+                
+            #* contenidoNoticia
+            contenidoNoticia = noticia.find('div', attrs={'itemprop':'articleBody'}).find_all('p')
+            
+#             print(contenidoNoticia)
+            
+            for contenido in contenidoNoticia:
+                
+                lista_contenido_noticia.append(contenido.text)
+                
+#             print(lista_contenido_noticia)
+
+            #* JOIN para jugar los contenidos de la noticia
+            juntarContenidos = ' '.join(lista_contenido_noticia)
+            
+            print(juntarContenidos)
+            
+            #* Agregar juntarContenidos en el diccionario de la noticia.
+            noticias_dicc['contenidoNoticia'] = juntarContenidos
+                
+        return noticias_dicc
+    
+    #* Cuando encuentres una excepción, independientemente del tipo de excepción, recogela.
+    except Exception as error:
+        print('ERROR')
+        prnt(error)
+        print('\n')
+
+albergaNoticia(articulo)
+
+TIP: SI DE LO QUE HEMOS PARSEADO NECESITAMOS UNA ETIQUETA, Y ESTA ETIQUETA ES DE LOS TIPO DE CONTIENE TEXTO
+COMO <H1>, <P>, ETC. ENTONCES PODEMOS USAR LA FUNCIÓN .TEXT SOBRE ELLOS.
+
+RECORDEMOS LIBRERIAS QUE NECESITAMOS:
+ZEN: autopep8, pep8, pylint
+SCRAPING: requests, bs4, lxml
+CRAWLING: selenium
+
+Tenemos para un proyecto: Entorno virtual, SRC(donde está el proyecto en sí, código. Y tambíen los dos archivos de 
+main_crawling.py y main_scraping.py), geckodriver.log, main.py(fuera de SRC), requirements.txt
+
+EN QUE NOS BENEFICIA JUPITER EN ESTE CASO?, QUE JUPITER CUANDO TENGAMOS EL CÓDIGO PROBADO DE SCRAPING O CRAWLING, ENTONCES PODEMOS EXPORTARLO COMO ARCHIVO PYTHON,
+PARA DESPUÉS COLOCARLO DENTRO DE SRC. DEPENDIENDO DE LO QUE HAGAMOS EN EL ARCHIVO JUPITER, SI SCRAPING O CRAWLING.

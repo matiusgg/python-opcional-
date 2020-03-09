@@ -179,3 +179,22 @@ main_crawling.py y main_scraping.py), geckodriver.log, main.py(fuera de SRC), re
 
 EN QUE NOS BENEFICIA JUPITER EN ESTE CASO?, QUE JUPITER CUANDO TENGAMOS EL CÓDIGO PROBADO DE SCRAPING O CRAWLING, ENTONCES PODEMOS EXPORTARLO COMO ARCHIVO PYTHON,
 PARA DESPUÉS COLOCARLO DENTRO DE SRC. DEPENDIENDO DE LO QUE HAGAMOS EN EL ARCHIVO JUPITER, SI SCRAPING O CRAWLING.
+
+NUEVO MÉTODO DEL BeautifulSoup(), LLAMADO "select()"
+Nos permite hacer la busqueda de etiquetas mediante css, es decir, cumple la misma función que find()
+pero en el caso de que la etiqueta que pongamos dentor de find() no tenga el atributo id="" pero si tiene el atributo class=""
+y como este class="" es para el css, entonces podemos usar select() para buscar etiquetas mediante el class="" del css que tengan
+ejm:
+
+soup = BeautifulSoup(urlRequest.text, 'lxml')
+
+soup.select(body div a.envíoLink)
+
+Donde: envíoLink, es el nombre que le pusimos en <a>, en el class=""
+
+pero tambien podemos usar los id'saber
+
+soup.select(body div a#valorId)
+
++: Nos permite coger el primer hijo
+soup.select(body div + a)
